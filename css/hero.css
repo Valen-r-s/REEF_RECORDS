@@ -1,0 +1,163 @@
+/* REEF Records · Hero */
+:root {
+  --reef: #657bb6;      /* 100% */  --reef-80: #8495c5;
+  --reef-60: #a3b0d3;
+  --reef-40: #c1cae2;
+  --reef-20: #e0e5f0;
+  --reef-claro: #b9c6ea;
+  --abismo: #06182e;
+  --noche: #1a1a1a;
+  --espuma: #eef4ff;
+  --cian: #9fd4f2;
+  --alto-header: calc(clamp(64px, 8vw, 104px) + 2 * clamp(1rem, 3vw, 2rem));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --espuma: #eef4ff; }
+}
+:root[data-theme="dark"] { --espuma: #eef4ff; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--abismo);
+  color: var(--espuma);
+  font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+  cursor: default;
+}
+
+/* Capas */
+#mar { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+#mar {
+  background:
+    radial-gradient(ellipse at 30% 40%, #2d6fa3 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, #1b4f80 0%, transparent 55%),
+    #0c3560;
+}
+#sombras { position: fixed; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; z-index: 1; }
+.velo {
+  position: fixed; inset: 0; pointer-events: none; z-index: 2;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 52%, rgba(10, 40, 80, 0.05) 0%, rgba(6, 24, 46, 0.4) 100%),
+    linear-gradient(180deg, rgba(101, 123, 182, 0.22) 0%, rgba(60, 130, 190, 0.1) 55%, rgba(6, 24, 46, 0.35) 100%);
+}
+
+/* Logo esquina */
+.marca {
+  position: fixed;
+  top: calc(var(--alto-header) / 2);
+  left: clamp(1rem, 3vw, 2.25rem);
+  transform: translateY(-50%);
+  z-index: 8;
+  display: block;
+  line-height: 0;
+  border-radius: 6px;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+}
+.dentro .marca {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transition: opacity 0.6s ease, visibility 0s;
+}
+.marca img {
+  width: clamp(64px, 8vw, 104px);
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0, 10, 30, 0.55));
+}
+.marca:focus-visible { outline: 2px solid var(--cian); outline-offset: 6px; }
+
+/* Héroe */
+.heroe {
+  position: relative; z-index: 4;
+  min-height: 100vh; min-height: 100svh;
+  will-change: opacity, transform;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  pointer-events: none;
+}
+.bloque { display: flex; flex-direction: column; align-items: stretch; width: min(280px, 40vw); }
+.titulo { width: 100%; margin: 0; line-height: 0; }
+.logotipo {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 40px rgba(4, 20, 50, 0.35));
+}
+.contorno {
+  display: block;
+  font-weight: 300;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 8.4vw, 5.6rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--espuma);
+  text-align: left;
+  margin-bottom: clamp(0.6rem, 1.6vw, 1.2rem);
+  white-space: nowrap;
+}
+.sello {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.62em;
+  padding-left: 0.62em;
+  margin-top: clamp(0.5rem, 1.2vw, 0.8rem);
+  font-weight: 500;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  line-height: 1;
+  color: var(--espuma);
+  text-shadow: 0 1px 12px rgba(10, 25, 60, 0.5);
+}
+
+/* Llamado a la acción con esquinas */
+.accion {
+  pointer-events: auto;
+  position: relative;
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+  padding: 0.95rem 1.9rem;
+  background: rgba(6, 24, 46, 0.18);
+  border: 0;
+  color: var(--espuma);
+  font: inherit;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.35s ease, letter-spacing 0.35s ease;
+  --esq: 10px;
+}
+.accion::before, .accion::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  transition: inset 0.35s ease;
+  background:
+    linear-gradient(var(--espuma), var(--espuma)) top left / var(--esq) 1.5px,
+    linear-gradient(var(--espuma), var(--espuma)) top left / 1.5px var(--esq),
+    linear-gradient(var(--espuma), var(--espuma)) bottom right / var(--esq) 1.5px,
+    linear-gradient(var(--espuma), var(--espuma)) bottom right / 1.5px var(--esq);
+  background-repeat: no-repeat;
+}
+.accion::after {
+  background:
+    linear-gradient(var(--espuma), var(--espuma)) top right / var(--esq) 1.5px,
+    linear-gradient(var(--espuma), var(--espuma)) top right / 1.5px var(--esq),
+    linear-gradient(var(--espuma), var(--espuma)) bottom left / var(--esq) 1.5px,
+    linear-gradient(var(--espuma), var(--espuma)) bottom left / 1.5px var(--esq);
+  background-repeat: no-repeat;
+}
+.accion:hover, .accion:focus-visible {
+  background: rgba(101, 123, 182, 0.35);
+  letter-spacing: 0.26em;
+}
+.accion:hover::before, .accion:hover::after,
+.accion:focus-visible::before, .accion:focus-visible::after { inset: -6px; }
+.accion:focus-visible { outline: none; box-shadow: 0 0 0 1px var(--cian); }
+
+@media (max-width: 640px) {
+  .bloque { width: 86vw; }
+  @media (prefers-reduced-motion: reduce) {
+  .accion, .accion::before, .accion::after { transition: none; }
+}

@@ -34,7 +34,8 @@ const enlaces = computed(() => [
   { href: '/musica', ruta: '/musica', texto: 'Música' },
   { href: props.causas, ruta: '/causas', texto: 'Causas' },
   { href: '#', ruta: '/merch', texto: 'Merch' },
-  { href: '/ciencia', ruta: '/ciencia', texto: 'Ciencia' }
+  { href: '/ciencia', ruta: '/ciencia', texto: 'Ciencia' },
+  { href: '#', ruta: '/donaciones', texto: 'Donaciones' }
 ])
 
 const abierto = ref(false)

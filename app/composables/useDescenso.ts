@@ -30,8 +30,8 @@ export function useDescenso(piezas: Piezas) {
     const heroe = piezas.heroe.value!
     const causa = piezas.causa.value!
 
-    Object.assign(reef, { prof: 0, forma: 0, aparece: 0, scroll: 0 })
-    const objetivo = { prof: 0, forma: 0, aparece: 0 }
+    Object.assign(reef, { prof: 0, aparece: 0, scroll: 0 })
+    const objetivo = { prof: 0, aparece: 0 }
     let dentro = false, animando = false, piso = 0
 
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
@@ -65,7 +65,6 @@ export function useDescenso(piezas: Piezas) {
       const s = window.scrollY / window.innerHeight   // 1 = una pantalla hacia abajo
       objetivo.prof = suave(clamp(s / 1.1))
       objetivo.aparece = suave(clamp((s - 0.2) / 0.5))
-      objetivo.forma = suave(clamp((s - 0.35) / 0.75))
       reef.scroll = s
       // el contenido del hero sube y se desvanece al descender
       const h = clamp(s / 0.7)
@@ -81,7 +80,6 @@ export function useDescenso(piezas: Piezas) {
       const dt = Math.min(deltaTime / 1000, 0.1)
       const k = reducido ? 1 : 1 - Math.exp(-dt * 4.5)   // independiente de los fps
       reef.prof += (objetivo.prof - reef.prof) * k
-      reef.forma += (objetivo.forma - reef.forma) * k
       reef.aparece += (objetivo.aparece - reef.aparece) * k
     }
     gsap.ticker.add(paso)

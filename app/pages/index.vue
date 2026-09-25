@@ -3,7 +3,7 @@
     <OceanoMar ref="mar" />
     <MantasSombras />
     <div class="velo" aria-hidden="true"></div>
-    <TiburonParticulas />
+    <NieveMarina descenso />
 
     <a class="marca" href="/" aria-label="REEF, inicio">
       <img src="/assets/reef-web-corner.png" alt="REEF Records">
@@ -21,30 +21,18 @@
     </header>
 
     <main>
-      <!-- Zona de descenso: el mar se oscurece y la nieve marina empieza a reunirse -->
+      <!-- Zona de descenso: el mar se oscurece y aparece la nieve marina -->
       <div class="descenso" aria-hidden="true"></div>
 
       <!-- ═════════ SECCIÓN 2 · LA CAUSA ═════════ -->
       <section id="causa" ref="causa" class="causa" aria-labelledby="causa-t">
         <div class="causa-texto">
-          <span class="etiqueta revelar">Conservación marina</span>
-          <h2 id="causa-t" ref="causaT" class="revelar d1" tabindex="-1">No somos un producto, somos una <em>causa</em> que se comunica con música</h2>
-          <div class="especie revelar d2">
-            <span class="uicn" title="Categoría de la Lista Roja de la UICN">
-              <b>EN</b>
-              <span>En peligro<small>Lista Roja UICN</small></span>
-            </span>
-            <p class="cientifico">Tiburón zorro pelágico<i>Alopias pelagicus</i></p>
-          </div>
+          <h2 id="causa-t" ref="causaT" class="revelar" tabindex="-1">No somos un producto, somos una <em>causa</em> que se comunica con música</h2>
         </div>
 
-        <a class="circulo revelar d3" href="/ciencia" data-ruta="/ciencia">
-          <svg class="anillo" viewBox="0 0 200 200" aria-hidden="true">
-            <circle class="anillo-fijo" cx="100" cy="100" r="96" />
-            <circle class="anillo-vivo" cx="100" cy="100" r="96" />
-          </svg>
-          <span class="circulo-centro">Descubre más sobre conservación marina</span>
-        </a>
+        <p class="causa-lema revelar d1">Música electrónica, moda circular y ciencia por el océano</p>
+
+        <CorrienteObjetos />
       </section>
     </main>
   </div>

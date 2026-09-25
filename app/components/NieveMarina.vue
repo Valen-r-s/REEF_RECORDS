@@ -4,13 +4,18 @@
 
 <script setup lang="ts">
 /* REEF Records · Nieve marina (WebGL sobre three.js: Points + RawShaderMaterial)
-   La misma deriva de partículas que acompaña al tiburón en la sección de la causa, sola, como fondo. */
+   Partículas que derivan en el abismo. En el inicio aparecen al descender (reef.aparece);
+   en las páginas interiores están siempre visibles. */
 import {
   AddEquation, BufferGeometry, CustomBlending, InterleavedBuffer, InterleavedBufferAttribute,
   OneFactor, Points, RawShaderMaterial, Scene, Vector2
 } from 'three'
 import { camaraNula, crearRenderer, esReducido, fijarTamano } from '~/utils/gl'
 
+// En vanilla la opacidad salía de window.REEF, que solo existe en el inicio; aquí el estado es un
+// módulo compartido que siempre existe, así que la página dice si la nieve sigue al descenso.
+const props = defineProps<{ descenso?: boolean }>()
+const reef = useReef()
 const lienzo = ref<HTMLCanvasElement | null>(null)
 let limpiar = () => {}
 
@@ -36,6 +41,7 @@ const vs = `
     }`
 const fs = `
     precision mediump float;
+    uniform float uOpac;
     varying float vAlfa, vTono;
     void main() {
       float a = smoothstep(0.5, 0.0, length(gl_PointCoord - 0.5));
@@ -43,7 +49,7 @@ const fs = `
       vec3 turquesa = vec3(0.0, 0.66, 0.91);
       vec3 marca = vec3(0.40, 0.48, 0.71);
       vec3 c = mix(turquesa * 0.8, marca, step(0.6, vTono));
-      float k = a * vAlfa;
+      float k = a * vAlfa * uOpac;
       gl_FragColor = vec4(c * k, k);
     }`
 
@@ -66,7 +72,7 @@ onMounted(() => {
   geometria.setAttribute('aDato', new InterleavedBufferAttribute(bufer, 3, 2))
   geometria.setDrawRange(0, CANTIDAD)
 
-  const U = { uT: { value: 0 }, uAsp: { value: 1 }, uDpr: { value: 1 }, uMouse: { value: new Vector2() } }
+  const U = { uT: { value: 0 }, uAsp: { value: 1 }, uDpr: { value: 1 }, uMouse: { value: new Vector2() }, uOpac: { value: 1 } }
   const material = new RawShaderMaterial({
     vertexShader: vs, fragmentShader: fs, uniforms: U,
     transparent: true, depthTest: false, depthWrite: false,
@@ -100,6 +106,9 @@ onMounted(() => {
   const inicio = performance.now()
   function dibujar() {
     raf = requestAnimationFrame(dibujar)
+    const op = props.descenso ? reef.aparece : 1
+    cv.style.opacity = op > 0.001 ? '1' : '0'
+    if (op <= 0.001) return
     const t = (performance.now() - inicio) / 1000 * (reducido ? 0.35 : 1)
     suave.x += (cursor.x - suave.x) * 0.08
     suave.y += (cursor.y - suave.y) * 0.08
@@ -107,6 +116,7 @@ onMounted(() => {
     U.uAsp.value = asp
     U.uDpr.value = dpr
     U.uMouse.value.set(suave.x, suave.y)
+    U.uOpac.value = op
     renderer!.render(escena, camara)
   }
   dibujar()

@@ -12,7 +12,6 @@
 }
 
 .pagina-ciencia { background: var(--abismo); color: var(--texto-2); }
-#nieve { position: fixed; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; z-index: 3; }
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .ciencia {

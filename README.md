@@ -16,10 +16,12 @@ Mientras existan las dos:
 - Lo que se haga en `main` se traduce después a `nuxt-migration` (ver [Traducir un cambio de main](#traducir-un-cambio-de-main)).
 - Cuando se decida trabajar directamente en `nuxt-migration`, esa rama pasa a ser la principal y `main` queda como historia.
 
+Última sincronización: `nuxt-migration` refleja `main` hasta el commit `5877a17` ("Index services").
+
 ## Pila
 
 - **Nuxt 4**: genera cada página como HTML estático (`nuxi generate`). No hay servidor.
-- **three.js**: todas las capas WebGL (mar, tiburón de partículas, nieve marina, mapa, especie en píxeles). Se usa directo, sin librerías encima.
+- **three.js**: todas las capas WebGL (mar, nieve marina, mapa, especie en píxeles). Se usa directo, sin librerías encima.
 - **GSAP ScrollTrigger + Lenis**: el scroll suave y el descenso de la página de inicio.
 - **d3-geo + topojson-client**: la proyección del mapa de distribución.
 
@@ -67,8 +69,8 @@ app/
   components/               una capa visual por componente
     OceanoMar.vue             mar en vista cenital (three.js), en Inicio y Ciencia
     MantasSombras.vue         las dos mantas como sombras (canvas 2D con desenfoque)
-    TiburonParticulas.vue     la nieve marina que forma el tiburón zorro (three.js)
-    NieveMarina.vue           nieve marina de Ciencia (three.js)
+    NieveMarina.vue           nieve marina (three.js); en Inicio aparece al descender (prop descenso)
+    CorrienteObjetos.vue      Merch, Música y Causas flotando, unidos por la línea punteada
     MapaDistribucion.vue      mapa de hexágonos de Ciencia (three.js)
     EspecieBitmap.vue         la especie en píxeles con tramado (three.js)
     SiteNav.vue               barra de navegación y menú móvil
@@ -91,7 +93,7 @@ nuxt.config.ts              rutas que se generan, título, idioma
 
 **Capas visuales.** Cada canvas es un componente. Las capas WebGL abren su contexto con `crearRenderer()` y dibujan un triángulo que cubre la pantalla con `pantallaCompleta()`, las dos en `app/utils/gl.ts`. El GLSL original va intacto dentro de un `RawShaderMaterial`, así que three.js no le agrega nada. Cada capa arranca en `onMounted` y se limpia en `onBeforeUnmount`. Si el navegador no tiene WebGL2, la capa no se pinta y la página sigue funcionando.
 
-**Estado compartido.** `useReef()` devuelve un objeto simple que las capas leen en cada cuadro: `prof` (0 en la superficie, 1 en el fondo), `forma` (0 nieve dispersa, 1 tiburón formado), `aparece` y `scroll`. Reemplaza a `window.REEF`.
+**Estado compartido.** `useReef()` devuelve un objeto simple que las capas leen en cada cuadro: `prof` (0 en la superficie, 1 en el fondo), `aparece` (opacidad de la nieve marina en Inicio) y `scroll`. Reemplaza a `window.REEF`. Como este objeto existe en todas las páginas, la nieve solo lo sigue cuando la página se lo pide con `<NieveMarina descenso />`; en Ciencia está siempre visible, igual que en la versión original.
 
 **Descenso.** En `useDescenso.ts`, Lenis mueve el scroll, ScrollTrigger lee la posición y el ticker de GSAP da el tiempo. El hero queda anclado hasta "Entra al arrecife"; después aparece la barra y ya no se vuelve a subir al hero. Las cuentas del descenso son las originales de `scroll.js`.
 
@@ -108,8 +110,8 @@ nuxt.config.ts              rutas que se generan, título, idioma
 | `assets/*` | `public/assets/*` |
 | `js/oceano.js` | `app/components/OceanoMar.vue` |
 | `js/mantas.js` | `app/components/MantasSombras.vue` |
-| `js/tiburon.js` | `app/components/TiburonParticulas.vue` |
 | `js/nieve.js` | `app/components/NieveMarina.vue` |
+| `js/corriente.js` | `app/components/CorrienteObjetos.vue` |
 | `js/mapa.js` | `app/components/MapaDistribucion.vue` |
 | `js/especie.js` | `app/components/EspecieBitmap.vue` |
 | `js/scroll.js` + `js/navegacion.js` | `app/composables/useDescenso.ts` |

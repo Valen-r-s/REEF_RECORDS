@@ -1,5 +1,6 @@
 /* REEF Records · Nieve marina (WebGL)
-   La misma deriva de partículas que acompaña al tiburón en la sección de la causa, sola, como fondo. */
+   Partículas que derivan en el abismo. En el inicio aparecen al descender (REEF.aparece);
+   en las páginas interiores están siempre visibles. */
 (() => {
   const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const cv = document.getElementById('nieve');
@@ -35,6 +36,7 @@
     }`;
   const fs = `
     precision mediump float;
+    uniform float uOpac;
     varying float vAlfa, vTono;
     void main() {
       float a = smoothstep(0.5, 0.0, length(gl_PointCoord - 0.5));
@@ -42,7 +44,7 @@
       vec3 turquesa = vec3(0.0, 0.66, 0.91);
       vec3 marca = vec3(0.40, 0.48, 0.71);
       vec3 c = mix(turquesa * 0.8, marca, step(0.6, vTono));
-      float k = a * vAlfa;
+      float k = a * vAlfa * uOpac;
       gl_FragColor = vec4(c * k, k);
     }`;
 
@@ -69,7 +71,7 @@
   atributo('aDato', 3, 2);
 
   const U = {};
-  ['uT', 'uAsp', 'uDpr', 'uMouse'].forEach(n => U[n] = gl.getUniformLocation(prog, n));
+  ['uT', 'uAsp', 'uDpr', 'uMouse', 'uOpac'].forEach(n => U[n] = gl.getUniformLocation(prog, n));
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.ONE, gl.ONE);
 
@@ -94,6 +96,9 @@
   const inicio = performance.now();
   (function dibujar() {
     requestAnimationFrame(dibujar);
+    const op = window.REEF && window.REEF.aparece !== undefined ? window.REEF.aparece : 1;
+    cv.style.opacity = op > 0.001 ? 1 : 0;
+    if (op <= 0.001) return;
     const t = (performance.now() - inicio) / 1000 * (reducido ? 0.35 : 1);
     suave.x += (cursor.x - suave.x) * 0.08;
     suave.y += (cursor.y - suave.y) * 0.08;
@@ -103,6 +108,7 @@
     gl.uniform1f(U.uAsp, asp);
     gl.uniform1f(U.uDpr, dpr);
     gl.uniform2f(U.uMouse, suave.x, suave.y);
+    gl.uniform1f(U.uOpac, op);
     gl.drawArrays(gl.POINTS, 0, CANTIDAD);
   })();
 })();

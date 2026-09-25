@@ -5,10 +5,9 @@
   const suave = x => x * x * (3 - 2 * x);
 
   // prof: 0 en la superficie → 1 en el fondo (sección 2)
-  // forma: 0 = nieve marina dispersa → 1 = tiburón formado
-  // aparece: opacidad de la capa del tiburón
-  window.REEF = { prof: 0, forma: 0, aparece: 0, scroll: 0 };
-  const objetivo = { prof: 0, forma: 0, aparece: 0 };
+  // aparece: opacidad de la nieve marina
+  window.REEF = { prof: 0, aparece: 0, scroll: 0 };
+  const objetivo = { prof: 0, aparece: 0 };
 
   const heroe = document.getElementById('inicio');
 
@@ -16,7 +15,6 @@
     const s = window.scrollY / window.innerHeight;   // 1 = una pantalla hacia abajo
     objetivo.prof = suave(clamp(s / 1.1));
     objetivo.aparece = suave(clamp((s - 0.2) / 0.5));
-    objetivo.forma = suave(clamp((s - 0.35) / 0.75));
     window.REEF.scroll = s;
     // el contenido del hero sube y se desvanece al descender
     if (heroe) {
@@ -36,7 +34,7 @@
     const dt = Math.min((ahora - antes) / 1000, 0.1);
     antes = ahora;
     const k = reducido ? 1 : 1 - Math.exp(-dt * 4.5);   // independiente de los fps
-    for (const c of ['prof', 'forma', 'aparece']) {
+    for (const c of ['prof', 'aparece']) {
       window.REEF[c] += (objetivo[c] - window.REEF[c]) * k;
     }
     requestAnimationFrame(paso);

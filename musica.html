@@ -1,73 +1,81 @@
 <!DOCTYPE html>
 <html lang="es" class="dentro">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Música · REEF Records</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/hero.css">
-<link rel="stylesheet" href="css/nav.css">
-<link rel="stylesheet" href="css/selector.css">
-<link rel="stylesheet" href="css/musica.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Música · REEF Records</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/selector.css">
+  <link rel="stylesheet" href="css/musica.css">
 </head>
+
 <body class="pagina-musica">
 
-<a class="marca" href="index.html" aria-label="REEF, inicio">
-  <img src="assets/reef-web-corner.png" alt="REEF Records">
-</a>
+  <a class="marca" href="index.html" aria-label="REEF, inicio">
+    <img src="assets/reef-web-corner.png" alt="REEF Records">
+  </a>
 
-<nav class="navegacion" id="navegacion" aria-label="Principal">
-  <button class="nav-menu" id="nav-menu" type="button" aria-expanded="false" aria-controls="nav-lista">Menú</button>
-  <ul class="nav-lista" id="nav-lista">
-    <li><a href="#" data-ruta="/about">About</a></li>
-    <li><a href="musica.html" data-ruta="/musica" aria-current="page">Música</a></li>
-    <li><a href="index.html#causa" data-ruta="/causas">Causas</a></li>
-    <li><a href="#" data-ruta="/merch">Merch</a></li>
-    <li><a href="ciencia.html" data-ruta="/ciencia">Ciencia</a></li>
-  </ul>
-</nav>
+  <nav class="navegacion" id="navegacion" aria-label="Principal">
+    <button class="nav-menu" id="nav-menu" type="button" aria-expanded="false" aria-controls="nav-lista">Menú</button>
+    <ul class="nav-lista" id="nav-lista">
+      <li><a href="#" data-ruta="/about">About</a></li>
+      <li><a href="musica.html" data-ruta="/musica" aria-current="page">Música</a></li>
+      <li><a href="index.html#causa" data-ruta="/causas">Causas</a></li>
+      <li><a href="#" data-ruta="/merch">Merch</a></li>
+      <li><a href="ciencia.html" data-ruta="/ciencia">Ciencia</a></li>
+      <li><a href="#" data-ruta="/donaciones">Donaciones</a></li>
+    </ul>
+  </nav>
 
-<main class="musica">
-  <h1 class="oculto">Música</h1>
+  <main class="musica">
+    <h1 class="oculto">Música</h1>
 
-  <div class="selector" id="selector" role="tablist" aria-label="Vista">
-    <button type="button" role="tab" id="tab-slider" aria-selected="true" aria-controls="escena">Slider</button>
-    <button type="button" role="tab" id="tab-grid" aria-selected="false" aria-controls="escena" tabindex="-1">Grid</button>
-  </div>
-
-  <div class="categorias" id="categorias" role="tablist" aria-label="Sección" aria-orientation="vertical">
-    <button type="button" role="tab" id="cat-artistas" aria-selected="true" aria-controls="escena">Artistas</button>
-    <button type="button" role="tab" id="cat-eventos" aria-selected="false" aria-controls="panel-eventos" tabindex="-1">Eventos</button>
-  </div>
-
-  <ul id="fuente" hidden>
-    <li><img src="assets/artistas/cirratum.jpg" alt="CIRRATUM"></li>
-    <li><img src="assets/artistas/f3dr.jpg" alt="F3DR"></li>
-    <li><img src="assets/artistas/warv.jpg" alt="WARV"></li>
-    <li><img src="assets/artistas/kesr.jpg" alt="KESR"></li>
-    <li><img src="assets/artistas/caotical-disordah.jpg" alt="CAOTICAL DISORDAH"></li>
-    <li><img src="assets/artistas/esallen.jpg" alt="ESALLEN"></li>
-  </ul>
-
-  <section class="escena" id="escena" role="tabpanel" aria-labelledby="tab-slider" tabindex="0" aria-roledescription="galería" aria-label="Artistas de REEF Records. Arrastra para moverte."></section>
-
-  <section class="eventos" id="panel-eventos" role="tabpanel" aria-labelledby="cat-eventos" aria-hidden="true">
-    <p>Working on it</p>
-  </section>
-
-  <div class="barra" id="barra">
-    <button class="flecha" id="anterior" type="button" aria-label="Artista anterior">←</button>
-    <div class="rotulo">
-      <p class="nombre" id="nombre" aria-live="polite">CIRRATUM</p>
-      <p class="meta" id="contador">01 / 06</p>
+    <div class="selector" id="selector" role="tablist" aria-label="Vista">
+      <button type="button" role="tab" id="tab-slider" aria-selected="true" aria-controls="escena">Slider</button>
+      <button type="button" role="tab" id="tab-grid" aria-selected="false" aria-controls="escena"
+        tabindex="-1">Grid</button>
     </div>
-    <button class="flecha" id="siguiente" type="button" aria-label="Artista siguiente">→</button>
-  </div>
-</main>
 
-<script src="js/menu.js"></script>
-<script src="js/musica.js"></script>
+    <div class="categorias" id="categorias" role="tablist" aria-label="Sección" aria-orientation="vertical">
+      <button type="button" role="tab" id="cat-artistas" aria-selected="true" aria-controls="escena">Artistas</button>
+      <button type="button" role="tab" id="cat-eventos" aria-selected="false" aria-controls="panel-eventos"
+        tabindex="-1">Eventos</button>
+    </div>
+
+    <ul id="fuente" hidden>
+      <li><img src="assets/artistas/cirratum.jpg" alt="CIRRATUM"></li>
+      <li><img src="assets/artistas/f3dr.jpg" alt="F3DR"></li>
+      <li><img src="assets/artistas/warv.jpg" alt="WARV"></li>
+      <li><img src="assets/artistas/kesr.jpg" alt="KESR"></li>
+      <li><img src="assets/artistas/caotical-disordah.jpg" alt="CAOTICAL DISORDAH"></li>
+      <li><img src="assets/artistas/esallen.jpg" alt="ESALLEN"></li>
+    </ul>
+
+    <section class="escena" id="escena" role="tabpanel" aria-labelledby="tab-slider" tabindex="0"
+      aria-roledescription="galería" aria-label="Artistas de REEF Records. Arrastra para moverte."></section>
+
+    <section class="eventos" id="panel-eventos" role="tabpanel" aria-labelledby="cat-eventos" aria-hidden="true">
+      <p>Working on it</p>
+    </section>
+
+    <div class="barra" id="barra">
+      <button class="flecha" id="anterior" type="button" aria-label="Artista anterior">←</button>
+      <div class="rotulo">
+        <p class="nombre" id="nombre" aria-live="polite">CIRRATUM</p>
+        <p class="meta" id="contador">01 / 06</p>
+      </div>
+      <button class="flecha" id="siguiente" type="button" aria-label="Artista siguiente">→</button>
+    </div>
+  </main>
+
+  <script src="js/menu.js"></script>
+  <script src="js/musica.js"></script>
 </body>
+
 </html>

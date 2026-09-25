@@ -6,7 +6,8 @@
     "dev": "nuxi dev",
     "build": "nuxi build",
     "generate": "nuxi generate",
-    "preview": "nuxi preview"
+    "preview": "nuxi preview",
+    "gbif": "node scripts/gbif-especies.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.1",

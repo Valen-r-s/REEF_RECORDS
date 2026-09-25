@@ -8,6 +8,11 @@
         Distribución aproximada · a mayor círculo, más registros
       </p>
       <p id="mapa-lectura" class="lectura" aria-hidden="true">{{ lectura }}</p>
+      <p class="fuente">
+        Fuente: <a :href="`https://www.gbif.org/species/${datos.gbifKey}`" target="_blank" rel="noopener">GBIF.org</a>
+        · {{ datos.registros.toLocaleString('es-CO') }} registros de presencia · CC0 y CC BY 4.0 ·
+        <a href="/datos/gbif-fuentes.json" target="_blank" rel="noopener">datasets citados</a>
+      </p>
     </div>
   </section>
 </template>
@@ -21,10 +26,15 @@ import {
 } from 'three'
 import { geoEquirectangular, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
-import { ESPECIES } from '~/data/ciencia-datos'
+import GBIF from '~/data/gbif-especies.json'
 import { camaraNula, crearRenderer, esReducido, fijarTamano, pantallaCompleta } from '~/utils/gl'
 
+// Avistamientos reales de GBIF en celdas de 1°: [lat, lon, registros]. Se regeneran con `npm run gbif`.
+type Especie = { nombre: string, gbifKey: number, registros: number, celdas: [number, number, number][] }
+const ESPECIES = GBIF.especies as unknown as Record<string, Especie>
+
 const props = defineProps<{ especie: string, etiqueta: string }>()
+const datos = computed(() => ESPECIES[props.especie]!)
 
 const INICIAL = 'Toca o pasa el cursor por el mapa'
 const lectura = ref(INICIAL)
@@ -142,7 +152,6 @@ onMounted(() => {
   texTierra.wrapS = texTierra.wrapT = ClampToEdgeWrapping
   texTierra.generateMipmaps = false
   texTierra.flipY = true
-  let mascara: Uint8ClampedArray | null = null   // píxeles de la tierra para descartar puntos en tierra firme
 
   const U = {
     uRes: { value: new Vector2() }, uTex: { value: new Vector2() }, uHover: { value: new Vector2() },
@@ -167,54 +176,19 @@ onMounted(() => {
       const trazo = geoPath(proy, c)
       c.fillStyle = '#f00'
       c.beginPath(); trazo(tierra as any); c.fill()
-      mascara = c.getImageData(0, 0, TW, TH).data
       // la costa va en el canal verde, sumada sobre el relleno
       c.globalCompositeOperation = 'lighter'
       c.strokeStyle = '#0f0'; c.lineWidth = 2.2
       c.beginPath(); trazo(tierra as any); c.stroke()
       subirTierra()
-      puntos = {}
-      agrupar()
     } catch (e) {
       console.warn('Mapa: no se pudo cargar el contorno de la tierra', e)
     }
   }
-  const enTierra = (lat: number, lon: number) => {
-    if (!mascara) return false
-    const x = Math.min(TW - 1, Math.floor((lon + 180) / 360 * TW))
-    const y = Math.min(TH - 1, Math.floor((LAT_N - lat) / ALTO * TH))
-    return mascara[(y * TW + x) * 4]! > 127
-  }
 
-  /* ───────── Puntos y hexágonos ───────── */
-  // generador con semilla: el mapa se ve igual en cada visita
-  function azarConSemilla(semilla: number) {
-    return () => {
-      semilla |= 0; semilla = semilla + 0x6D2B79F5 | 0
-      let t = Math.imul(semilla ^ semilla >>> 15, 1 | semilla)
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t
-      return ((t ^ t >>> 14) >>> 0) / 4294967296
-    }
-  }
-  let puntos: Record<string, [number, number][]> = {}
-  function puntosDe(id: string) {
-    if (puntos[id]) return puntos[id]
-    const azar = azarConSemilla(id === 'manta' ? 7 : 13)
-    const gauss = () => Math.sqrt(-2 * Math.log(azar() + 1e-9)) * Math.cos(2 * Math.PI * azar())
-    const lista: [number, number][] = []
-    for (const [lat, lon, peso, disp] of ESPECIES[id]!.zonas) {
-      const n = Math.round(peso * 3)
-      for (let i = 0, intentos = 0; i < n && intentos < n * 12; intentos++) {
-        const la = lat + gauss() * disp * 0.55
-        let lo = lon + gauss() * disp * 0.7
-        lo = ((lo + 540) % 360) - 180
-        if (la <= LAT_S || la >= LAT_N || enTierra(la, lo)) continue
-        lista.push([la, lo])
-        i++
-      }
-    }
-    return puntos[id] = lista
-  }
+  /* ───────── Registros y hexágonos ───────── */
+  // Registros reales: no se descartan los que caen en la costa, cada uno es un avistamiento
+  const dentroDelRecorte = ([lat]: [number, number, number]) => lat > LAT_S && lat < LAT_N
 
   // misma celda que calcula hexCoords en el shader, con el identificador doblado a enteros
   function celda(x: number, y: number): [number, number] {
@@ -233,14 +207,16 @@ onMounted(() => {
     texH = Math.ceil(2 * ALTO / (unidad * RAIZ3)) + 4
     for (const id of Object.keys(texDatos)) {
       const cuenta = new Map<number, number>()
-      for (const [lat, lon] of puntosDe(id)) {
+      for (const [lat, lon, n] of ESPECIES[id]!.celdas.filter(dentroDelRecorte)) {
         const [ix, iy] = celda((lon + 180) / unidad, (lat - LAT_S) / unidad)
         const k = ix + iy * texW
-        cuenta.set(k, (cuenta.get(k) || 0) + 1)
+        cuenta.set(k, (cuenta.get(k) || 0) + n)
       }
-      const max = Math.max(1, ...cuenta.values())
+      // Escala logarítmica: los registros reales van de 1 a más de mil por celda; en lineal un solo
+      // punto caliente deja todas las demás celdas del mismo tamaño. La lectura del cursor sigue exacta.
+      const max = Math.log1p(Math.max(1, ...cuenta.values()))
       const bytes = new Uint8Array(texW * texH)
-      for (const [k, n] of cuenta) bytes[k] = Math.max(8, Math.round(n / max * 255))
+      for (const [k, n] of cuenta) bytes[k] = Math.max(8, Math.round(Math.log1p(n) / max * 255))
       conteos[id] = cuenta
       // un texel de un byte por celda (antes LUMINANCE; three.js en WebGL2 usa RED, el shader lee .r)
       const tex = new DataTexture(bytes, texW, texH, RedFormat, UnsignedByteType)
@@ -253,12 +229,9 @@ onMounted(() => {
       texDatos[id] = tex
     }
     U.uTex.value.set(texW, texH)
-    // Como en mapa.js (agrupar): subir cada textura la deja ligada a su unidad, manta → uDatosA y
-    // martillo → uDatosB, sin volver a enlazar desde/hacia. Se reproduce tal cual por paridad;
-    // efecto: tras cargar la tierra (o redimensionar) la pestaña Mantarraya muestra la distribución
-    // del martillo hasta el primer cambio de especie. Informado a Val como fallo, sin corregir aquí.
-    U.uDatosA.value = texDatos.manta!
-    U.uDatosB.value = texDatos.martillo!
+    // Texturas nuevas: volver a enlazar la especie visible y la de destino (mapa.js fijaba manta y
+    // martillo, y tras redimensionar la pestaña Mantarraya mostraba el mapa del martillo)
+    enlazar()
   }
 
   /* ───────── Tamaño ───────── */
@@ -347,3 +320,9 @@ onMounted(() => {
 
 onBeforeUnmount(() => limpiar())
 </script>
+
+<style scoped>
+.fuente { flex-basis: 100%; color: var(--reef-40); letter-spacing: 0.12em; }
+.fuente a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+.fuente a:hover { color: #6fa6dc; }
+</style>

@@ -1,0 +1,1799 @@
+{
+ "generado": "2026-09-25T18:06:12.358Z",
+ "cita": "GBIF.org, registros de presencia con coordenadas, licencia CC0 1.0 o CC BY 4.0 por registro y por dataset, sin registros tierra adentro ni de los datasets excluidos. Categoría de la Lista Roja de la UICN vía GBIF (dataset 19491596-35ae-4a91-9a98-85cf505f1bd3, CC BY 4.0).",
+ "licencias": [
+  "CC0_1_0",
+  "CC_BY_4_0"
+ ],
+ "excluidos": {
+  "0e3d6f05-a287-4ffd-852d-4e17db22d810": "ecoscope_observation_database: coordenadas fuera de rango y tierra adentro"
+ },
+ "especies": {
+  "manta": {
+   "nombre": "Mobula birostris",
+   "gbifKey": 9548142,
+   "fuera": {
+    "licencia": 36,
+    "dataset": 2,
+    "tierra": 10
+   },
+   "datasets": [
+    {
+     "key": "0fdb3b41-3c94-4959-81c9-e3875d6b3e96",
+     "registros": 1382,
+     "titulo": "Marcaje satelital de manta raya oceánica (Mobula birostris) en las aguas costeras de Ecuador",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/0fdb3b41-3c94-4959-81c9-e3875d6b3e96"
+    },
+    {
+     "key": "ce4a5fa4-4fb2-4b58-89be-4a13a5a4eb93",
+     "registros": 162,
+     "titulo": "MANGA - (Tag) Habitat use of oceanic manta rays",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ce4a5fa4-4fb2-4b58-89be-4a13a5a4eb93"
+    },
+    {
+     "key": "d9adcc59-5362-43ec-ab95-8d8e1b4fdfa2",
+     "registros": 111,
+     "titulo": "Occurrences des observations de la campagne REMMOA Guyane (2008)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d9adcc59-5362-43ec-ab95-8d8e1b4fdfa2"
+    },
+    {
+     "key": "f0c35f1c-cfc0-4e14-88df-eaec3b80ae78",
+     "registros": 65,
+     "titulo": "UNESCO eDNA expedition in Archipiélago de Revillagigedo (Mexico): April 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f0c35f1c-cfc0-4e14-88df-eaec3b80ae78"
+    },
+    {
+     "key": "ffe38a37-d659-4b1a-a935-5a5264e3cc0a",
+     "registros": 54,
+     "titulo": "ICMBio | Dados de ocorrência de espécies do Sistema de Autorização e Informações de Biodiversidade (SISBio) do ICMBio",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ffe38a37-d659-4b1a-a935-5a5264e3cc0a"
+    },
+    {
+     "key": "54bae6ef-8b4e-4ad3-8729-c4296299e5c7",
+     "registros": 30,
+     "titulo": "observe_tuna_bycatch_ecoscope",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/54bae6ef-8b4e-4ad3-8729-c4296299e5c7"
+    },
+    {
+     "key": "b463a5ba-3126-44e1-b017-8020cea66bd1",
+     "registros": 29,
+     "titulo": "NYSDEC aerial surveys",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b463a5ba-3126-44e1-b017-8020cea66bd1"
+    },
+    {
+     "key": "6f19bb5e-ef43-492e-af23-608f2d84e064",
+     "registros": 26,
+     "titulo": "DNA metabarcoding assays reveal a diverse prey assemblage for Mobula rays in the Bohol Sea, Philippines",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6f19bb5e-ef43-492e-af23-608f2d84e064"
+    },
+    {
+     "key": "85bb9817-fe01-4f6d-8ad1-3b861a7cec61",
+     "registros": 25,
+     "titulo": "Mingan Island Cetacean Study 84-07",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/85bb9817-fe01-4f6d-8ad1-3b861a7cec61"
+    },
+    {
+     "key": "391b8a2b-b49d-4614-88d9-002c2662bcb4",
+     "registros": 23,
+     "titulo": "UNESCO eDNA expedition in Cocos Island National Park (Costa Rica): December 2022",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/391b8a2b-b49d-4614-88d9-002c2662bcb4"
+    },
+    {
+     "key": "25e3e8f1-86ee-440c-adfc-8e63759a6505",
+     "registros": 22,
+     "titulo": "Programme BioObs: observations naturalistes en milieux aquatiques-Observations de BioObs.",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/25e3e8f1-86ee-440c-adfc-8e63759a6505"
+    },
+    {
+     "key": "8e9974a4-12e2-475f-9aec-5abdf24a1f50",
+     "registros": 20,
+     "titulo": "Programme CROMIS: carnet de plongée en ligne de la FFESSM-Observations d'espèces subaquatiques collectées par les utilisateurs de CROMIS",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8e9974a4-12e2-475f-9aec-5abdf24a1f50"
+    },
+    {
+     "key": "c89d4997-952d-42c6-8d60-e484a29a4e61",
+     "registros": 18,
+     "titulo": "HRC KB26 Shoreline Aerial Surveys Aug 2014",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c89d4997-952d-42c6-8d60-e484a29a4e61"
+    },
+    {
+     "key": "8bfd90da-4ab9-40a2-8c96-bd7c2c9e9fc5",
+     "registros": 16,
+     "titulo": "Ecological Baseline Studies of the U.S. Outer Continental Shelf Option Year 2",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8bfd90da-4ab9-40a2-8c96-bd7c2c9e9fc5"
+    },
+    {
+     "key": "d16014e6-8cb2-4c08-8efa-b3199e85e544",
+     "registros": 14,
+     "titulo": "UNESCO eDNA expedition in Shark Bay, Western Australia (Australia): October 2022",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d16014e6-8cb2-4c08-8efa-b3199e85e544"
+    },
+    {
+     "key": "d8cd16ba-bb74-4420-821e-083f2bac17c2",
+     "registros": 14,
+     "titulo": "INSDC Sequences",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d8cd16ba-bb74-4420-821e-083f2bac17c2"
+    },
+    {
+     "key": "6ac3f774-d9fb-4796-b3e9-92bf6c81c084",
+     "registros": 12,
+     "titulo": "NABU|naturgucker",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6ac3f774-d9fb-4796-b3e9-92bf6c81c084"
+    },
+    {
+     "key": "514ccc41-0fd0-4a49-86b1-ae1c739eb5d0",
+     "registros": 12,
+     "titulo": "Diversidade e ocorrência de peixes em Inhambane (2009-2017)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/514ccc41-0fd0-4a49-86b1-ae1c739eb5d0"
+    },
+    {
+     "key": "8d042ca8-bccc-40dd-a222-e31df71098f0",
+     "registros": 11,
+     "titulo": "Diving into the vertical dimension of elasmobranch movement ecology (2000-2019)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8d042ca8-bccc-40dd-a222-e31df71098f0"
+    },
+    {
+     "key": "7f6dd0f7-9ed4-49c0-bb71-b2a9c7fed9f1",
+     "registros": 10,
+     "titulo": "Macaulay Library Audio and Video Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/7f6dd0f7-9ed4-49c0-bb71-b2a9c7fed9f1"
+    },
+    {
+     "key": "bae2ce18-4da1-4069-a9f8-672d94294077",
+     "registros": 8,
+     "titulo": "UNESCO eDNA expedition in Coiba National Park and its Special Zone of Marine Protection (Panama), February 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/bae2ce18-4da1-4069-a9f8-672d94294077"
+    },
+    {
+     "key": "874ff2f9-f515-435b-afb1-bc282ef3fa67",
+     "registros": 8,
+     "titulo": "Ecological Baseline Studies of the U.S. Outer Continental Shelf Option Year 1",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/874ff2f9-f515-435b-afb1-bc282ef3fa67"
+    },
+    {
+     "key": "a2e9f688-fdbe-4b4c-8faa-8a955089a64d",
+     "registros": 8,
+     "titulo": "Aerial digital survey of ecological studies for offshore wind energy development in Mid-Atlantic Bight",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a2e9f688-fdbe-4b4c-8faa-8a955089a64d"
+    },
+    {
+     "key": "91aa3d5b-6f77-4135-a823-cef438a60dfa",
+     "registros": 8,
+     "titulo": "Référentiel taxonomique national (TAXREF) - Inventaire des Collectivités d'outre-mer et de la métropole (ICOM_15) issu des données biogéographiques de TAXREF v15",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/91aa3d5b-6f77-4135-a823-cef438a60dfa"
+    },
+    {
+     "key": "f553f8f9-b147-4f09-86e5-0d1ce1a91ce0",
+     "registros": 8,
+     "titulo": "Référentiel taxonomique national (TAXREF)-Inventaire des Collectivités d'outre-mer et de la métropole issu des données biogéographiques de TAXREF",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f553f8f9-b147-4f09-86e5-0d1ce1a91ce0"
+    },
+    {
+     "key": "5e2c9b3a-9d7c-4871-af8c-144e4f40e9d2",
+     "registros": 7,
+     "titulo": "Marine biological observation data from coastal and offshore surveys around New Zealand",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/5e2c9b3a-9d7c-4871-af8c-144e4f40e9d2"
+    },
+    {
+     "key": "1aaec653-c71c-4695-9b6e-0e26214dd817",
+     "registros": 7,
+     "titulo": "Occurrence records of southern African fish biodiversity",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/1aaec653-c71c-4695-9b6e-0e26214dd817"
+    },
+    {
+     "key": "f2e0cb2f-2bd6-47e4-bde2-bdbf706c033b",
+     "registros": 6,
+     "titulo": "UNESCO eDNA expedition in Aldabra Atoll (Seychelles): April 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f2e0cb2f-2bd6-47e4-bde2-bdbf706c033b"
+    },
+    {
+     "key": "69e81d22-3207-4663-9a7d-418919d7d779",
+     "registros": 6,
+     "titulo": "Diversidade e ocorrência de peixes na Zambézia (2003-2016)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/69e81d22-3207-4663-9a7d-418919d7d779"
+    },
+    {
+     "key": "ee6be9b3-f850-4a0b-bddc-73c13a078e52",
+     "registros": 6,
+     "titulo": "Inventario de algas, corales pétreos, moluscos, crustáceos decápodos, equinodermos y peces de las islas de Revillagigedo, Colima, México",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ee6be9b3-f850-4a0b-bddc-73c13a078e52"
+    },
+    {
+     "key": "6ed43f52-25d1-4d56-a821-63a8564b81f6",
+     "registros": 6,
+     "titulo": "Référentiel taxonomique national (TAXREF) - Inventaire des Collectivités d'outre-mer et de la métropole (ICOM_14) issu des données biogéographiques de TAXREF v14",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6ed43f52-25d1-4d56-a821-63a8564b81f6"
+    },
+    {
+     "key": "e01e80c4-840d-4e9f-827d-93aee429a124",
+     "registros": 5,
+     "titulo": "Service National d'Observation CORAIL - Réseau de surveillance Polynesia Mana - Peuplements de poissons",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e01e80c4-840d-4e9f-827d-93aee429a124"
+    },
+    {
+     "key": "0b1150c9-dfa8-4904-8bc5-b79b4e1930e6",
+     "registros": 5,
+     "titulo": "FBIP: SeaKeys_SANBI: Marine images iSpot_2013",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/0b1150c9-dfa8-4904-8bc5-b79b4e1930e6"
+    },
+    {
+     "key": "f946666e-67dc-4848-9fa8-2162f3559e33",
+     "registros": 5,
+     "titulo": "Données d'occurrences Espèces issues de l'inventaire des ZNIEFF",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f946666e-67dc-4848-9fa8-2162f3559e33"
+    },
+    {
+     "key": "e1a01804-881b-42ae-8f97-1e80f697fd56",
+     "registros": 5,
+     "titulo": "SIO Marine Vertebrate Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e1a01804-881b-42ae-8f97-1e80f697fd56"
+    },
+    {
+     "key": "f58922e2-93ed-4703-ba22-12a0674d1b54",
+     "registros": 5,
+     "titulo": "The fishes collection (IC) of the Muséum national d'Histoire naturelle (MNHN - Paris)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f58922e2-93ed-4703-ba22-12a0674d1b54"
+    },
+    {
+     "key": "18c93d12-34fb-4d3f-903c-b77215a1dcc9",
+     "registros": 4,
+     "titulo": "Australian National Fish Collection (ANFC)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/18c93d12-34fb-4d3f-903c-b77215a1dcc9"
+    },
+    {
+     "key": "d51f93a6-a5b7-4025-83a9-3f7b8525755a",
+     "registros": 4,
+     "titulo": "Australian National Fish Collection (ANFC)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d51f93a6-a5b7-4025-83a9-3f7b8525755a"
+    },
+    {
+     "key": "f8863ab9-84d6-4c08-b558-4439eeffeadb",
+     "registros": 4,
+     "titulo": "Digital Aerial Baseline Survey of Marine Wildlife in Support of Offshore Wind Energy - OPA 2016",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f8863ab9-84d6-4c08-b558-4439eeffeadb"
+    },
+    {
+     "key": "b9d90a50-3138-4837-b4b1-775f3526889c",
+     "registros": 4,
+     "titulo": "Dry Tortugas Reef Visual Census 2006",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b9d90a50-3138-4837-b4b1-775f3526889c"
+    },
+    {
+     "key": "f1d263a0-98a0-11de-b4d9-b8a03c50a862",
+     "registros": 4,
+     "titulo": "Taiwan Fisheries Research Institute – Digital archives of coastal and offshore specimens",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f1d263a0-98a0-11de-b4d9-b8a03c50a862"
+    },
+    {
+     "key": "bdad918c-470b-4c4e-a146-6a39caacf989",
+     "registros": 4,
+     "titulo": "Formación de una base de datos de la biodiversidad de fauna marina y costera en el Golfo de California",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/bdad918c-470b-4c4e-a146-6a39caacf989"
+    },
+    {
+     "key": "ce4e902c-128f-455a-9152-5ead20f1d475",
+     "registros": 3,
+     "titulo": "Avistamiento de fauna marina desde la embarcación en la Expedición de Montes Submarinos 2021",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ce4e902c-128f-455a-9152-5ead20f1d475"
+    },
+    {
+     "key": "3ee5d83d-006f-43cf-b971-18f0cfaafa2d",
+     "registros": 3,
+     "titulo": "JAX MAVEX Aerial Monitoring 2012",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/3ee5d83d-006f-43cf-b971-18f0cfaafa2d"
+    },
+    {
+     "key": "48d84abc-2973-42e7-bf81-a6c2689ff6e1",
+     "registros": 3,
+     "titulo": "Survey of reef fishes in the Coiba National Park, Panama, May 5-22, 2003",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/48d84abc-2973-42e7-bf81-a6c2689ff6e1"
+    },
+    {
+     "key": "383287ee-19c5-46e2-8b58-f9320a7aa091",
+     "registros": 3,
+     "titulo": "CardObs : Observations naturalistes issues de l'outil CardObs-Données naturalistes d'IFRECOR (pf)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/383287ee-19c5-46e2-8b58-f9320a7aa091"
+    },
+    {
+     "key": "6c59c9b6-a3fa-4861-aab9-f188533298e7",
+     "registros": 2,
+     "titulo": "Inventario de Peces del Santuario de Fauna y Flora de Malpelo",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6c59c9b6-a3fa-4861-aab9-f188533298e7"
+    },
+    {
+     "key": "0dcd258f-e5fc-4495-ae38-5f02fd910987",
+     "registros": 2,
+     "titulo": "Digital Aerial Baseline Survey of Marine Wildlife in Support of Offshore Wind Energy - OPA 2017",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/0dcd258f-e5fc-4495-ae38-5f02fd910987"
+    },
+    {
+     "key": "84a649ce-ff81-420d-9c41-aa1de59e3766",
+     "registros": 2,
+     "titulo": "ALA species sightings and OzAtlas",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/84a649ce-ff81-420d-9c41-aa1de59e3766"
+    },
+    {
+     "key": "a5e490a6-4aaf-4f4c-8c67-9f101c130ae7",
+     "registros": 2,
+     "titulo": "CRC HRC Vessel-Based Surveys KB11 2013-2014",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a5e490a6-4aaf-4f4c-8c67-9f101c130ae7"
+    },
+    {
+     "key": "fa375330-6c8a-11de-8226-b8a03c50a862",
+     "registros": 2,
+     "titulo": "South Australian Museum Adelaide provider for OZCAM",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/fa375330-6c8a-11de-8226-b8a03c50a862"
+    },
+    {
+     "key": "80cc6506-f762-11e1-a439-00145eb45e9a",
+     "registros": 2,
+     "titulo": "Inventario de la biota terrestre (florístico) y marina (invertebrados, peces y macroalgas bentónicos) del parque nacional Isla Isabel (Algasinvertebrados)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/80cc6506-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "18896efa-22df-4fbd-9782-42f47257e753",
+     "registros": 2,
+     "titulo": "Fish Specimen Collection of National Museum, Philippines",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/18896efa-22df-4fbd-9782-42f47257e753"
+    },
+    {
+     "key": "6ff42543-528d-4249-99bd-350bdd21b424",
+     "registros": 2,
+     "titulo": "Royal Ontario Museum - Ichthyology",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6ff42543-528d-4249-99bd-350bdd21b424"
+    },
+    {
+     "key": "3b82fc70-e5a5-4af3-a4d6-ec14b215aef8",
+     "registros": 1,
+     "titulo": "The Survey Data of Mianhua and Huaping Islets Wildlife Refuge",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/3b82fc70-e5a5-4af3-a4d6-ec14b215aef8"
+    },
+    {
+     "key": "8c12ae9e-456a-43d6-b493-6433386d89c4",
+     "registros": 1,
+     "titulo": "Avistamiento de fauna en el trayecto entre Buenaventura y Malpelo",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8c12ae9e-456a-43d6-b493-6433386d89c4"
+    },
+    {
+     "key": "b914edca-e251-46e1-94a0-fe0f9be210d8",
+     "registros": 1,
+     "titulo": "Monitoreo de peces arrecifales y tiburones parte de los valores objetos de conservación (VOC) en el santuario Malpelo desde 2020 a 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b914edca-e251-46e1-94a0-fe0f9be210d8"
+    },
+    {
+     "key": "e2980e63-d152-4219-8c1e-0ffdef3ea6aa",
+     "registros": 1,
+     "titulo": "Auckland Museum NZ Marine Collection",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e2980e63-d152-4219-8c1e-0ffdef3ea6aa"
+    },
+    {
+     "key": "f56fb306-32e4-4b96-a381-6b87c186ad0f",
+     "registros": 1,
+     "titulo": "NOAA Pacific Islands Fisheries Science Center, Ecosystem Sciences Division, National Coral Reef Monitoring Program: Stratified random surveys (StRS) of reef fish in the U.S. Pacific Islands",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f56fb306-32e4-4b96-a381-6b87c186ad0f"
+    },
+    {
+     "key": "956b0a07-2e0d-4e82-bb01-c78ad3f986e1",
+     "registros": 1,
+     "titulo": "Digital Aerial Baseline Survey of Marine Wildlife in Support of Offshore Wind Energy - OPA 2018",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/956b0a07-2e0d-4e82-bb01-c78ad3f986e1"
+    },
+    {
+     "key": "a244eea4-a8e0-4b54-9da5-3e9757ef5ab7",
+     "registros": 1,
+     "titulo": "Données du Parc national de la Guadeloupe - Données de type contact en Guadeloupe (PNG-obsocc - Observations occasionnelles)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a244eea4-a8e0-4b54-9da5-3e9757ef5ab7"
+    },
+    {
+     "key": "7e509005-a78e-47d8-8bc3-f59f147904ac",
+     "registros": 1,
+     "titulo": "CRC HRC PMRF Aerial Ship-follow Surveys February 2015 and 2016",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/7e509005-a78e-47d8-8bc3-f59f147904ac"
+    },
+    {
+     "key": "1078e191-72cb-47b3-9cbc-2f8f2f3bcc4c",
+     "registros": 1,
+     "titulo": "Projet de carrière - Ravine du Trou - Saint-Leu (974) - Inventaires des Poissons (marin)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/1078e191-72cb-47b3-9cbc-2f8f2f3bcc4c"
+    },
+    {
+     "key": "dc7232b0-3578-4dd4-a65a-3fc4f43edf6a",
+     "registros": 1,
+     "titulo": "HRC KB26 Shoreline Aerial Surveys Jan-Feb 2014",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/dc7232b0-3578-4dd4-a65a-3fc4f43edf6a"
+    },
+    {
+     "key": "38f06820-08c5-42b2-94f6-47cc3e83a54a",
+     "registros": 1,
+     "titulo": "Reef Life Survey: Global reef fish dataset",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/38f06820-08c5-42b2-94f6-47cc3e83a54a"
+    },
+    {
+     "key": "9a71aa12-7636-4381-9986-d8f03240b277",
+     "registros": 1,
+     "titulo": "Florida Keys Reef Visual Census 2012",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/9a71aa12-7636-4381-9986-d8f03240b277"
+    },
+    {
+     "key": "df8e3fb8-3da7-4104-a866-748f6da20a3c",
+     "registros": 1,
+     "titulo": "NOAA, Deep-Sea Coral Research and Technology Program",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/df8e3fb8-3da7-4104-a866-748f6da20a3c"
+    },
+    {
+     "key": "e78256b5-5626-4a5b-af7b-6ef147dfb6a8",
+     "registros": 1,
+     "titulo": "VACAPES ASWEX Aerial Monitoring 2011",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e78256b5-5626-4a5b-af7b-6ef147dfb6a8"
+    },
+    {
+     "key": "2501caa2-803b-4f6b-9e36-f9f5c72c0666",
+     "registros": 1,
+     "titulo": "Dry Tortugas Reef Visual Census 2008",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/2501caa2-803b-4f6b-9e36-f9f5c72c0666"
+    },
+    {
+     "key": "ae217adc-afb9-4833-80ee-e7e2e3e2a2ac",
+     "registros": 1,
+     "titulo": "Mission \"R.A.P. Diahot\" Nouvelle-Calédonie - Inventaire des Poissons de la région du Diahot (RAP)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ae217adc-afb9-4833-80ee-e7e2e3e2a2ac"
+    },
+    {
+     "key": "e2f48768-39a3-4fdf-894c-52b9776ead07",
+     "registros": 1,
+     "titulo": "Ampliación de la base de datos de la ictiofauna insular del Golfo de California",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e2f48768-39a3-4fdf-894c-52b9776ead07"
+    },
+    {
+     "key": "076bbcbe-6c76-4c7c-8835-6dd346ef387a",
+     "registros": 1,
+     "titulo": "Dry Tortugas Reef Visual Census 2000",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/076bbcbe-6c76-4c7c-8835-6dd346ef387a"
+    },
+    {
+     "key": "7606f22a-2121-4853-b3ab-2e693c6790dd",
+     "registros": 1,
+     "titulo": "Florida Keys Reef Visual Census 1996",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/7606f22a-2121-4853-b3ab-2e693c6790dd"
+    },
+    {
+     "key": "fe388907-e2b6-44be-a9cb-a80b3924284c",
+     "registros": 1,
+     "titulo": "Northeast Fisheries Science Center Bottom Trawl Survey Data",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/fe388907-e2b6-44be-a9cb-a80b3924284c"
+    },
+    {
+     "key": "5d6c10bd-ea31-4363-8b79-58c96d859f5b",
+     "registros": 1,
+     "titulo": "CAS Ichthyology (ICH)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/5d6c10bd-ea31-4363-8b79-58c96d859f5b"
+    },
+    {
+     "key": "9ddc81b2-2c50-4ab3-b225-bb9e08cfa1ef",
+     "registros": 1,
+     "titulo": "Ichthyological Field Data of Raroia Atoll, Tuamotu Archipelago, French Polynesia, 1952",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/9ddc81b2-2c50-4ab3-b225-bb9e08cfa1ef"
+    },
+    {
+     "key": "afc30a94-6107-488a-b9c0-ba9c4fa68b7c",
+     "registros": 1,
+     "titulo": "Field Museum of Natural History (Zoology) Fish Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/afc30a94-6107-488a-b9c0-ba9c4fa68b7c"
+    },
+    {
+     "key": "8598edb6-f762-11e1-a439-00145eb45e9a",
+     "registros": 1,
+     "titulo": "IndOBIS, Indian Ocean Node of OBIS",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8598edb6-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "d53ee09e-8458-4130-a337-6071e3a81726",
+     "registros": 1,
+     "titulo": "Lista patrón de los tiburones, rayas y quimeras (Chondrichthyes, Elasmobranchii, Holocephali) de México",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d53ee09e-8458-4130-a337-6071e3a81726"
+    },
+    {
+     "key": "821cc27a-e3bb-4bc5-ac34-89ada245069d",
+     "registros": 1,
+     "titulo": "NMNH Extant Specimen Records (USNM, US)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/821cc27a-e3bb-4bc5-ac34-89ada245069d"
+    },
+    {
+     "key": "e87e0415-bdb2-45eb-8954-b6b4454e1852",
+     "registros": 1,
+     "titulo": "FBIP: SeaKeys - iziko_cartilaginous_fish",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e87e0415-bdb2-45eb-8954-b6b4454e1852"
+    },
+    {
+     "key": "4da053cc-0615-4681-9845-b4c94e056770",
+     "registros": 1,
+     "titulo": "Coastal fish diversity of the Socotra Archipelago, Yemen: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/4da053cc-0615-4681-9845-b4c94e056770"
+    },
+    {
+     "key": "501dd639-ee99-4f3d-8d81-c1a0c0514a07",
+     "registros": 1,
+     "titulo": "Fish survey of South Passage Shark Bay, Western Australia: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/501dd639-ee99-4f3d-8d81-c1a0c0514a07"
+    },
+    {
+     "key": "6531f0a4-1db9-4da4-b3cb-82b843230ae2",
+     "registros": 1,
+     "titulo": "Peixes do arquipélago Fernando de Noronha: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6531f0a4-1db9-4da4-b3cb-82b843230ae2"
+    },
+    {
+     "key": "d04992f7-ab8b-4bfa-951b-3d9008390464",
+     "registros": 1,
+     "titulo": "Updated checklist and analysis of completeness of the marine fish fauna of Isla del Coco, Pacific of Costa Rica: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d04992f7-ab8b-4bfa-951b-3d9008390464"
+    },
+    {
+     "key": "b164a940-ac49-433a-9fe2-b1d80660a936",
+     "registros": 1,
+     "titulo": "Checklist and analysis of completeness of the reef fish fauna of the Revillagigedo Archipelago, Mexico: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b164a940-ac49-433a-9fe2-b1d80660a936"
+    },
+    {
+     "key": "a781c23d-b12f-46e2-bfbd-6eefd61d4f64",
+     "registros": 1,
+     "titulo": "Peces Del Archipiélago De Las Islas Revillagigedo: Una Actualización Sistemática Y Biogeográfica: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a781c23d-b12f-46e2-bfbd-6eefd61d4f64"
+    },
+    {
+     "key": "ce1b2519-0427-441e-9fc6-4fb83b53b5d9",
+     "registros": 1,
+     "titulo": "Inventory of fishes of Everglades National Park: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ce1b2519-0427-441e-9fc6-4fb83b53b5d9"
+    },
+    {
+     "key": "9a398265-f0f4-45b1-9069-016fba439e60",
+     "registros": 1,
+     "titulo": "Biodiversity and ecosystem health of the Aldabra Group, southern Seychelles: Scientific report to the government of Seychelles: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/9a398265-f0f4-45b1-9069-016fba439e60"
+    },
+    {
+     "key": "86a7c9bb-a4f5-48ee-bfce-f137bfcf4868",
+     "registros": 1,
+     "titulo": "Laughing Bird Caye National Park management plan 2011 - 2016: a component of Belize's world heritage site: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/86a7c9bb-a4f5-48ee-bfce-f137bfcf4868"
+    },
+    {
+     "key": "3fd08e44-6c9a-43e7-98d0-d3fc0e41d478",
+     "registros": 1,
+     "titulo": "Selected Methods for Monitoring Physical and Biological Parameters for Use in the Mesoamerican Region: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/3fd08e44-6c9a-43e7-98d0-d3fc0e41d478"
+    },
+    {
+     "key": "c94e9ad3-5cc8-48b3-9046-4b013833675b",
+     "registros": 1,
+     "titulo": "Shorefishes of the Tropical Eastern Pacific: online information system: Coiba: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c94e9ad3-5cc8-48b3-9046-4b013833675b"
+    },
+    {
+     "key": "024e2f41-e909-4b51-bf28-28c042e9866f",
+     "registros": 1,
+     "titulo": "Tubbataha Management Office: Fishes/Megavertebrates Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/024e2f41-e909-4b51-bf28-28c042e9866f"
+    },
+    {
+     "key": "34f52594-5857-44a2-aa8b-8b59c42f2ee2",
+     "registros": 1,
+     "titulo": "Reef fish abundance, size and biomass from Aldabra Atoll (Seychelles) between 2014 and 2021 collected by the Seychelles Islands Foundation",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/34f52594-5857-44a2-aa8b-8b59c42f2ee2"
+    }
+   ]
+  },
+  "martillo": {
+   "nombre": "Sphyrna lewini",
+   "gbifKey": 2418789,
+   "fuera": {
+    "licencia": 112,
+    "dataset": 71,
+    "tierra": 69
+   },
+   "datasets": [
+    {
+     "key": "805952e6-f762-11e1-a439-00145eb45e9a",
+     "registros": 651,
+     "titulo": "Elasmobranquios del Golfo de Tehuantepec, litoral chiapaneco",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/805952e6-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "ab195e05-de54-48f8-bfd7-c574164c2218",
+     "registros": 287,
+     "titulo": "Áreas de crianza de tiburones en el Golfo de California",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ab195e05-de54-48f8-bfd7-c574164c2218"
+    },
+    {
+     "key": "7fe30c6c-f762-11e1-a439-00145eb45e9a",
+     "registros": 271,
+     "titulo": "Elasmobranquios del sistema laguna Chantuto-Panzacola y Carretas-Pereyra de la Reserva de la Biósfera La Encrucijada, Chiapas",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/7fe30c6c-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "89d78af0-ad71-4136-9812-fb1d415ec933",
+     "registros": 271,
+     "titulo": "Diversity of the Indo-Pacific (DIPnet)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/89d78af0-ad71-4136-9812-fb1d415ec933"
+    },
+    {
+     "key": "0dcd258f-e5fc-4495-ae38-5f02fd910987",
+     "registros": 215,
+     "titulo": "Digital Aerial Baseline Survey of Marine Wildlife in Support of Offshore Wind Energy - OPA 2017",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/0dcd258f-e5fc-4495-ae38-5f02fd910987"
+    },
+    {
+     "key": "d8cd16ba-bb74-4420-821e-083f2bac17c2",
+     "registros": 193,
+     "titulo": "INSDC Sequences",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d8cd16ba-bb74-4420-821e-083f2bac17c2"
+    },
+    {
+     "key": "040c5662-da76-4782-a48e-cdea1892d14c",
+     "registros": 187,
+     "titulo": "International Barcode of Life project (iBOL)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/040c5662-da76-4782-a48e-cdea1892d14c"
+    },
+    {
+     "key": "ac9ccbe6-263f-41a8-a865-7979712bb2b4",
+     "registros": 117,
+     "titulo": "Central Great Barrier Reef shark nursery area survey (NERP TE 6.2, JCU), Australia (2011-2014)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ac9ccbe6-263f-41a8-a865-7979712bb2b4"
+    },
+    {
+     "key": "b914edca-e251-46e1-94a0-fe0f9be210d8",
+     "registros": 109,
+     "titulo": "Monitoreo de peces arrecifales y tiburones parte de los valores objetos de conservación (VOC) en el santuario Malpelo desde 2020 a 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b914edca-e251-46e1-94a0-fe0f9be210d8"
+    },
+    {
+     "key": "69e81d22-3207-4663-9a7d-418919d7d779",
+     "registros": 109,
+     "titulo": "Diversidade e ocorrência de peixes na Zambézia (2003-2016)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/69e81d22-3207-4663-9a7d-418919d7d779"
+    },
+    {
+     "key": "391b8a2b-b49d-4614-88d9-002c2662bcb4",
+     "registros": 93,
+     "titulo": "UNESCO eDNA expedition in Cocos Island National Park (Costa Rica): December 2022",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/391b8a2b-b49d-4614-88d9-002c2662bcb4"
+    },
+    {
+     "key": "69a5c009-8beb-465b-9c27-55f9d8baf716",
+     "registros": 82,
+     "titulo": "Juvenile scalloped hammerhead sharks in the Rewa River estuary, Viti Levu, Fiji 2012",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/69a5c009-8beb-465b-9c27-55f9d8baf716"
+    },
+    {
+     "key": "ffe38a37-d659-4b1a-a935-5a5264e3cc0a",
+     "registros": 74,
+     "titulo": "ICMBio | Dados de ocorrência de espécies do Sistema de Autorização e Informações de Biodiversidade (SISBio) do ICMBio",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ffe38a37-d659-4b1a-a935-5a5264e3cc0a"
+    },
+    {
+     "key": "8bfd90da-4ab9-40a2-8c96-bd7c2c9e9fc5",
+     "registros": 60,
+     "titulo": "Ecological Baseline Studies of the U.S. Outer Continental Shelf Option Year 2",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8bfd90da-4ab9-40a2-8c96-bd7c2c9e9fc5"
+    },
+    {
+     "key": "2a79f202-3f3a-4d54-88fa-09aa8de1ac73",
+     "registros": 57,
+     "titulo": "NCSM Ichthyology Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/2a79f202-3f3a-4d54-88fa-09aa8de1ac73"
+    },
+    {
+     "key": "6ce2bf20-bfbc-4d3a-aba3-040345778474",
+     "registros": 54,
+     "titulo": "Monitoreo de especies pelágicas por medio de Stereo BRUVS en los montes submarinos de la dorsal de Malpelo y Yuruparí. Nov 2024",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6ce2bf20-bfbc-4d3a-aba3-040345778474"
+    },
+    {
+     "key": "1984f01e-9f82-45a8-a76e-bd43ee797676",
+     "registros": 51,
+     "titulo": "Monitoreo de fauna marina en la Isla de Malpelo 2025",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/1984f01e-9f82-45a8-a76e-bd43ee797676"
+    },
+    {
+     "key": "a6bc8ba7-1489-4724-8e72-fd5d0325a9c4",
+     "registros": 41,
+     "titulo": "Sistema de Monitoreo de Arrecifes Coralinos - SIMAC: Abundancia de peces arrecifales",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a6bc8ba7-1489-4724-8e72-fd5d0325a9c4"
+    },
+    {
+     "key": "73a5c1ec-44f7-4d52-87cc-5547354367c3",
+     "registros": 39,
+     "titulo": "Monitoreo de Peces y Tiburones VOC de Malpelo 2024",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/73a5c1ec-44f7-4d52-87cc-5547354367c3"
+    },
+    {
+     "key": "8e9974a4-12e2-475f-9aec-5abdf24a1f50",
+     "registros": 34,
+     "titulo": "Programme CROMIS: carnet de plongée en ligne de la FFESSM-Observations d'espèces subaquatiques collectées par les utilisateurs de CROMIS",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8e9974a4-12e2-475f-9aec-5abdf24a1f50"
+    },
+    {
+     "key": "d53ee09e-8458-4130-a337-6071e3a81726",
+     "registros": 34,
+     "titulo": "Lista patrón de los tiburones, rayas y quimeras (Chondrichthyes, Elasmobranchii, Holocephali) de México",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d53ee09e-8458-4130-a337-6071e3a81726"
+    },
+    {
+     "key": "54bae6ef-8b4e-4ad3-8729-c4296299e5c7",
+     "registros": 33,
+     "titulo": "observe_tuna_bycatch_ecoscope",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/54bae6ef-8b4e-4ad3-8729-c4296299e5c7"
+    },
+    {
+     "key": "821cc27a-e3bb-4bc5-ac34-89ada245069d",
+     "registros": 30,
+     "titulo": "NMNH Extant Specimen Records (USNM, US)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/821cc27a-e3bb-4bc5-ac34-89ada245069d"
+    },
+    {
+     "key": "dce8feb0-6c89-11de-8225-b8a03c50a862",
+     "registros": 29,
+     "titulo": "Australian Museum provider for OZCAM",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/dce8feb0-6c89-11de-8225-b8a03c50a862"
+    },
+    {
+     "key": "da1c5803-9ceb-4b4b-96ae-5818471d4a5f",
+     "registros": 29,
+     "titulo": "Elasmobranquios mexicanos",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/da1c5803-9ceb-4b4b-96ae-5818471d4a5f"
+    },
+    {
+     "key": "7a25f7aa-03fb-4322-aaeb-66719e1a9527",
+     "registros": 29,
+     "titulo": "LACM Vertebrate Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/7a25f7aa-03fb-4322-aaeb-66719e1a9527"
+    },
+    {
+     "key": "c3a5002d-06bf-47dc-8477-b75d5a848026",
+     "registros": 26,
+     "titulo": "Datos de monitoreo asociados al indicador de condición tendencias para peces arrecifales - ICTac",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c3a5002d-06bf-47dc-8477-b75d5a848026"
+    },
+    {
+     "key": "14a9a51d-a69d-49a8-b4ec-8f8455acc34b",
+     "registros": 25,
+     "titulo": "CSIRO, North West Shelf Demersal Marine Resources Study 1980-1997",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/14a9a51d-a69d-49a8-b4ec-8f8455acc34b"
+    },
+    {
+     "key": "5d6c10bd-ea31-4363-8b79-58c96d859f5b",
+     "registros": 22,
+     "titulo": "CAS Ichthyology (ICH)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/5d6c10bd-ea31-4363-8b79-58c96d859f5b"
+    },
+    {
+     "key": "874ff2f9-f515-435b-afb1-bc282ef3fa67",
+     "registros": 21,
+     "titulo": "Ecological Baseline Studies of the U.S. Outer Continental Shelf Option Year 1",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/874ff2f9-f515-435b-afb1-bc282ef3fa67"
+    },
+    {
+     "key": "f56fb306-32e4-4b96-a381-6b87c186ad0f",
+     "registros": 21,
+     "titulo": "NOAA Pacific Islands Fisheries Science Center, Ecosystem Sciences Division, National Coral Reef Monitoring Program: Stratified random surveys (StRS) of reef fish in the U.S. Pacific Islands",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f56fb306-32e4-4b96-a381-6b87c186ad0f"
+    },
+    {
+     "key": "18c93d12-34fb-4d3f-903c-b77215a1dcc9",
+     "registros": 21,
+     "titulo": "Australian National Fish Collection (ANFC)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/18c93d12-34fb-4d3f-903c-b77215a1dcc9"
+    },
+    {
+     "key": "d51f93a6-a5b7-4025-83a9-3f7b8525755a",
+     "registros": 21,
+     "titulo": "Australian National Fish Collection (ANFC)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d51f93a6-a5b7-4025-83a9-3f7b8525755a"
+    },
+    {
+     "key": "f0c35f1c-cfc0-4e14-88df-eaec3b80ae78",
+     "registros": 20,
+     "titulo": "UNESCO eDNA expedition in Archipiélago de Revillagigedo (Mexico): April 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f0c35f1c-cfc0-4e14-88df-eaec3b80ae78"
+    },
+    {
+     "key": "f8863ab9-84d6-4c08-b558-4439eeffeadb",
+     "registros": 18,
+     "titulo": "Digital Aerial Baseline Survey of Marine Wildlife in Support of Offshore Wind Energy - OPA 2016",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f8863ab9-84d6-4c08-b558-4439eeffeadb"
+    },
+    {
+     "key": "8d042ca8-bccc-40dd-a222-e31df71098f0",
+     "registros": 17,
+     "titulo": "Diving into the vertical dimension of elasmobranch movement ecology (2000-2019)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8d042ca8-bccc-40dd-a222-e31df71098f0"
+    },
+    {
+     "key": "80f63c1e-f762-11e1-a439-00145eb45e9a",
+     "registros": 16,
+     "titulo": "Fish collection of the Kagoshima University Museum",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/80f63c1e-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "a79c2b50-6c8a-11de-8226-b8a03c50a862",
+     "registros": 16,
+     "titulo": "Queensland Museum provider for OZCAM",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a79c2b50-6c8a-11de-8226-b8a03c50a862"
+    },
+    {
+     "key": "e1a01804-881b-42ae-8f97-1e80f697fd56",
+     "registros": 15,
+     "titulo": "SIO Marine Vertebrate Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e1a01804-881b-42ae-8f97-1e80f697fd56"
+    },
+    {
+     "key": "d460cd42-e30a-4072-a11b-cb443834fc4d",
+     "registros": 15,
+     "titulo": "Australian Institute of Marine Science (AIMS) - Baited Remote Underwater Video Station (BRUVS), Australia (1999 to present)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d460cd42-e30a-4072-a11b-cb443834fc4d"
+    },
+    {
+     "key": "f58922e2-93ed-4703-ba22-12a0674d1b54",
+     "registros": 15,
+     "titulo": "The fishes collection (IC) of the Muséum national d'Histoire naturelle (MNHN - Paris)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f58922e2-93ed-4703-ba22-12a0674d1b54"
+    },
+    {
+     "key": "26098c25-8f7f-4c71-97ac-1d3db181c65e",
+     "registros": 14,
+     "titulo": "NMNH Material Samples (USNM)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/26098c25-8f7f-4c71-97ac-1d3db181c65e"
+    },
+    {
+     "key": "94916768-8636-483c-b26a-34be19948afd",
+     "registros": 14,
+     "titulo": "Biopsias y Marcaje de tiburones en el SFF Malpelo",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/94916768-8636-483c-b26a-34be19948afd"
+    },
+    {
+     "key": "abf8082d-c179-4cb2-acc4-3cdef16c4341",
+     "registros": 14,
+     "titulo": "An annotated checklist of the chondrichthyans of Papua New Guinea",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/abf8082d-c179-4cb2-acc4-3cdef16c4341"
+    },
+    {
+     "key": "fe388907-e2b6-44be-a9cb-a80b3924284c",
+     "registros": 14,
+     "titulo": "Northeast Fisheries Science Center Bottom Trawl Survey Data",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/fe388907-e2b6-44be-a9cb-a80b3924284c"
+    },
+    {
+     "key": "ba5b0f3a-73dd-459f-a7f1-9abc327aed00",
+     "registros": 12,
+     "titulo": "Fishes of Texas Project (FoTX) Database and Website - Darwin Core",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ba5b0f3a-73dd-459f-a7f1-9abc327aed00"
+    },
+    {
+     "key": "514ccc41-0fd0-4a49-86b1-ae1c739eb5d0",
+     "registros": 11,
+     "titulo": "Diversidade e ocorrência de peixes em Inhambane (2009-2017)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/514ccc41-0fd0-4a49-86b1-ae1c739eb5d0"
+    },
+    {
+     "key": "793c3890-6c8a-11de-8226-b8a03c50a862",
+     "registros": 11,
+     "titulo": "Northern Territory Museum and Art Gallery provider for OZCAM",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/793c3890-6c8a-11de-8226-b8a03c50a862"
+    },
+    {
+     "key": "c6451fd1-6849-40df-a19f-20a346e2878c",
+     "registros": 9,
+     "titulo": "Stereo-BRUVs and BOSS observations in the Ningaloo Marine Park, Western Australia (2021-2022)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c6451fd1-6849-40df-a19f-20a346e2878c"
+    },
+    {
+     "key": "1aaec653-c71c-4695-9b6e-0e26214dd817",
+     "registros": 9,
+     "titulo": "Occurrence records of southern African fish biodiversity",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/1aaec653-c71c-4695-9b6e-0e26214dd817"
+    },
+    {
+     "key": "b7dd8170-98a0-11de-b4d9-b8a03c50a862",
+     "registros": 9,
+     "titulo": "The Fish Database of Taiwan",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b7dd8170-98a0-11de-b4d9-b8a03c50a862"
+    },
+    {
+     "key": "b6015b60-6f96-43a9-88e5-2f41854e8f07",
+     "registros": 9,
+     "titulo": "Biodiversity Research and Teaching Collections - TCWC Vertebrates",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b6015b60-6f96-43a9-88e5-2f41854e8f07"
+    },
+    {
+     "key": "e760ba8b-f487-46ae-91a2-526fe72bbe1c",
+     "registros": 8,
+     "titulo": "Colección ictiológica de referencia de la Universidad del Valle",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e760ba8b-f487-46ae-91a2-526fe72bbe1c"
+    },
+    {
+     "key": "25e3e8f1-86ee-440c-adfc-8e63759a6505",
+     "registros": 7,
+     "titulo": "Programme BioObs: observations naturalistes en milieux aquatiques-Observations de BioObs.",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/25e3e8f1-86ee-440c-adfc-8e63759a6505"
+    },
+    {
+     "key": "956b0a07-2e0d-4e82-bb01-c78ad3f986e1",
+     "registros": 7,
+     "titulo": "Digital Aerial Baseline Survey of Marine Wildlife in Support of Offshore Wind Energy - OPA 2018",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/956b0a07-2e0d-4e82-bb01-c78ad3f986e1"
+    },
+    {
+     "key": "f6cc0fcc-1605-4bd4-bbea-dd12f697a2ba",
+     "registros": 7,
+     "titulo": "Digitalización y Sistematización de las Colecciones Biológicas Nacionales del Instituto de Biología, UNAM (vertebrados)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f6cc0fcc-1605-4bd4-bbea-dd12f697a2ba"
+    },
+    {
+     "key": "afc30a94-6107-488a-b9c0-ba9c4fa68b7c",
+     "registros": 7,
+     "titulo": "Field Museum of Natural History (Zoology) Fish Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/afc30a94-6107-488a-b9c0-ba9c4fa68b7c"
+    },
+    {
+     "key": "3f4d4bf1-5f9a-43f2-a0d8-ff6ed5952796",
+     "registros": 6,
+     "titulo": "IMOS - Animal Tracking Facility - Acoustic Tracking - Quality Controlled Detections (2007 -2021)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/3f4d4bf1-5f9a-43f2-a0d8-ff6ed5952796"
+    },
+    {
+     "key": "4abc37ad-5067-4800-999f-2487b28690d7",
+     "registros": 6,
+     "titulo": "Beacon Wind Digital Aerial Wildlife Surveys for BOEM Lease Area OCS-A 0520, Equinor Wind US LLC, December 2019 – November 2020",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/4abc37ad-5067-4800-999f-2487b28690d7"
+    },
+    {
+     "key": "7c93d290-6c8b-11de-8226-b8a03c50a862",
+     "registros": 6,
+     "titulo": "Western Australian Museum provider for OZCAM",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/7c93d290-6c8b-11de-8226-b8a03c50a862"
+    },
+    {
+     "key": "d27a7bf0-d78e-46d4-bc74-6b2ae4705367",
+     "registros": 5,
+     "titulo": "UNESCO eDNA expedition in iSimangaliso Wetland Park (South Africa): April 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d27a7bf0-d78e-46d4-bc74-6b2ae4705367"
+    },
+    {
+     "key": "5e1d2d54-f5db-43ac-87c5-55a9f79ac718",
+     "registros": 5,
+     "titulo": "Census of the animals of Benin",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/5e1d2d54-f5db-43ac-87c5-55a9f79ac718"
+    },
+    {
+     "key": "727b83c1-e8a7-4dd9-a9a2-4c4a9ea9636c",
+     "registros": 5,
+     "titulo": "Computarización de la base de datos de la colección ictiológica de la Universidad Michoacana",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/727b83c1-e8a7-4dd9-a9a2-4c4a9ea9636c"
+    },
+    {
+     "key": "8e912d78-6259-44e3-8f58-debb3081a15f",
+     "registros": 5,
+     "titulo": "Census of the threatened species of Benin.",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8e912d78-6259-44e3-8f58-debb3081a15f"
+    },
+    {
+     "key": "f1d263a0-98a0-11de-b4d9-b8a03c50a862",
+     "registros": 5,
+     "titulo": "Taiwan Fisheries Research Institute – Digital archives of coastal and offshore specimens",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f1d263a0-98a0-11de-b4d9-b8a03c50a862"
+    },
+    {
+     "key": "fcc0062f-ff30-4929-b623-ec04be6c6443",
+     "registros": 5,
+     "titulo": "Computarización de la Colección de Referencia para Zoología, Arqueozoología y Paleontología del Museo de Historia Natural de la Universidad Autónoma de Baja California Sur",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/fcc0062f-ff30-4929-b623-ec04be6c6443"
+    },
+    {
+     "key": "9cfa6cb6-5833-44b2-97f1-18a3c12fed47",
+     "registros": 5,
+     "titulo": "African fish collection of the Africamuseum",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/9cfa6cb6-5833-44b2-97f1-18a3c12fed47"
+    },
+    {
+     "key": "91aa3d5b-6f77-4135-a823-cef438a60dfa",
+     "registros": 5,
+     "titulo": "Référentiel taxonomique national (TAXREF) - Inventaire des Collectivités d'outre-mer et de la métropole (ICOM_15) issu des données biogéographiques de TAXREF v15",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/91aa3d5b-6f77-4135-a823-cef438a60dfa"
+    },
+    {
+     "key": "f553f8f9-b147-4f09-86e5-0d1ce1a91ce0",
+     "registros": 5,
+     "titulo": "Référentiel taxonomique national (TAXREF)-Inventaire des Collectivités d'outre-mer et de la métropole issu des données biogéographiques de TAXREF",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f553f8f9-b147-4f09-86e5-0d1ce1a91ce0"
+    },
+    {
+     "key": "f2e0cb2f-2bd6-47e4-bde2-bdbf706c033b",
+     "registros": 4,
+     "titulo": "UNESCO eDNA expedition in Aldabra Atoll (Seychelles): April 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f2e0cb2f-2bd6-47e4-bde2-bdbf706c033b"
+    },
+    {
+     "key": "70f38a44-2f40-4961-af63-b9c5d6eb73a3",
+     "registros": 4,
+     "titulo": "WEST CAPE YORK MARINE PARK (WCYMP). Fish surveys of Carpentaria and Merkara Shoals,10 ? 20 November 2022",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/70f38a44-2f40-4961-af63-b9c5d6eb73a3"
+    },
+    {
+     "key": "5b7e7b64-8e97-4644-add3-864c2a4b0043",
+     "registros": 4,
+     "titulo": "Parque Nacional Natural Sanquianga, monitoreo veda de camarón",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/5b7e7b64-8e97-4644-add3-864c2a4b0043"
+    },
+    {
+     "key": "29f71768-50ac-4a9d-8985-86638b0b30e4",
+     "registros": 4,
+     "titulo": "National Coral Reef Monitoring Program: Assessment of fish communities in the Dry Tortugas during 2016",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/29f71768-50ac-4a9d-8985-86638b0b30e4"
+    },
+    {
+     "key": "ee6be9b3-f850-4a0b-bddc-73c13a078e52",
+     "registros": 4,
+     "titulo": "Inventario de algas, corales pétreos, moluscos, crustáceos decápodos, equinodermos y peces de las islas de Revillagigedo, Colima, México",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ee6be9b3-f850-4a0b-bddc-73c13a078e52"
+    },
+    {
+     "key": "b0f0d066-c45c-42f7-9297-cfff577b11ab",
+     "registros": 4,
+     "titulo": "Fish Collection of Coastal Branch of Natural History Museum and Institute, Chiba",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b0f0d066-c45c-42f7-9297-cfff577b11ab"
+    },
+    {
+     "key": "3633e0e7-8c25-4c3d-b9c7-078c0be25665",
+     "registros": 4,
+     "titulo": "CUMV Fish Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/3633e0e7-8c25-4c3d-b9c7-078c0be25665"
+    },
+    {
+     "key": "39905320-6c8a-11de-8226-b8a03c50a862",
+     "registros": 4,
+     "titulo": "Museums Victoria provider for OZCAM",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/39905320-6c8a-11de-8226-b8a03c50a862"
+    },
+    {
+     "key": "76a3faf1-8534-4a8b-83bf-93bb6d2d12ab",
+     "registros": 4,
+     "titulo": "Registros ictiofaunísticos de localidades selectas de 10 regiones marinas prioritarias del Pacífico Mexicano",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/76a3faf1-8534-4a8b-83bf-93bb6d2d12ab"
+    },
+    {
+     "key": "14efaf3e-d053-4f50-8e44-d0d2c5ab48b7",
+     "registros": 4,
+     "titulo": "Consolidación de la colección de referencia de peces de la Estación Mazatlán, (ICMyL-UNAM) e implementación de los mecanismos para su manejo y consulta",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/14efaf3e-d053-4f50-8e44-d0d2c5ab48b7"
+    },
+    {
+     "key": "6080b6cc-1c24-41ff-ad7f-0ebe7b56f311",
+     "registros": 4,
+     "titulo": "University of Texas, Biodiversity Center, Ichthyology Collection (TNHCi)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6080b6cc-1c24-41ff-ad7f-0ebe7b56f311"
+    },
+    {
+     "key": "fef834cd-98f0-4095-af8a-a8c66c1eff24",
+     "registros": 4,
+     "titulo": "Coleção de Ictiologia do MZUSP",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/fef834cd-98f0-4095-af8a-a8c66c1eff24"
+    },
+    {
+     "key": "de55d6c3-248a-4f08-ba75-66dcff510f13",
+     "registros": 4,
+     "titulo": "ZMH Ichthyology collection",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/de55d6c3-248a-4f08-ba75-66dcff510f13"
+    },
+    {
+     "key": "bdad918c-470b-4c4e-a146-6a39caacf989",
+     "registros": 4,
+     "titulo": "Formación de una base de datos de la biodiversidad de fauna marina y costera en el Golfo de California",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/bdad918c-470b-4c4e-a146-6a39caacf989"
+    },
+    {
+     "key": "a828a9c8-2c1a-44d9-a963-bd0c6595c3d9",
+     "registros": 3,
+     "titulo": "Beacon Wind Digital Aerial Wildlife Surveys for BOEM Lease Area OCS-A 0520, Equinor Wind US LLC, March 2021 – October 2021",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a828a9c8-2c1a-44d9-a963-bd0c6595c3d9"
+    },
+    {
+     "key": "60b463ce-d58e-4982-b772-ae8fc9a6f1ef",
+     "registros": 3,
+     "titulo": "National Coral Reef Monitoring Program: Assessment of fish communities in the Florida Keys during 2018",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/60b463ce-d58e-4982-b772-ae8fc9a6f1ef"
+    },
+    {
+     "key": "c6ca96bc-7cf5-4fe7-ac44-d01e06394ef3",
+     "registros": 3,
+     "titulo": "Lizard Island Research Station",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c6ca96bc-7cf5-4fe7-ac44-d01e06394ef3"
+    },
+    {
+     "key": "a2e9f688-fdbe-4b4c-8faa-8a955089a64d",
+     "registros": 3,
+     "titulo": "Aerial digital survey of ecological studies for offshore wind energy development in Mid-Atlantic Bight",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a2e9f688-fdbe-4b4c-8faa-8a955089a64d"
+    },
+    {
+     "key": "be00c56f-ab20-4418-9d3e-b55793638d09",
+     "registros": 3,
+     "titulo": "Collection des données de biodiversité marine des Iles Eparses (BioReCIE)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/be00c56f-ab20-4418-9d3e-b55793638d09"
+    },
+    {
+     "key": "1edcfe6d-da55-4d59-b30e-468cd21f8b0b",
+     "registros": 3,
+     "titulo": "BaMBa | Fish biodiversity of the Vitória-Trindade Seamount Chain, Southwestern Atlantic: an updated database",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/1edcfe6d-da55-4d59-b30e-468cd21f8b0b"
+    },
+    {
+     "key": "1e0dea7e-4e6e-4a20-9e5f-dc727aa0d0f4",
+     "registros": 3,
+     "titulo": "HMAP Dataset 15: Galapagos Marine Reserve, Ecuador III",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/1e0dea7e-4e6e-4a20-9e5f-dc727aa0d0f4"
+    },
+    {
+     "key": "6ff42543-528d-4249-99bd-350bdd21b424",
+     "registros": 3,
+     "titulo": "Royal Ontario Museum - Ichthyology",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6ff42543-528d-4249-99bd-350bdd21b424"
+    },
+    {
+     "key": "4caf2040-83ad-4fa7-ba13-005bced721eb",
+     "registros": 3,
+     "titulo": "Beaty Biodiversity Museum Fish Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/4caf2040-83ad-4fa7-ba13-005bced721eb"
+    },
+    {
+     "key": "383287ee-19c5-46e2-8b58-f9320a7aa091",
+     "registros": 3,
+     "titulo": "CardObs : Observations naturalistes issues de l'outil CardObs-Données naturalistes d'IFRECOR (pf)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/383287ee-19c5-46e2-8b58-f9320a7aa091"
+    },
+    {
+     "key": "6ed43f52-25d1-4d56-a821-63a8564b81f6",
+     "registros": 3,
+     "titulo": "Référentiel taxonomique national (TAXREF) - Inventaire des Collectivités d'outre-mer et de la métropole (ICOM_14) issu des données biogéographiques de TAXREF v14",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6ed43f52-25d1-4d56-a821-63a8564b81f6"
+    },
+    {
+     "key": "6c59c9b6-a3fa-4861-aab9-f188533298e7",
+     "registros": 2,
+     "titulo": "Inventario de Peces del Santuario de Fauna y Flora de Malpelo",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6c59c9b6-a3fa-4861-aab9-f188533298e7"
+    },
+    {
+     "key": "2edd61f8-673a-4795-884f-629ca81d4d08",
+     "registros": 2,
+     "titulo": "Diversidad y abundancia de Elasmobranquios en el Parque Nacional Natural Uramba-Bahía Málaga",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/2edd61f8-673a-4795-884f-629ca81d4d08"
+    },
+    {
+     "key": "c536c5eb-0b96-4cba-98dc-b232355f2fe3",
+     "registros": 2,
+     "titulo": "Empire Wind Digital Aerial Wildlife Surveys for BOEM Lease Area OCS-A 0512, Equinor Wind US LLC, February - December 2019",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c536c5eb-0b96-4cba-98dc-b232355f2fe3"
+    },
+    {
+     "key": "4a391c5e-47aa-4e30-9374-4c3e143c4eca",
+     "registros": 2,
+     "titulo": "Empire Wind Digital Aerial Wildlife Surveys for BOEM Lease Area OCS-A 0512, Equinor Wind US LLC, November 2017-October 2018",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/4a391c5e-47aa-4e30-9374-4c3e143c4eca"
+    },
+    {
+     "key": "aedcba44-1b8c-47e0-ab48-9370e779b6e1",
+     "registros": 2,
+     "titulo": "Northeast Area Monitoring and Assessment Program Near Shore Trawl Survey (NEAMAP)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/aedcba44-1b8c-47e0-ab48-9370e779b6e1"
+    },
+    {
+     "key": "c1fc2df7-223b-4472-8998-70afb3b749ab",
+     "registros": 2,
+     "titulo": "European Molecular Biology Laboratory Australian Mirror",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c1fc2df7-223b-4472-8998-70afb3b749ab"
+    },
+    {
+     "key": "59825263-9f89-43a9-8f22-c22a6a53b8fc",
+     "registros": 2,
+     "titulo": "University of Michigan Museum of Zoology, Division of Fishes",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/59825263-9f89-43a9-8f22-c22a6a53b8fc"
+    },
+    {
+     "key": "c2e3081a-ba91-40cf-b2df-9885a24b37dc",
+     "registros": 2,
+     "titulo": "Fish Collection NRM",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c2e3081a-ba91-40cf-b2df-9885a24b37dc"
+    },
+    {
+     "key": "b8ed9b7c-5b73-4e6d-a6e1-b0911a09f947",
+     "registros": 2,
+     "titulo": "Oregon State Ichthyology Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b8ed9b7c-5b73-4e6d-a6e1-b0911a09f947"
+    },
+    {
+     "key": "988007b1-1179-42e0-863c-bb9f1bdfa6f7",
+     "registros": 2,
+     "titulo": "Pisces (Luomus)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/988007b1-1179-42e0-863c-bb9f1bdfa6f7"
+    },
+    {
+     "key": "91adb050-a7ca-4de1-85c5-e8d117f9f8a5",
+     "registros": 1,
+     "titulo": "UNESCO eDNA expedition in Banc d'Arguin National Park (Mauritania): May 2023",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/91adb050-a7ca-4de1-85c5-e8d117f9f8a5"
+    },
+    {
+     "key": "b1c481ea-f9a8-456e-926b-eb0d80f5e35e",
+     "registros": 1,
+     "titulo": "Diversidad de peces marinos y dulceacuícolas de Bahía Málaga",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b1c481ea-f9a8-456e-926b-eb0d80f5e35e"
+    },
+    {
+     "key": "2d408480-b6e0-4c10-ac64-891fe5e36f92",
+     "registros": 1,
+     "titulo": "DNA barcoding as a tool to explore elasmobranch diversity in environmental DNA off the Banc d’Arguin (Mauritania)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/2d408480-b6e0-4c10-ac64-891fe5e36f92"
+    },
+    {
+     "key": "24f3b18e-b8b6-4804-8eeb-4cd067a659cc",
+     "registros": 1,
+     "titulo": "Fish Collection (2009, 2018 & 2019) (Kemaman & LKIM Kuantan) from the South China Sea Repository and Reference Centre (RRC), Institute of Oceanography and Environment (INOS), Universiti Malaysia Terengganu (UMT)",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/24f3b18e-b8b6-4804-8eeb-4cd067a659cc"
+    },
+    {
+     "key": "f0da296e-e055-4860-8655-f67099f68891",
+     "registros": 1,
+     "titulo": "Avistamientos de fauna en el Distrito Nacional de Manejo Integrado Yuruparí",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f0da296e-e055-4860-8655-f67099f68891"
+    },
+    {
+     "key": "2195c728-1a22-4c16-b4bf-3e87cf0a5dae",
+     "registros": 1,
+     "titulo": "Organisms observed during the Shipboard Oceanographic Laboratory 3, Department of Marine Biology, Tokai University",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/2195c728-1a22-4c16-b4bf-3e87cf0a5dae"
+    },
+    {
+     "key": "e4473544-f4cd-4429-b791-39d6e1fdb0a4",
+     "registros": 1,
+     "titulo": "WildNet - Queensland Wildlife Data",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e4473544-f4cd-4429-b791-39d6e1fdb0a4"
+    },
+    {
+     "key": "83cbdde7-998f-4354-95de-72d885cc5863",
+     "registros": 1,
+     "titulo": "Investigation Current Status of River in Taiwan between 2002 to 2022",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/83cbdde7-998f-4354-95de-72d885cc5863"
+    },
+    {
+     "key": "bba95e72-e2df-420e-8de3-b7ca814037ae",
+     "registros": 1,
+     "titulo": "speciesLink: CIUFES - Ichthyological Collection of the Federal University of Espírito Santo",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/bba95e72-e2df-420e-8de3-b7ca814037ae"
+    },
+    {
+     "key": "1c6b8a9f-5bd9-4358-9915-b7643779b03e",
+     "registros": 1,
+     "titulo": "Occurrences d'espèces de poissons des eaux douces, saumâtres et marines de Côte d'Ivoire",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/1c6b8a9f-5bd9-4358-9915-b7643779b03e"
+    },
+    {
+     "key": "0b1150c9-dfa8-4904-8bc5-b79b4e1930e6",
+     "registros": 1,
+     "titulo": "FBIP: SeaKeys_SANBI: Marine images iSpot_2013",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/0b1150c9-dfa8-4904-8bc5-b79b4e1930e6"
+    },
+    {
+     "key": "4ec633b0-8b1f-405e-86cf-7f782a3ced53",
+     "registros": 1,
+     "titulo": "Fortalecimiento de las colecciones de ECOSUR. Primera fase (Peces Chetumal)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/4ec633b0-8b1f-405e-86cf-7f782a3ced53"
+    },
+    {
+     "key": "40a262b4-6627-4011-afbe-159c00ec97e7",
+     "registros": 1,
+     "titulo": "Fishes of Ghana",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/40a262b4-6627-4011-afbe-159c00ec97e7"
+    },
+    {
+     "key": "8a1073ce-54a4-4712-89a6-e14d82836d9e",
+     "registros": 1,
+     "titulo": "LSUMZ (LSU MNS) Fishes Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8a1073ce-54a4-4712-89a6-e14d82836d9e"
+    },
+    {
+     "key": "89a2cd92-b5e0-44da-862b-968e12e1036f",
+     "registros": 1,
+     "titulo": "NOAA Pacific Islands Fisheries Science Center, Ecosystem Science Division Coral Reef Ecosystem Program, Rapid Ecological Assessments of Fish Belt Transect Surveys (BLT) at Coral Reef Sites across the Pacific Ocean from 2000 to 2009",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/89a2cd92-b5e0-44da-862b-968e12e1036f"
+    },
+    {
+     "key": "041f7924-1071-4aea-9b93-bc2b5c0d4a52",
+     "registros": 1,
+     "titulo": "MAISHA - Mediterranean Archive of Integrated Stomach and feeding Habits Analysis",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/041f7924-1071-4aea-9b93-bc2b5c0d4a52"
+    },
+    {
+     "key": "5fab027d-14b6-4659-9a7e-8a0d4bd3e12b",
+     "registros": 1,
+     "titulo": "Fortalecimiento de las colecciones de ECOSUR. Primera fase (Peces San cristóbal)",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/5fab027d-14b6-4659-9a7e-8a0d4bd3e12b"
+    },
+    {
+     "key": "f946666e-67dc-4848-9fa8-2162f3559e33",
+     "registros": 1,
+     "titulo": "Données d'occurrences Espèces issues de l'inventaire des ZNIEFF",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/f946666e-67dc-4848-9fa8-2162f3559e33"
+    },
+    {
+     "key": "e2f48768-39a3-4fdf-894c-52b9776ead07",
+     "registros": 1,
+     "titulo": "Ampliación de la base de datos de la ictiofauna insular del Golfo de California",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e2f48768-39a3-4fdf-894c-52b9776ead07"
+    },
+    {
+     "key": "56caf05f-1364-4f24-85f6-0c82520c2792",
+     "registros": 1,
+     "titulo": "KUBI Ichthyology Tissue Collection",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/56caf05f-1364-4f24-85f6-0c82520c2792"
+    },
+    {
+     "key": "13b4fdb0-92a0-4497-bc0a-16d2fdf806fd",
+     "registros": 1,
+     "titulo": "Colección Hidrobiológica del Chocó",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/13b4fdb0-92a0-4497-bc0a-16d2fdf806fd"
+    },
+    {
+     "key": "968dfa3e-3614-4bab-a3b5-e9209bdd6078",
+     "registros": 1,
+     "titulo": "Ocean Genome Legacy Collection",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/968dfa3e-3614-4bab-a3b5-e9209bdd6078"
+    },
+    {
+     "key": "175d2868-a330-4179-ba25-35da91a8214d",
+     "registros": 1,
+     "titulo": "MMNS Ichthyology Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/175d2868-a330-4179-ba25-35da91a8214d"
+    },
+    {
+     "key": "03837eb5-6905-420d-b3c6-95938753ace7",
+     "registros": 1,
+     "titulo": "Florida Keys Reef Visual Census 1999",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/03837eb5-6905-420d-b3c6-95938753ace7"
+    },
+    {
+     "key": "80ac6ada-f762-11e1-a439-00145eb45e9a",
+     "registros": 1,
+     "titulo": "Taxonomía y sistemática de la Ictiofauna de la Bahía de Banderas y zonas adyacentes del Estado de Nayarit, México",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/80ac6ada-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "80c74ca6-f762-11e1-a439-00145eb45e9a",
+     "registros": 1,
+     "titulo": "Diversidad dinámica y patrones reproductivos en la comunidad de peces demersales del Golfo de Tehuantepec",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/80c74ca6-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "c98e27a5-6876-4e09-b60a-2e4716ecad70",
+     "registros": 1,
+     "titulo": "HMAP Dataset 18: Colombian Caribbean Sea",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/c98e27a5-6876-4e09-b60a-2e4716ecad70"
+    },
+    {
+     "key": "5000c6ca-d69a-4cc7-a4d2-1747803ce7e1",
+     "registros": 1,
+     "titulo": "Estudio taxonómico y zoogeográfico de áreas selectas de peces marinos en Laguna Madre y Costas de Tamaulipas, Veracruz y Campeche, México",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/5000c6ca-d69a-4cc7-a4d2-1747803ce7e1"
+    },
+    {
+     "key": "ec6ecdeb-d8b3-4f28-8057-dad68feb616b",
+     "registros": 1,
+     "titulo": "Illinois Natural History Survey - Fish Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ec6ecdeb-d8b3-4f28-8057-dad68feb616b"
+    },
+    {
+     "key": "6aca6910-1f48-434d-ba57-a4a639ede7d9",
+     "registros": 1,
+     "titulo": "The Ichthyology Collection at the Naturkundemuseum Stuttgart",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6aca6910-1f48-434d-ba57-a4a639ede7d9"
+    },
+    {
+     "key": "6a901195-ee9a-43ad-a43d-9095fd2aab0c",
+     "registros": 1,
+     "titulo": "Southeastern Louisiana University Ichthyology Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6a901195-ee9a-43ad-a43d-9095fd2aab0c"
+    },
+    {
+     "key": "e2980e63-d152-4219-8c1e-0ffdef3ea6aa",
+     "registros": 1,
+     "titulo": "Auckland Museum NZ Marine Collection",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e2980e63-d152-4219-8c1e-0ffdef3ea6aa"
+    },
+    {
+     "key": "8f79c802-a58c-447f-99aa-1d6a0790825a",
+     "registros": 1,
+     "titulo": "KUBI Ichthyology Collection",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8f79c802-a58c-447f-99aa-1d6a0790825a"
+    },
+    {
+     "key": "e90a588b-0eed-4077-8a4f-7e61da35b3f8",
+     "registros": 1,
+     "titulo": "UAIC Ichthyological Collection",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e90a588b-0eed-4077-8a4f-7e61da35b3f8"
+    },
+    {
+     "key": "ca22abc0-98a1-11de-b4da-b8a03c50a862",
+     "registros": 1,
+     "titulo": "National Taiwan Museum",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ca22abc0-98a1-11de-b4da-b8a03c50a862"
+    },
+    {
+     "key": "9de1e948-106f-402a-8105-41729e9fa502",
+     "registros": 1,
+     "titulo": "Fish Collection (MHNG-ICHT) of Muséum d'histoire naturelle de Genève",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/9de1e948-106f-402a-8105-41729e9fa502"
+    },
+    {
+     "key": "8598edb6-f762-11e1-a439-00145eb45e9a",
+     "registros": 1,
+     "titulo": "IndOBIS, Indian Ocean Node of OBIS",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/8598edb6-f762-11e1-a439-00145eb45e9a"
+    },
+    {
+     "key": "358fbd61-739f-4102-afc9-9d468f571e4d",
+     "registros": 1,
+     "titulo": "Fauna Atlas N.T.",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/358fbd61-739f-4102-afc9-9d468f571e4d"
+    },
+    {
+     "key": "84a649ce-ff81-420d-9c41-aa1de59e3766",
+     "registros": 1,
+     "titulo": "ALA species sightings and OzAtlas",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/84a649ce-ff81-420d-9c41-aa1de59e3766"
+    },
+    {
+     "key": "03381bbc-ae81-4a9f-b317-09e1716d8849",
+     "registros": 1,
+     "titulo": "Colección Zoológica de la Universidad del Tolima (CZUT)- Ictiología",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/03381bbc-ae81-4a9f-b317-09e1716d8849"
+    },
+    {
+     "key": "e87e0415-bdb2-45eb-8954-b6b4454e1852",
+     "registros": 1,
+     "titulo": "FBIP: SeaKeys - iziko_cartilaginous_fish",
+     "licencia": "http://creativecommons.org/licenses/by/4.0/legalcode",
+     "url": "https://www.gbif.org/dataset/e87e0415-bdb2-45eb-8954-b6b4454e1852"
+    },
+    {
+     "key": "4da053cc-0615-4681-9845-b4c94e056770",
+     "registros": 1,
+     "titulo": "Coastal fish diversity of the Socotra Archipelago, Yemen: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/4da053cc-0615-4681-9845-b4c94e056770"
+    },
+    {
+     "key": "9f2af0c5-2ff7-42fe-aad6-c0b5af96535a",
+     "registros": 1,
+     "titulo": "An overview of fishes of the Sundarbans, Bangladesh and their present conservation status: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/9f2af0c5-2ff7-42fe-aad6-c0b5af96535a"
+    },
+    {
+     "key": "fd5c6d5a-a507-4df9-9cd0-cb1f382ec94d",
+     "registros": 1,
+     "titulo": "Tubbataha Reefs Natural Park: the first comprehensive elasmobranch assessment reveals global hotspot for reef sharks: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/fd5c6d5a-a507-4df9-9cd0-cb1f382ec94d"
+    },
+    {
+     "key": "6531f0a4-1db9-4da4-b3cb-82b843230ae2",
+     "registros": 1,
+     "titulo": "Peixes do arquipélago Fernando de Noronha: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/6531f0a4-1db9-4da4-b3cb-82b843230ae2"
+    },
+    {
+     "key": "d04992f7-ab8b-4bfa-951b-3d9008390464",
+     "registros": 1,
+     "titulo": "Updated checklist and analysis of completeness of the marine fish fauna of Isla del Coco, Pacific of Costa Rica: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/d04992f7-ab8b-4bfa-951b-3d9008390464"
+    },
+    {
+     "key": "b164a940-ac49-433a-9fe2-b1d80660a936",
+     "registros": 1,
+     "titulo": "Checklist and analysis of completeness of the reef fish fauna of the Revillagigedo Archipelago, Mexico: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b164a940-ac49-433a-9fe2-b1d80660a936"
+    },
+    {
+     "key": "a781c23d-b12f-46e2-bfbd-6eefd61d4f64",
+     "registros": 1,
+     "titulo": "Peces Del Archipiélago De Las Islas Revillagigedo: Una Actualización Sistemática Y Biogeográfica: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/a781c23d-b12f-46e2-bfbd-6eefd61d4f64"
+    },
+    {
+     "key": "ce1b2519-0427-441e-9fc6-4fb83b53b5d9",
+     "registros": 1,
+     "titulo": "Inventory of fishes of Everglades National Park: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/ce1b2519-0427-441e-9fc6-4fb83b53b5d9"
+    },
+    {
+     "key": "86a7c9bb-a4f5-48ee-bfce-f137bfcf4868",
+     "registros": 1,
+     "titulo": "Laughing Bird Caye National Park management plan 2011 - 2016: a component of Belize's world heritage site: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/86a7c9bb-a4f5-48ee-bfce-f137bfcf4868"
+    },
+    {
+     "key": "b30a3f6f-8408-4443-86b9-38e1323773b8",
+     "registros": 1,
+     "titulo": "Comparaison des inventaires de poissons dans les aires marines protégées de Méditerranée : influence de la surface et de l’ancienneté: Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/b30a3f6f-8408-4443-86b9-38e1323773b8"
+    },
+    {
+     "key": "038b9c13-f1ad-49e0-aeea-4458e0b6dcbe",
+     "registros": 1,
+     "titulo": "Checklist of the fishes of New Caledonia, and their distribution in the Southwest Pacific Ocean (Pisces): Fishes Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/038b9c13-f1ad-49e0-aeea-4458e0b6dcbe"
+    },
+    {
+     "key": "024e2f41-e909-4b51-bf28-28c042e9866f",
+     "registros": 1,
+     "titulo": "Tubbataha Management Office: Fishes/Megavertebrates Checklist",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/024e2f41-e909-4b51-bf28-28c042e9866f"
+    },
+    {
+     "key": "34f52594-5857-44a2-aa8b-8b59c42f2ee2",
+     "registros": 1,
+     "titulo": "Reef fish abundance, size and biomass from Aldabra Atoll (Seychelles) between 2014 and 2021 collected by the Seychelles Islands Foundation",
+     "licencia": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+     "url": "https://www.gbif.org/dataset/34f52594-5857-44a2-aa8b-8b59c42f2ee2"
+    }
+   ]
+  }
+ }
+}

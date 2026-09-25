@@ -161,3 +161,4 @@ body {
   @media (prefers-reduced-motion: reduce) {
   .accion, .accion::before, .accion::after { transition: none; }
 }
+} /* port Nuxt: cierre que faltaba; el navegador lo cerraba solo al final del archivo (mismo efecto) */

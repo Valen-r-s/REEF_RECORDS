@@ -4,7 +4,8 @@
    alrededor de cada zona (solo en el mar) y los agrupa en hexágonos. Para usar datos reales,
    reemplaza estas listas por coordenadas de avistamientos (p. ej. una exportación de GBIF u OBIS)
    con peso 1 y dispersión 0. */
-window.ESPECIES = {
+export type Zona = [number, number, number, number]
+export const ESPECIES: Record<string, { nombre: string, zonas: Zona[] }> = {
   manta: {
     nombre: 'Mobula birostris',
     zonas: [

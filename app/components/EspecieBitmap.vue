@@ -1,14 +1,27 @@
-/* REEF Records · Ciencia: la especie en bitmap (shader WebGL)
+<template>
+  <figure class="animal">
+    <canvas id="especie" ref="lienzo" aria-hidden="true"></canvas>
+    <figcaption id="vista-texto">{{ vista }}</figcaption>
+  </figure>
+</template>
+
+<script setup lang="ts">
+/* REEF Records · Ciencia: la especie en bitmap (shader WebGL sobre three.js)
    Cada silueta se describe con funciones de distancia, se ilumina y se reduce a una retícula
    de píxeles con tramado ordenado (Bayer 8×8). El cambio de especie ocurre píxel a píxel. */
-(() => {
-  const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const cv = document.getElementById('especie');
-  const gl = cv && cv.getContext('webgl', { antialias: false, alpha: true, premultipliedAlpha: true });
-  if (!gl) return;
+import { Vector2 } from 'three'
+import { camaraNula, crearRenderer, esReducido, fijarTamano, pantallaCompleta } from '~/utils/gl'
 
-  const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`;
-  const fs = `
+const props = defineProps<{ especie: string, vista: string }>()
+
+const lienzo = ref<HTMLCanvasElement | null>(null)
+// 0 = mantarraya, 1 = tiburón martillo (antes: evento "especie" en document)
+let objetivo = props.especie === 'martillo' ? 1 : 0
+watch(() => props.especie, id => { objetivo = id === 'martillo' ? 1 : 0 })
+let limpiar = () => {}
+
+const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`
+const fs = `
     precision highp float;
     uniform vec2 uRes, uRaton;
     uniform float uT, uMezcla, uCelda, uEscala;
@@ -129,75 +142,78 @@
       // retícula tenue de la pantalla de puntos
       float fondo = cuadro * 0.045 * (1.0 - smoothstep(0.6, 1.25, length(p)));
       gl_FragColor = vec4(c * a + marca * fondo * (1.0 - a), a + fondo * (1.0 - a));
-    }`;
+    }`
 
-  function compilar(tipo, src) {
-    const s = gl.createShader(tipo);
-    gl.shaderSource(s, src); gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
-    return s;
+onMounted(() => {
+  const reducido = esReducido()
+  const cv = lienzo.value!
+  const renderer = crearRenderer(cv, { antialias: false, alpha: true, premultipliedAlpha: true })
+  if (!renderer) return
+
+  const U = {
+    uRes: { value: new Vector2() }, uRaton: { value: new Vector2() },
+    uT: { value: 0 }, uMezcla: { value: 0 }, uCelda: { value: 5 }, uEscala: { value: 1 }
   }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compilar(gl.VERTEX_SHADER, vs));
-  gl.attachShader(prog, compilar(gl.FRAGMENT_SHADER, fs));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
+  const { escena, material, geometria } = pantallaCompleta(vs, fs, U)
+  const camara = camaraNula()
 
-  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-  const loc = gl.getAttribLocation(prog, 'p');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-
-  const U = {};
-  ['uRes', 'uRaton', 'uT', 'uMezcla', 'uCelda', 'uEscala'].forEach(n => U[n] = gl.getUniformLocation(prog, n));
-
-  let dpr = 1;
+  let dpr = 1
   function ajustar() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    cv.width = Math.round(cv.clientWidth * dpr);
-    cv.height = Math.round(cv.clientHeight * dpr);
-    gl.viewport(0, 0, cv.width, cv.height);
+    dpr = Math.min(window.devicePixelRatio || 1, 2)
+    fijarTamano(renderer!, Math.round(cv.clientWidth * dpr), Math.round(cv.clientHeight * dpr))
   }
-  new ResizeObserver(ajustar).observe(cv);
-  ajustar();
+  const observaTamano = new ResizeObserver(ajustar)
+  observaTamano.observe(cv)
+  ajustar()
 
   // cursor en píxeles del lienzo (origen abajo, como gl_FragCoord)
-  const raton = { x: -1e4, y: -1e4 }, suave = { x: -1e4, y: -1e4 };
-  window.addEventListener('pointermove', e => {
-    const r = cv.getBoundingClientRect();
-    raton.x = (e.clientX - r.left) * dpr;
-    raton.y = (r.bottom - e.clientY) * dpr;
-    if (suave.x < -1e3) { suave.x = raton.x; suave.y = raton.y; }
-  });
-  document.documentElement.addEventListener('pointerleave', () => { raton.x = raton.y = suave.x = suave.y = -1e4; });
+  const raton = { x: -1e4, y: -1e4 }, suave = { x: -1e4, y: -1e4 }
+  const alMover = (e: PointerEvent) => {
+    const r = cv.getBoundingClientRect()
+    raton.x = (e.clientX - r.left) * dpr
+    raton.y = (r.bottom - e.clientY) * dpr
+    if (suave.x < -1e3) { suave.x = raton.x; suave.y = raton.y }
+  }
+  const alSalir = () => { raton.x = raton.y = suave.x = suave.y = -1e4 }
+  window.addEventListener('pointermove', alMover)
+  document.documentElement.addEventListener('pointerleave', alSalir)
 
-  // 0 = mantarraya, 1 = tiburón martillo
-  let mezcla = 0, objetivo = 0;
-  document.addEventListener('especie', e => { objetivo = e.detail === 'martillo' ? 1 : 0; });
+  let mezcla = 0
 
-  let visible = true;
-  new IntersectionObserver(([en]) => { visible = en.isIntersecting; }).observe(cv);
-  const inicio = performance.now();
-  let antes = inicio;
-  (function dibujar(ahora = performance.now()) {
-    requestAnimationFrame(dibujar);
-    const dt = Math.min((ahora - antes) / 1000, 0.1);
-    antes = ahora;
-    if (!visible) return;
-    const paso = reducido ? 1 : dt / 1.3;
-    mezcla += Math.max(-paso, Math.min(paso, objetivo - mezcla));
-    suave.x += (raton.x - suave.x) * 0.15;
-    suave.y += (raton.y - suave.y) * 0.15;
+  let visible = true
+  const observaVista = new IntersectionObserver(([en]) => { visible = en!.isIntersecting })
+  observaVista.observe(cv)
+  let raf = 0
+  const inicio = performance.now()
+  let antes = inicio
+  function dibujar(ahora = performance.now()) {
+    raf = requestAnimationFrame(dibujar)
+    const dt = Math.min((ahora - antes) / 1000, 0.1)
+    antes = ahora
+    if (!visible) return
+    const paso = reducido ? 1 : dt / 1.3
+    mezcla += Math.max(-paso, Math.min(paso, objetivo - mezcla))
+    suave.x += (raton.x - suave.x) * 0.15
+    suave.y += (raton.y - suave.y) * 0.15
 
-    gl.clearColor(0, 0, 0, 0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.uniform2f(U.uRes, cv.width, cv.height);
-    gl.uniform2f(U.uRaton, suave.x, suave.y);
-    gl.uniform1f(U.uT, (ahora - inicio) / 1000 * (reducido ? 0.3 : 1));
-    gl.uniform1f(U.uMezcla, mezcla);
-    gl.uniform1f(U.uCelda, Math.max(3, Math.round(5 * dpr)));
-    gl.uniform1f(U.uEscala, Math.min(cv.width / 2.2, cv.height / 1.95));
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-  })();
-})();
+    U.uRes.value.set(cv.width, cv.height)
+    U.uRaton.value.set(suave.x, suave.y)
+    U.uT.value = (ahora - inicio) / 1000 * (reducido ? 0.3 : 1)
+    U.uMezcla.value = mezcla
+    U.uCelda.value = Math.max(3, Math.round(5 * dpr))
+    U.uEscala.value = Math.min(cv.width / 2.2, cv.height / 1.95)
+    renderer!.render(escena, camara)
+  }
+  dibujar()
+
+  limpiar = () => {
+    cancelAnimationFrame(raf)
+    observaTamano.disconnect(); observaVista.disconnect()
+    window.removeEventListener('pointermove', alMover)
+    document.documentElement.removeEventListener('pointerleave', alSalir)
+    geometria.dispose(); material.dispose(); renderer!.dispose()
+  }
+})
+
+onBeforeUnmount(() => limpiar())
+</script>

@@ -1,6 +1,8 @@
 /* REEF Records · Océano en vista cenital (shader WebGL) + ondas del cursor */
 (() => {
   const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Páginas interiores (sin scroll.js): el mar queda fijo en el abismo, como en la sección de la causa
+  window.REEF = window.REEF || { prof: 1 };
 
   /* ───────── Mar en vista cenital (WebGL) ───────── */
   const mar = document.getElementById('mar');
@@ -122,10 +124,12 @@
     const uProf = gl.getUniformLocation(prog, 'uProf');
 
     const ESCALA = 0.55; // resolución interna reducida para fluidez
+    let pintado = false; // en el abismo basta un cuadro; se repinta si el lienzo cambia de tamaño
     function ajustarMar() {
       mar.width = Math.round(window.innerWidth * ESCALA);
       mar.height = Math.round(window.innerHeight * ESCALA);
       gl.viewport(0, 0, mar.width, mar.height);
+      pintado = false;
     }
     ajustarMar();
     window.addEventListener('resize', ajustarMar);
@@ -135,7 +139,8 @@
     window.__tiempoMar = () => (performance.now() - inicio) / 1000 * (reducido ? 0.35 : 1);
 
     (function pintar() {
-      if (window.REEF.prof > 0.995) { requestAnimationFrame(pintar); return; }
+      if (window.REEF.prof > 0.995 && pintado) { requestAnimationFrame(pintar); return; }
+      pintado = true;
       const t = window.__tiempoMar();
       const objX = raton.activo ? raton.x / window.innerWidth : suave.x;
       const objY = raton.activo ? 1 - raton.y / window.innerHeight : -2;
@@ -166,7 +171,8 @@
     if (e.target.closest('.accion, .marca, main') || window.REEF.prof > 0.5) return;
     onda(e.clientX, e.clientY);
   });
-  document.getElementById('accion').addEventListener('click', e => {
+  const accion = document.getElementById('accion');
+  if (accion) accion.addEventListener('click', e => {
     const r = e.currentTarget.getBoundingClientRect();
     onda(r.left + r.width / 2, r.top + r.height / 2);
     setTimeout(() => window.REEF.entrar(), reducido ? 0 : 350);

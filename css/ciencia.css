@@ -1,0 +1,189 @@
+/* REEF Records · Ciencia: mapa de distribución, especie en bitmap y ficha */
+:root {
+  /* colores oficiales de las categorías de la Lista Roja (EW y EX aclarados para verse sobre el abismo) */
+  --cat-lc: #60C659;
+  --cat-nt: #CCE226;
+  --cat-vu: #F9E814;
+  --cat-en: #FC7F3F;
+  --cat-cr: #D81E05;
+  --cat-ew: #9B6B98;
+  --cat-ex: #A8B8C8;
+  --plex: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.pagina-ciencia { background: var(--abismo); color: var(--texto-2); }
+#nieve { position: fixed; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; z-index: 3; }
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.ciencia {
+  position: relative;
+  max-width: 1480px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas: "mapa mapa" "animal ficha";
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  padding: calc(var(--alto-header) + 1.5rem) clamp(1rem, 4vw, 3.5rem) calc(4rem + env(safe-area-inset-bottom, 0px));
+  font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* El selector va a la altura del navbar, como en Música, pero se desplaza con la página */
+.pagina-ciencia .selector { position: absolute; }
+
+/* ───────── Mapa ───────── */
+.mapa {
+  grid-area: mapa;
+  justify-self: center;
+  width: min(100%, calc((100svh - var(--alto-header)) * 0.56 * 360 / 140));
+}
+#mapa { display: block; width: 100%; aspect-ratio: 360 / 140; cursor: crosshair; }
+.mapa-pie {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--texto-3);
+}
+.leyenda { display: inline-flex; align-items: center; gap: 0.6rem; }
+.leyenda svg { width: 16px; height: 18px; flex: none; }
+.leyenda path { fill: rgba(33, 135, 222, 0.14); stroke: #6fa6dc; stroke-width: 1.2; }
+.leyenda circle { fill: #2187de; }
+.lectura { color: var(--reef-40); font-variant-numeric: tabular-nums; }
+
+/* ───────── Especie en bitmap ───────── */
+.animal { grid-area: animal; margin: 2.5rem 0 0; align-self: start; }
+#especie { display: block; width: 100%; height: clamp(280px, 46svh, 540px); }
+.animal figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--texto-3);
+}
+
+/* ───────── Ficha ───────── */
+.ficha { grid-area: ficha; align-self: start; max-width: 40rem; padding-top: 3rem; }
+.binomio {
+  font-family: var(--plex);
+  font-style: italic; font-weight: 500;
+  font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+  line-height: 1.02; letter-spacing: -0.01em;
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
+}
+.binomio i { font-style: italic; }
+.autor {
+  display: inline-block;
+  font-size: 0.9rem; font-style: normal; font-weight: 400; letter-spacing: 0;
+  color: var(--texto-3);
+  vertical-align: 0.9em;
+}
+.comun {
+  margin-top: 0.9rem;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--turquesa);
+}
+
+/* Estado UICN: escala completa, la categoría de la especie resaltada */
+.estado { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
+.escala { list-style: none; display: flex; align-items: center; gap: 0.3rem; }
+.cat {
+  position: relative;
+  display: grid; place-items: center;
+  width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--cat) 45%, transparent);
+  font-size: 0.56rem; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--texto-3); text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.cat:hover { color: #fff; border-color: var(--cat); }
+.cat.activa {
+  width: 3.1rem; height: 3.1rem; margin: 0 0.3rem;
+  border: 0;
+  background: var(--cat); color: #fff;
+  font-size: 0.95rem;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--cat) 18%, transparent), 0 0 24px color-mix(in srgb, var(--cat) 40%, transparent);
+}
+.cat.activa::after {
+  content: "↗";
+  position: absolute; top: -0.2rem; right: -0.35rem;
+  display: grid; place-items: center;
+  width: 1.15rem; height: 1.15rem; border-radius: 50%;
+  background: var(--abismo); border: 1px solid color-mix(in srgb, var(--cat) 70%, transparent);
+  font-size: 0.6rem; color: #fff;
+}
+.cat.activa:hover, .cat.activa:focus-visible { transform: scale(1.07); }
+.cat:focus-visible { outline: 2px solid var(--turquesa-claro); outline-offset: 3px; }
+.estado-texto {
+  display: flex; flex-direction: column;
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(168, 184, 200, 0.3);
+}
+.estado-texto b { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; }
+.estado-texto span { margin-top: 0.3rem; font-size: 0.64rem; font-weight: 500; letter-spacing: 0.1em; color: var(--texto-3); }
+
+/* Cifras */
+.cifras {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;
+  margin-top: 2.25rem; padding-top: 1.4rem;
+  border-top: 1px solid rgba(168, 184, 200, 0.18);
+}
+.cifras div { display: flex; flex-direction: column-reverse; gap: 0.4rem; }
+.cifras dd { font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+.cifras dt { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-3); }
+
+/* Datos curiosos */
+.ficha .etiqueta { margin: 2.5rem 0 0.25rem; }
+.curiosos { list-style: none; counter-reset: dato; }
+.curiosos li {
+  counter-increment: dato;
+  display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0.75rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid rgba(168, 184, 200, 0.12);
+  font-family: var(--plex); font-size: 0.98rem; line-height: 1.6;
+  color: var(--texto-2);
+  text-wrap: pretty;
+}
+.curiosos li::before {
+  content: counter(dato, decimal-leading-zero);
+  padding-top: 0.3rem;
+  font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+  color: var(--turquesa);
+}
+
+/* Entrada de la ficha al cambiar de especie */
+@keyframes ficha-entra { from { opacity: 0; transform: translateY(14px); } }
+.ficha:not([hidden]) > * { animation: ficha-entra 0.7s cubic-bezier(.2, .7, .2, 1) both; }
+.ficha > :nth-child(2) { animation-delay: 0.06s; }
+.ficha > :nth-child(3) { animation-delay: 0.12s; }
+.ficha > :nth-child(4) { animation-delay: 0.18s; }
+.ficha > :nth-child(n + 5) { animation-delay: 0.24s; }
+
+/* ───────── Tableta y móvil: todo en una columna ───────── */
+@media (max-width: 900px) {
+  .ciencia {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "selector" "mapa" "animal" "ficha";
+    padding-top: var(--alto-header);
+  }
+  .pagina-ciencia .selector {
+    grid-area: selector;
+    position: static; transform: none;
+    justify-self: center;
+    margin-bottom: 1.25rem;
+  }
+  .mapa { width: 100%; }
+  .animal { margin-top: 2rem; }
+  #especie { height: clamp(240px, 70vw, 460px); }
+  .ficha { padding-top: 1.5rem; }
+}
+@media (max-width: 560px) {
+  .pagina-ciencia .selector { gap: 1.25rem; padding: 0; }
+  .pagina-ciencia .selector button { max-width: 9.5rem; font-size: 0.68rem; letter-spacing: 0.16em; line-height: 1.5; }
+  .mapa-pie { flex-direction: column; }
+  .cifras { gap: 0.75rem; }
+  .estado-texto { padding-left: 0; border-left: 0; }
+  .curiosos li { font-size: 0.92rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ficha:not([hidden]) > * { animation: none; }
+  .cat { transition: none; }
+}

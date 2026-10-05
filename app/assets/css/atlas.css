@@ -1,0 +1,254 @@
+/* REEF Records · Ciencia: atlas de la especie
+   Mapa con zoom a la izquierda (tierra en punteado, retícula punteada, rutas como rastro de puntos,
+   rótulos en recuadros) y la lista de sitios a la derecha. Paleta REEF sobre el abismo. */
+:root {
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --linea: rgba(163, 176, 211, 0.16);
+}
+
+.pagina-atlas { background: var(--abismo); color: var(--texto-2); }
+
+/* Escritorio: el atlas ocupa exactamente la pantalla bajo el header; el mapa llena la columna izquierda
+   y se ajusta a ella (fitExtent), así nunca queda por fuera del encuadre */
+.atlas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 24vw, 420px);
+  gap: clamp(16px, 2vw, 28px);
+  height: 100svh; min-height: 480px;
+  padding: var(--alto-header) var(--margen-header) clamp(12px, 2vh, 24px);
+  font-family: var(--plex);
+}
+
+/* ───────── Escenario del mapa ───────── */
+.escenario {
+  position: relative;
+  min-width: 0; min-height: 0;
+  overflow: hidden;
+  background: radial-gradient(70% 60% at 55% 45%, rgba(16, 42, 74, 0.55), rgba(4, 14, 28, 0.75) 75%);
+  border: 1px solid var(--linea);
+  --esq: 12px; --tinta: var(--reef);
+}
+/* esquinas en escuadra, como los botones del navbar */
+.escenario::before, .escenario::after {
+  content: ""; position: absolute; inset: -1px; pointer-events: none; z-index: 3;
+  background:
+    linear-gradient(var(--tinta), var(--tinta)) top left / var(--esq) 1.5px no-repeat,
+    linear-gradient(var(--tinta), var(--tinta)) top left / 1.5px var(--esq) no-repeat,
+    linear-gradient(var(--tinta), var(--tinta)) bottom right / var(--esq) 1.5px no-repeat,
+    linear-gradient(var(--tinta), var(--tinta)) bottom right / 1.5px var(--esq) no-repeat;
+}
+.escenario::after {
+  background:
+    linear-gradient(var(--tinta), var(--tinta)) top right / var(--esq) 1.5px no-repeat,
+    linear-gradient(var(--tinta), var(--tinta)) top right / 1.5px var(--esq) no-repeat,
+    linear-gradient(var(--tinta), var(--tinta)) bottom left / var(--esq) 1.5px no-repeat,
+    linear-gradient(var(--tinta), var(--tinta)) bottom left / 1.5px var(--esq) no-repeat;
+}
+.atlas-mapa { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+.atlas-mapa:active { cursor: grabbing; }
+
+/* Mundo */
+.esfera { fill: none; stroke: var(--reef-60); stroke-opacity: 0.28; vector-effect: non-scaling-stroke; }
+.reticula { fill: none; stroke: var(--reef-60); stroke-opacity: 0.22; stroke-dasharray: 1 4; vector-effect: non-scaling-stroke; }
+.tierra { fill: rgba(101, 123, 182, 0.11); stroke: var(--reef-40); stroke-opacity: 0.55; stroke-width: 0.7; vector-effect: non-scaling-stroke; }
+.tierra-punteo { fill: url(#atlas-punteo); }
+#atlas-punteo circle { fill: var(--reef-20); fill-opacity: 0.8; }
+.registros circle { fill: var(--turquesa); fill-opacity: 0.55; }
+
+/* Rutas, individuos y sitios */
+.ruta { fill: none; stroke: var(--espuma); stroke-opacity: 0.85; stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0 7; }
+.estela { fill: none; stroke: var(--reef-60); stroke-opacity: 0.45; stroke-linecap: round; }
+.pez { fill: var(--espuma); }
+.sitio { cursor: pointer; }
+.sitio .toque { fill: transparent; }
+.sitio .nucleo { fill: var(--abismo); stroke: var(--espuma); stroke-width: 1.2; transition: stroke 0.3s ease; }
+.sitio .dentro { fill: var(--espuma); }
+.sitio.on .nucleo, .sitio:hover .nucleo { stroke: var(--turquesa); }
+.sitio.on .dentro { fill: var(--turquesa); }
+.tag-fondo { fill: rgba(6, 24, 46, 0.85); stroke: var(--reef-60); stroke-opacity: 0.55; stroke-width: 0.8; }
+.tag text, .marco text { font: 400 9px var(--mono); fill: var(--espuma); }
+.marco-caja { fill: none; stroke: var(--reef-60); stroke-opacity: 0.45; stroke-width: 1; }
+
+/* Anillo del sitio enfocado */
+.anillo .brillo { fill: url(#atlas-brillo); }
+.anillo .borde { fill: none; stroke: var(--reef); stroke-width: 2.5; }
+.anillo .pulso {
+  fill: none; stroke: var(--turquesa-claro); stroke-width: 1;
+  transform-box: fill-box; transform-origin: center;
+  animation: atlas-pulso 2.6s ease-out infinite;
+}
+@keyframes atlas-pulso { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.9); opacity: 0; } }
+.anillo .coords { font: 500 9px var(--mono); fill: #fff; }
+.anillo .tri { fill: var(--turquesa); }
+.anillo .agregacion { font: 600 13px var(--plex); fill: #fff; }
+.anillo .nombre { font: 400 10px var(--mono); fill: var(--reef-40); }
+.anillo .mira { fill: none; stroke: #fff; stroke-width: 1.4; }
+.anillo .centro { fill: #fff; }
+
+/* ───────── HUD sobre el mapa ───────── */
+.hud { position: absolute; z-index: 2; pointer-events: none; }
+.hud > * { pointer-events: auto; }
+.cargando {
+  inset: 0; display: grid; place-items: center;
+  font: 300 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--texto-3);
+}
+.ubicacion {
+  top: 14px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px;
+  min-width: min(380px, 80%);
+  padding: 6px 4px 8px;
+  border-bottom: 1px solid var(--reef-60);
+  font-size: 12px; color: var(--reef-20);
+}
+.ubicacion b { font-weight: 600; color: #fff; }
+.ubicacion span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.leyenda {
+  top: 20px; left: 18px;
+  display: grid; gap: 7px;
+  font: 300 9px/1.2 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--texto-3);
+}
+.leyenda div { display: flex; align-items: center; gap: 8px; }
+.leyenda i { display: inline-block; flex: none; width: 9px; height: 9px; border-radius: 50%; }
+.leyenda .l-agregacion { border: 1.5px solid var(--turquesa); background: radial-gradient(circle, var(--turquesa) 0 28%, transparent 34%); }
+.leyenda .l-individuo { width: 6px; height: 6px; margin: 0 1.5px; background: var(--espuma); }
+.leyenda .l-ruta {
+  width: 15px; height: 3px; border-radius: 0; margin-left: -3px;
+  background: radial-gradient(circle, var(--espuma) 0 1.2px, transparent 1.6px) 0 50% / 5px 3px repeat-x;
+}
+.leyenda .l-registro { width: 6px; height: 6px; margin: 0 1.5px; background: var(--turquesa); opacity: 0.75; }
+
+.brujula {
+  top: 50%; left: 22px; transform: translateY(-50%);
+  display: grid; justify-items: center; gap: 8px;
+  font: 600 10px var(--plex); color: var(--espuma);
+}
+.brujula .tri { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 8px solid var(--espuma); }
+.brujula .o { width: 16px; height: 16px; border-radius: 50%; border: 4px solid var(--reef-60); background: var(--espuma); }
+
+/* Estado: categoría de la Lista Roja de la UICN, especie o sitio, migración */
+.estado-hud { left: 18px; bottom: 18px; display: grid; gap: 8px; max-width: 320px; }
+.estado-hud .ico { width: 40px; height: 35px; color: var(--cat); }
+.estado-hud .w { font-size: 11px; color: var(--reef-20); }
+.estado-hud .w b { margin-right: 0.35rem; font-weight: 600; color: #fff; }
+.estado-hud .w a {
+  color: inherit; text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--cat) 60%, transparent);
+  transition: color 0.3s ease;
+}
+.estado-hud .w a:hover, .estado-hud .w a:focus-visible { color: #fff; }
+.cat-mini {
+  display: inline-grid; place-items: center;
+  min-width: 1.7rem; height: 1.15rem; margin-left: 0.3rem; padding: 0 0.35rem;
+  border-radius: 1rem; background: var(--cat); color: #fff;
+  font: 700 0.58rem "Orbitron", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0.04em;
+  vertical-align: 1px;
+}
+.estado-hud h2 { margin: 0; font: 400 22px/1.15 var(--plex); letter-spacing: -0.01em; color: #fff; }
+.estado-hud h2[lang="la"] { font-style: italic; }
+.estado-hud .c { font: 300 9px var(--mono); color: var(--texto-3); font-variant-numeric: tabular-nums; }
+.interruptor { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 11px; color: var(--reef-20); }
+.interruptor b { font-weight: 600; color: #fff; }
+.interruptor button { border: 0; background: none; padding: 2px 0; font: inherit; color: var(--texto-3); cursor: pointer; }
+.interruptor button[aria-pressed="true"] { color: var(--turquesa); font-weight: 600; }
+
+.reiniciar {
+  right: 18px; bottom: 18px;
+  padding: 9px 14px;
+  border: 1px solid var(--reef-60);
+  background: rgba(6, 24, 46, 0.7); color: var(--reef-20);
+  font: 400 10px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer;
+}
+.reiniciar:hover { border-color: var(--turquesa); color: #fff; }
+.credito { right: 18px; bottom: 44px; font: 300 9px var(--mono); color: var(--texto-3); }
+.credito a { color: inherit; }
+.credito a:hover { color: var(--reef-20); }
+.pista { right: 18px; bottom: 22px; font: 300 9px var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--texto-3); }
+
+/* ───────── Lista de sitios ───────── */
+.lado {
+  display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; gap: 16px;
+  min-width: 0; min-height: 0;
+  padding-left: clamp(16px, 1.6vw, 24px);
+  border-left: 1px solid var(--linea);
+  overflow-y: auto;   /* pantallas muy bajas: la columna entera se desplaza */
+}
+/* "← Ciencia" y el selector de especie, arriba de la columna */
+.lado-cabeza { display: grid; justify-items: start; gap: 0.25rem; }
+.lado-cabeza .volver { position: static; transform: none; padding: 0.25rem 0; font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif; }
+.lado-cabeza .selector {
+  position: static; transform: none;
+  justify-content: flex-start; gap: 1.25rem;
+  padding: 0;
+  font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+}
+.lado-cabeza .selector button { max-width: 9.5rem; padding-bottom: 0.9rem; text-align: left; font-size: 0.66rem; letter-spacing: 0.16em; line-height: 1.5; }
+.lado-cabeza .selector button::after { left: 0.6rem; }
+.lado h1 {
+  margin: 0;
+  font: 500 18px/1.25 "Orbitron", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.06em; text-transform: uppercase; text-wrap: balance;
+  color: #fff;
+}
+.lado h1 em {
+  display: block; margin-top: 6px;
+  font: 400 13px/1.3 var(--plex); font-style: normal; letter-spacing: 0; text-transform: none;
+  color: var(--texto-3);
+}
+.lado h1 em i { font-style: italic; color: var(--reef-20); }
+.sitios { list-style: none; margin: 0; padding: 0; display: grid; align-content: start; gap: 2px; overflow: auto; min-height: 0; }
+.sitios button {
+  width: 100%;
+  display: grid; grid-template-columns: auto 1fr; gap: 4px 12px;
+  padding: 12px 10px;
+  border: 0; border-left: 2px solid transparent;
+  background: none; color: var(--texto-2); text-align: left; font: inherit; cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.sitios button:hover { background: rgba(101, 123, 182, 0.12); }
+.sitios button[aria-pressed="true"] { background: rgba(101, 123, 182, 0.16); border-left-color: var(--turquesa); }
+.sitios button:focus-visible { outline: 1px solid var(--reef-60); outline-offset: -1px; }
+.sitios .pin { grid-row: span 3; width: 9px; height: 9px; margin-top: 5px; border-radius: 50%; border: 1.5px solid var(--espuma); }
+.sitios button[aria-pressed="true"] .pin { border-color: var(--turquesa); background: var(--turquesa); }
+.sitios b { font-size: 14px; font-weight: 600; color: #fff; }
+.sitios .k { font: 300 9.5px var(--mono); color: var(--texto-3); font-variant-numeric: tabular-nums; }
+.sitios p { margin: 2px 0 0; max-width: 40ch; font-size: 12.5px; line-height: 1.5; color: var(--reef-40); }
+
+.pie {
+  display: grid; gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--linea);
+  font-size: 11.5px; line-height: 1.55; color: var(--texto-3);
+}
+.pie b { margin-right: 0.25rem; font-weight: 600; color: #fff; }
+.pie a { color: var(--reef-20); }
+.pie .ir-especie {
+  justify-self: start; margin-top: 4px;
+  font: 600 0.66rem "Orbitron", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--turquesa); text-decoration: none;
+}
+.pie .ir-especie:hover, .pie .ir-especie:focus-visible { color: var(--turquesa-claro); }
+
+/* ───────── Tableta y móvil: el mapa arriba, la lista debajo ───────── */
+@media (max-width: 900px) {
+  /* Móvil y tableta: el mapa arriba con una altura proporcional al ancho, la lista debajo */
+  .atlas { grid-template-columns: minmax(0, 1fr); height: auto; min-height: 0; padding-bottom: 2rem; }
+  .escenario { height: min(72svh, max(440px, 125vw)); }
+  /* la columna se deshace: "← Ciencia" y el selector suben sobre el mapa, la lista queda debajo */
+  .lado { display: contents; }
+  .lado-cabeza { order: -1; }
+  .lado-cabeza .selector button { font-size: 0.68rem; }
+  .lado h1 { padding-top: 18px; border-top: 1px solid var(--linea); }
+  .brujula, .pista, .credito { display: none; }   /* los créditos quedan en el pie de la lista */
+  .leyenda { top: 52px; }
+  .reiniciar { top: 52px; bottom: auto; }
+  .estado-hud { max-width: 62%; }
+  .estado-hud h2 { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anillo .pulso { animation: none; }
+}

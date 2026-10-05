@@ -9,7 +9,11 @@
   --noche: #1a1a1a;
   --espuma: #eef4ff;
   --cian: #9fd4f2;
-  --alto-header: calc(clamp(64px, 8vw, 104px) + 2 * clamp(1rem, 3vw, 2rem));
+  /* Header flotante y compacto: padding calc(env(safe-area-inset-top) + 16px) clamp(16px, 3.2vw, 44px) 16px
+     alrededor de los enlaces del menú (2.5rem de alto); el logo va centrado en esa misma franja */
+  --margen-header: clamp(16px, 3.2vw, 44px);
+  --ancho-logo: clamp(64px, 6vw, 84px);
+  --alto-header: calc(env(safe-area-inset-top, 0px) + 16px + 2.5rem + 16px);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { --espuma: #eef4ff; }
@@ -45,8 +49,8 @@ body {
 /* Logo esquina */
 .marca {
   position: fixed;
-  top: calc(var(--alto-header) / 2);
-  left: clamp(1rem, 3vw, 2.25rem);
+  top: calc(env(safe-area-inset-top, 0px) + 16px + 1.25rem);
+  left: var(--margen-header);
   transform: translateY(-50%);
   z-index: 8;
   display: block;
@@ -60,7 +64,7 @@ body {
   transition: opacity 0.6s ease, visibility 0s;
 }
 .marca img {
-  width: clamp(64px, 8vw, 104px);
+  width: var(--ancho-logo);
   height: auto;
   filter: drop-shadow(0 6px 14px rgba(0, 10, 30, 0.55));
 }

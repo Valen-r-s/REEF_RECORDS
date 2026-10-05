@@ -1,48 +1,46 @@
 <template>
-  <!-- Corriente: los tres objetos flotan en diagonal, unidos por una línea punteada ondulada -->
-  <nav id="corriente" ref="caja" class="corriente" aria-label="Secciones de REEF">
+  <!-- Corriente: los objetos flotan en diagonal, unidos por una línea punteada ondulada -->
+  <nav ref="caja" class="corriente" :aria-label="etiqueta">
     <svg ref="trazo" class="corriente-trazo" aria-hidden="true">
       <path class="hilo hilo-fino" />
       <path class="hilo" />
     </svg>
 
-    <a class="objeto objeto-merch" href="#" data-ruta="/merch" @click="alClic">
-      <span class="objeto-entrada revelar d1">
+    <a v-for="(o, i) in objetos" :key="o.nombre" class="objeto" :class="o.clase" :href="o.href" :data-ruta="o.ruta" @click="alClic">
+      <span class="objeto-entrada revelar" :class="'d' + Math.min(i + 1, 3)">
         <span class="objeto-cuerpo">
           <span class="burbuja" aria-hidden="true"></span>
-          <img src="/assets/objetos/merch-camiseta.webp" alt="" width="1180" height="1331" decoding="async">
+          <img :src="o.img" alt="" :width="o.ancho" :height="o.alto" decoding="async">
         </span>
-        <span class="objeto-nombre"><small aria-hidden="true">01</small>Merch</span>
-      </span>
-    </a>
-
-    <a class="objeto objeto-musica" href="/musica" data-ruta="/musica" @click="alClic">
-      <span class="objeto-entrada revelar d2">
-        <span class="objeto-cuerpo">
-          <span class="burbuja" aria-hidden="true"></span>
-          <img src="/assets/objetos/musica-vinilo.webp" alt="" width="1253" height="1253" decoding="async">
-        </span>
-        <span class="objeto-nombre"><small aria-hidden="true">02</small>Música</span>
-      </span>
-    </a>
-
-    <a class="objeto objeto-causas" href="#" data-ruta="/causas" @click="alClic">
-      <span class="objeto-entrada revelar d3">
-        <span class="objeto-cuerpo">
-          <span class="burbuja" aria-hidden="true"></span>
-          <img src="/assets/objetos/causas-mantarraya.webp" alt="" width="1253" height="1253" decoding="async">
-        </span>
-        <span class="objeto-nombre"><small aria-hidden="true">03</small>Causas</span>
+        <span class="objeto-nombre"><small aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</small>{{ o.nombre }}</span>
       </span>
     </a>
   </nav>
 </template>
 
+<script lang="ts">
+export interface ObjetoCorriente {
+  /** Clase con la posición y el tamaño del objeto */
+  clase: string
+  /** '#' mientras la página de destino no exista; el destino queda en `ruta` */
+  href: string
+  ruta: string
+  img: string
+  ancho: number
+  alto: number
+  nombre: string
+}
+</script>
+
 <script setup lang="ts">
-/* REEF Records · Sección 2: tres objetos a la deriva unidos por una corriente punteada (antes corriente.js)
+/* REEF Records · Objetos a la deriva unidos por una corriente punteada (antes corriente.js)
    Cada objeto flota por su cuenta, se desplaza con el mouse (paralaje) y se deja atraer un poco
-   cuando el cursor se acerca. La línea pasa por sus centros y ondula como una corriente marina. */
+   cuando el cursor se acerca. La línea pasa por sus centros y ondula como una corriente marina.
+   Lo usan Inicio (Merch, Música, Causas) y Ciencia (Mapa, Especies); la posición y el tamaño de cada
+   objeto van en la clase que trae (--x, --y, --tam en el CSS de la página). */
 import { esReducido } from '~/utils/gl'
+
+defineProps<{ objetos: ObjetoCorriente[], etiqueta: string }>()
 
 const caja = ref<HTMLElement | null>(null)
 const trazo = ref<SVGSVGElement | null>(null)

@@ -5,6 +5,16 @@
   --turquesa-claro: #7fdcff;
   --texto-2: #E8E8E8;
   --texto-3: #A8B8C8;
+  /* colores oficiales de las categorías de la Lista Roja (EW y EX aclarados para verse sobre el abismo);
+     los usan la ficha de especies y el atlas de Ciencia */
+  --cat-lc: #60C659;
+  --cat-nt: #CCE226;
+  --cat-vu: #F9E814;
+  --cat-en: #FC7F3F;
+  --cat-cr: #D81E05;
+  --cat-ew: #9B6B98;
+  --cat-ex: #A8B8C8;
+  --plex: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Nieve marina (también de fondo en las páginas interiores) */
@@ -47,7 +57,7 @@ main { position: relative; z-index: 6; }
 }
 
 .causa-texto { grid-area: texto; position: relative; z-index: 2; max-width: min(32rem, 38vw); }
-.causa h2 {
+.causa :is(h1, h2) {
   font-size: clamp(1.5rem, 2.9vw, 2.6rem);
   line-height: 1.18;
   font-weight: 700;
@@ -57,7 +67,7 @@ main { position: relative; z-index: 6; }
   text-wrap: balance;
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
 }
-.causa h2 em {
+.causa :is(h1, h2) em {
   font-style: normal;
   color: var(--turquesa);
   text-shadow: 0 0 28px rgba(0, 168, 232, 0.55);
@@ -193,7 +203,7 @@ main { position: relative; z-index: 6; }
     margin: 0 calc(-1 * clamp(1.5rem, 7vw, 6.5rem));
   }
   .causa-texto { order: 3; max-width: 34rem; }
-  .causa h2 { font-size: clamp(1.5rem, 6.4vw, 2.4rem); }
+  .causa :is(h1, h2) { font-size: clamp(1.5rem, 6.4vw, 2.4rem); }
   .objeto-merch  { --x: 27%; --y: 16%; --tam: min(36vw, 280px); }
   .objeto-musica { --x: 52%; --y: 48%; --tam: min(40vw, 310px); }
   .objeto-causas { --x: 75%; --y: 80%; --tam: min(36vw, 280px); }

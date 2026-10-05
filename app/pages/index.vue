@@ -32,7 +32,7 @@
 
         <p class="causa-lema revelar d1">Música electrónica, moda circular y ciencia por el océano</p>
 
-        <CorrienteObjetos />
+        <CorrienteObjetos :objetos="OBJETOS" etiqueta="Secciones de REEF" />
       </section>
     </main>
   </div>
@@ -41,6 +41,14 @@
 <script setup lang="ts">
 /* REEF Records · Inicio: hero anclado, descenso y la causa */
 import { esReducido } from '~/utils/gl'
+import type { ObjetoCorriente } from '~/components/CorrienteObjetos.vue'
+
+// Merch y Causas aún no tienen página: el destino queda en ruta
+const OBJETOS: ObjetoCorriente[] = [
+  { clase: 'objeto-merch', href: '#', ruta: '/merch', img: '/assets/objetos/merch-camiseta.webp', ancho: 1180, alto: 1331, nombre: 'Merch' },
+  { clase: 'objeto-musica', href: '/musica', ruta: '/musica', img: '/assets/objetos/musica-vinilo.webp', ancho: 1253, alto: 1253, nombre: 'Música' },
+  { clase: 'objeto-causas', href: '#', ruta: '/causas', img: '/assets/objetos/causas-mantarraya.webp', ancho: 1253, alto: 1253, nombre: 'Causas' }
+]
 
 const mar = ref<{ onda: (x: number, y: number) => void } | null>(null)
 const heroe = ref<HTMLElement | null>(null)

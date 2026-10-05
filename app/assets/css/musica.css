@@ -1,5 +1,5 @@
 /* REEF Records · Música (Slider / Grid) */
-html, body.pagina-musica { height: 100%; overflow: hidden; overscroll-behavior: none; }
+html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hidden; overscroll-behavior: none; }
 .pagina-musica { background: var(--abisal, #040e1c); color: #E8E8E8; }
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .musica { font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif; }
@@ -37,8 +37,7 @@ html, body.pagina-musica { height: 100%; overflow: hidden; overscroll-behavior: 
 /* Categorías: Artistas / Eventos */
 .categorias {
   position: fixed; z-index: 6;
-  top: var(--alto-header); right: clamp(1rem, 3vw, 2.25rem);
-  transform: translateY(-35%);
+  top: var(--alto-header); right: var(--margen-header);
   display: grid; justify-items: end; gap: 0.1rem;
   padding-top: 0.35rem;
   list-style: none;
@@ -128,12 +127,8 @@ html, body.pagina-musica { height: 100%; overflow: hidden; overscroll-behavior: 
 .flecha:hover::before, .flecha:focus-visible::before { inset: -4px; }
 .flecha:focus-visible { outline: none; box-shadow: 0 0 0 1px var(--reef-60); }
 
-@media (max-width: 820px) {
-  .selector { transform: translate(-50%, -15%); }
-  .categorias { transform: translateY(-15%); }
-}
 @media (max-width: 560px) {
-  .selector { left: clamp(1rem, 3vw, 2.25rem); transform: translateY(-15%); padding-left: 0; }
+  .selector { left: var(--margen-header); transform: none; padding-left: 0; }
   .selector button, .categorias button { font-size: 0.72rem; letter-spacing: 0.18em; }
 }
 @media (max-width: 480px) {

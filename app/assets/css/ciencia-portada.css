@@ -1,0 +1,12 @@
+/* REEF Records · Ciencia: portada con dos burbujas (Mapa y Especies)
+   La composición y las burbujas vienen de causa.css; aquí van solo la posición y el tamaño de cada una. */
+.pagina-ciencia { background: var(--abismo); }
+
+.objeto-tierra   { --x: 30%; --y: 38%; --tam: clamp(180px, min(22vw, 36vh), 330px); }
+.objeto-especies { --x: 68%; --y: 66%; --tam: clamp(180px, min(22vw, 36vh), 330px); }
+.objeto-especies .burbuja { animation-delay: -3.5s; }
+
+@media (max-width: 899px) {
+  .objeto-tierra   { --x: 32%; --y: 24%; --tam: min(50vw, 340px); }
+  .objeto-especies { --x: 68%; --y: 72%; --tam: min(50vw, 340px); }
+}

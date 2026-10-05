@@ -17,7 +17,12 @@ const props = defineProps<{ especie: string, vista: string }>()
 const lienzo = ref<HTMLCanvasElement | null>(null)
 // 0 = mantarraya, 1 = tiburón martillo (antes: evento "especie" en document)
 let objetivo = props.especie === 'martillo' ? 1 : 0
-watch(() => props.especie, id => { objetivo = id === 'martillo' ? 1 : 0 })
+// Si la especie llega de la URL (?especie=) justo al montar, el bitmap arranca en ella sin transición
+let montado = 0, saltar = false
+watch(() => props.especie, (id) => {
+  objetivo = id === 'martillo' ? 1 : 0
+  if (performance.now() - montado < 400) saltar = true
+})
 let limpiar = () => {}
 
 const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`
@@ -178,7 +183,8 @@ onMounted(() => {
   window.addEventListener('pointermove', alMover)
   document.documentElement.addEventListener('pointerleave', alSalir)
 
-  let mezcla = 0
+  let mezcla = objetivo
+  montado = performance.now()
 
   let visible = true
   const observaVista = new IntersectionObserver(([en]) => { visible = en!.isIntersecting })
@@ -191,6 +197,7 @@ onMounted(() => {
     const dt = Math.min((ahora - antes) / 1000, 0.1)
     antes = ahora
     if (!visible) return
+    if (saltar) { mezcla = objetivo; saltar = false }
     const paso = reducido ? 1 : dt / 1.3
     mezcla += Math.max(-paso, Math.min(paso, objetivo - mezcla))
     suave.x += (raton.x - suave.x) * 0.15

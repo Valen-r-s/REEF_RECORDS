@@ -10,25 +10,17 @@
 
     <SiteNav actual="/ciencia" causas="/#causa" />
 
-    <main class="ciencia">
-      <h1 class="oculto">Ciencia</h1>
+    <main class="ciencia especies">
+      <h1 class="oculto">Ciencia · Especies</h1>
 
-      <div id="selector" class="selector" role="tablist" aria-label="Especie">
-        <button
-          v-for="(t, i) in TABS" :id="'tab-' + t.id" :key="t.id" :ref="el => { botones[i] = el as HTMLElement }"
-          type="button" role="tab" :data-especie="t.id" :aria-selected="String(especie === t.id)" :aria-controls="'ficha-' + t.id"
-          :tabindex="especie === t.id ? 0 : -1" @click="elegir(t.id)" @keydown="alTecla($event, i)"
-        >{{ t.texto }}</button>
-      </div>
+      <SelectorEspecie v-model="especie" />
 
-      <MapaDistribucion :especie="especie" :etiqueta="FICHAS[especie]!.mapa" />
+      <a class="volver" href="/ciencia"><span aria-hidden="true">←</span> Ciencia</a>
 
       <EspecieBitmap :especie="especie" :vista="FICHAS[especie]!.vista" />
 
       <!-- ═════════ Mantarraya gigante ═════════ -->
-      <article class="ficha" id="ficha-manta" role="tabpanel" aria-labelledby="tab-manta" :hidden="especie !== 'manta'"
-        :data-vista="FICHAS.manta.vista"
-        :data-mapa="FICHAS.manta.mapa">
+      <article class="ficha" id="ficha-manta" role="tabpanel" aria-labelledby="tab-manta" :hidden="especie !== 'manta'">
         <h2 class="binomio"><i lang="la">Mobula birostris</i> <span class="autor">(Walbaum, 1792)</span></h2>
         <p class="comun">Mantarraya gigante oceánica</p>
 
@@ -59,12 +51,12 @@
           <li>Se alimenta de zooplancton filtrando el agua; despliega sus aletas cefálicas para guiar el alimento hacia la boca.</li>
           <li>Se reproduce muy despacio: tras cerca de un año de gestación nace una sola cría. Por eso la pesca, dirigida o accidental, la afecta tanto.</li>
         </ol>
+
+        <a class="ir-mapa" href="/ciencia/mapa">Dónde encontrarla en el mapa <span aria-hidden="true">→</span></a>
       </article>
 
       <!-- ═════════ Tiburón martillo ═════════ -->
-      <article class="ficha" id="ficha-martillo" role="tabpanel" aria-labelledby="tab-martillo" :hidden="especie !== 'martillo'"
-        :data-vista="FICHAS.martillo.vista"
-        :data-mapa="FICHAS.martillo.mapa">
+      <article class="ficha" id="ficha-martillo" role="tabpanel" aria-labelledby="tab-martillo" :hidden="especie !== 'martillo'">
         <h2 class="binomio"><i lang="la">Sphyrna lewini</i> <span class="autor">(Griffith &amp; Smith, 1834)</span></h2>
         <p class="comun">Tiburón martillo común</p>
 
@@ -95,49 +87,28 @@
           <li>Las hembras dan a luz en aguas costeras poco profundas, como manglares y estuarios, que funcionan como guarderías: proteger la costa también es proteger al martillo.</li>
           <li>Su población mundial ha caído más de un 80 % en tres generaciones, sobre todo por la pesca y el comercio de sus aletas. Desde 2013 está incluido en el Apéndice II de CITES.</li>
         </ol>
+
+        <a class="ir-mapa" href="/ciencia/mapa?especie=martillo">Dónde encontrarlo en el mapa <span aria-hidden="true">→</span></a>
       </article>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-/* REEF Records · Ciencia: selector de especie (antes ciencia.js)
-   Cambia la ficha visible y avisa al mapa y al bitmap por props (antes: evento "especie"). */
-const TABS = [
-  { id: 'manta', texto: 'Mantarraya Gigante' },
-  { id: 'martillo', texto: 'Tiburón Martillo' }
-]
-const FICHAS: Record<string, { vista: string, mapa: string }> = {
-  manta: {
-    vista: 'Vista dorsal · hasta 7 m de envergadura',
-    mapa: 'Mapa de la distribución aproximada de la mantarraya gigante en los océanos tropicales y templados del mundo'
-  },
-  martillo: {
-    vista: 'Vista dorsal · hasta 4,3 m de longitud',
-    mapa: 'Mapa de la distribución aproximada del tiburón martillo común en las costas tropicales y templadas del mundo'
-  }
+/* REEF Records · Ciencia / Especies: la especie en bitmap con su ficha, estado UICN y datos curiosos.
+   El selector cambia la ficha visible y el bitmap; la especie queda en la URL (?especie=). */
+const FICHAS: Record<string, { vista: string }> = {
+  manta: { vista: 'Vista dorsal · hasta 7 m de envergadura' },
+  martillo: { vista: 'Vista dorsal · hasta 4,3 m de longitud' }
 }
 
 // Páginas interiores: el mar queda fijo en el abismo, como en la sección de la causa
 useReef().prof = 1
 
-const especie = ref('manta')
-const botones: HTMLElement[] = []
-
-function elegir(id: string) {
-  if (id === especie.value) return
-  especie.value = id
-}
-
-function alTecla(e: KeyboardEvent, i: number) {
-  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
-  const j = (i + (e.key === 'ArrowRight' ? 1 : -1) + TABS.length) % TABS.length
-  elegir(TABS[j]!.id)
-  botones[j]?.focus()
-}
+const especie = useEspecie()
 
 useHead({
-  title: 'Ciencia · REEF Records',
+  title: 'Especies · Ciencia · REEF Records',
   htmlAttrs: { class: 'dentro' },
   bodyAttrs: { class: 'pagina-ciencia' },
   link: [

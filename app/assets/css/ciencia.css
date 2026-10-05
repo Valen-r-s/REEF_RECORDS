@@ -1,16 +1,5 @@
-/* REEF Records · Ciencia: mapa de distribución, especie en bitmap y ficha */
-:root {
-  /* colores oficiales de las categorías de la Lista Roja (EW y EX aclarados para verse sobre el abismo) */
-  --cat-lc: #60C659;
-  --cat-nt: #CCE226;
-  --cat-vu: #F9E814;
-  --cat-en: #FC7F3F;
-  --cat-cr: #D81E05;
-  --cat-ew: #9B6B98;
-  --cat-ex: #A8B8C8;
-  --plex: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-}
-
+/* REEF Records · Ciencia / Especies: la especie en bitmap y su ficha
+   (los colores de las categorías UICN y --plex están en causa.css, compartidos con el atlas) */
 .pagina-ciencia { background: var(--abismo); color: var(--texto-2); }
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -19,37 +8,22 @@
   max-width: 1480px; margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-areas: "mapa mapa" "animal ficha";
+  grid-template-areas: "animal ficha";
   column-gap: clamp(1.5rem, 4vw, 4rem);
   padding: calc(var(--alto-header) + 1.5rem) clamp(1rem, 4vw, 3.5rem) calc(4rem + env(safe-area-inset-bottom, 0px));
   font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* El selector va a la altura del navbar, como en Música, pero se desplaza con la página */
-.pagina-ciencia .selector { position: absolute; }
+.ciencia > .selector { position: absolute; }
 
-/* ───────── Mapa ───────── */
-.mapa {
-  grid-area: mapa;
-  justify-self: center;
-  width: min(100%, calc((100svh - var(--alto-header)) * 0.56 * 360 / 140));
+/* ───────── Especie en bitmap: queda a la vista mientras se lee la ficha ───────── */
+.animal {
+  grid-area: animal; align-self: start;
+  position: sticky; top: calc(var(--alto-header) + 1rem);
+  margin: 2.5rem 0 0;
 }
-#mapa { display: block; width: 100%; aspect-ratio: 360 / 140; cursor: crosshair; }
-.mapa-pie {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
-  margin-top: 0.75rem;
-  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--texto-3);
-}
-.leyenda { display: inline-flex; align-items: center; gap: 0.6rem; }
-.leyenda svg { width: 16px; height: 18px; flex: none; }
-.leyenda path { fill: rgba(33, 135, 222, 0.14); stroke: #6fa6dc; stroke-width: 1.2; }
-.leyenda circle { fill: #2187de; }
-.lectura { color: var(--reef-40); font-variant-numeric: tabular-nums; }
-
-/* ───────── Especie en bitmap ───────── */
-.animal { grid-area: animal; margin: 2.5rem 0 0; align-self: start; }
-#especie { display: block; width: 100%; height: clamp(280px, 46svh, 540px); }
+#especie { display: block; width: 100%; height: clamp(300px, 60svh, 640px); }
 .animal figcaption {
   margin-top: 0.5rem;
   font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
@@ -147,6 +121,14 @@
   color: var(--turquesa);
 }
 
+/* Enlace al atlas, al final de la ficha */
+.ir-mapa {
+  display: inline-block; margin-top: 2rem;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--turquesa); text-decoration: none;
+}
+.ir-mapa:hover, .ir-mapa:focus-visible { color: var(--turquesa-claro); }
+
 /* Entrada de la ficha al cambiar de especie */
 @keyframes ficha-entra { from { opacity: 0; transform: translateY(14px); } }
 .ficha:not([hidden]) > * { animation: ficha-entra 0.7s cubic-bezier(.2, .7, .2, 1) both; }
@@ -159,24 +141,21 @@
 @media (max-width: 900px) {
   .ciencia {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "selector" "mapa" "animal" "ficha";
+    grid-template-areas: "volver" "selector" "animal" "ficha";
     padding-top: var(--alto-header);
   }
-  .pagina-ciencia .selector {
+  .ciencia > .selector {
     grid-area: selector;
     position: static; transform: none;
     justify-self: center;
     margin-bottom: 1.25rem;
   }
-  .mapa { width: 100%; }
-  .animal { margin-top: 2rem; }
+  .ciencia > .volver { grid-area: volver; }
+  .animal { position: static; margin-top: 2rem; }
   #especie { height: clamp(240px, 70vw, 460px); }
   .ficha { padding-top: 1.5rem; }
 }
 @media (max-width: 560px) {
-  .pagina-ciencia .selector { gap: 1.25rem; padding: 0; }
-  .pagina-ciencia .selector button { max-width: 9.5rem; font-size: 0.68rem; letter-spacing: 0.16em; line-height: 1.5; }
-  .mapa-pie { flex-direction: column; }
   .cifras { gap: 0.75rem; }
   .estado-texto { padding-left: 0; border-left: 0; }
   .curiosos li { font-size: 0.92rem; }

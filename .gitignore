@@ -1,12 +1,21 @@
+# Dependencies
+node_modules/
+
+# Nuxt build
+.nuxt/
+.output/
+dist/
+
+# Development
 .DS_Store
 Thumbs.db
-desktop.ini
-.claude/
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
 
-# Nuxt
-node_modules
-.nuxt
-.output
-.data
-dist
-*.log
+# Environment
+.env
+.env.local
+.env.*.local

@@ -2,7 +2,7 @@
 
 "No somos un producto, somos una causa que se comunica con música."
 
-Tres páginas: **Inicio** (entrada, descenso y la causa), **Música** (artistas) y **Ciencia** (fichas de especies).
+Tres secciones: **Inicio** (entrada, descenso y la causa), **Música** (artistas) y **Ciencia**. Ciencia tiene una portada con dos burbujas que llevan al **Mapa** (dónde encontrar a cada especie) y a **Especies** (la especie en píxeles, su ficha y su estado en la Lista Roja de la UICN).
 
 ## Ramas
 
@@ -21,9 +21,9 @@ Mientras existan las dos:
 ## Pila
 
 - **Nuxt 4**: genera cada página como HTML estático (`nuxi generate`). No hay servidor.
-- **three.js**: todas las capas WebGL (mar, nieve marina, mapa, especie en píxeles). Se usa directo, sin librerías encima.
+- **three.js**: todas las capas WebGL (mar, nieve marina, especie en píxeles). Se usa directo, sin librerías encima.
 - **GSAP ScrollTrigger + Lenis**: el scroll suave y el descenso de la página de inicio.
-- **d3-geo + topojson-client**: la proyección del mapa de distribución.
+- **d3** (`d3-geo`, `d3-zoom`, `d3-selection`, `d3-transition`, `d3-ease`) **+ topojson-client**: el atlas de Ciencia en SVG (proyección, zoom, arrastre y acercamientos animados).
 - **GBIF** (api.gbif.org, sin llave): los avistamientos reales del mapa de Ciencia. Se descargan con un script aparte, nunca desde el navegador (ver [Datos de GBIF](#datos-de-gbif)).
 
 ## Requisitos
@@ -66,20 +66,26 @@ app/
   pages/                    una ruta por archivo
     index.vue                 /         entrada, descenso y la causa
     musica.vue                /musica   artistas (slider y grid)
-    ciencia.vue               /ciencia  fichas de especies
+    ciencia/index.vue         /ciencia            portada: burbujas Mapa y Especies
+    ciencia/mapa.vue          /ciencia/mapa       atlas: dónde encontrar a cada especie
+    ciencia/especies.vue      /ciencia/especies   la especie en píxeles, ficha, UICN y datos curiosos
   components/               una capa visual por componente
     OceanoMar.vue             mar en vista cenital (three.js), en Inicio y Ciencia
     MantasSombras.vue         las dos mantas como sombras (canvas 2D con desenfoque)
     NieveMarina.vue           nieve marina (three.js); en Inicio aparece al descender (prop descenso)
-    CorrienteObjetos.vue      Merch, Música y Causas flotando, unidos por la línea punteada
-    MapaDistribucion.vue      mapa de hexágonos de Ciencia (three.js)
+    CorrienteObjetos.vue      burbujas a la deriva unidas por la línea punteada (Inicio y portada de Ciencia)
+    AtlasEspecies.vue         atlas de Ciencia (d3 en SVG): zoom, sitios, individuos, rutas, registros GBIF
+    SelectorEspecie.vue       pestañas Mantarraya Gigante / Tiburón Martillo
     EspecieBitmap.vue         la especie en píxeles con tramado (three.js)
     SiteNav.vue               barra de navegación y menú móvil
   composables/
     useReef.ts                estado del scroll que comparten las capas
     useDescenso.ts            Lenis + ScrollTrigger: hero anclado y descenso de Inicio
     useGaleria.ts             motor de la galería de artistas
+    useEspecie.ts             especie elegida en Ciencia, guardada en la URL (?especie=martillo)
+    useRevelar.ts             aparición de los .revelar fuera de Inicio
   data/gbif-especies.json   avistamientos de GBIF por especie (lo genera npm run gbif)
+  data/atlas.ts             sitios, rutas ilustrativas, hábitat y estado UICN de cada especie en el atlas
   utils/gl.ts               ayudas de three.js que usan todas las capas
   plugins/hash-llegada.client.ts   conserva la llegada directa a /#causa
   router.options.ts         posición del scroll al cargar cada página
@@ -100,7 +106,9 @@ nuxt.config.ts              rutas que se generan, título, idioma
 
 **Descenso.** En `useDescenso.ts`, Lenis mueve el scroll, ScrollTrigger lee la posición y el ticker de GSAP da el tiempo. El hero queda anclado hasta "Entra al arrecife"; después aparece la barra y ya no se vuelve a subir al hero. Las cuentas del descenso son las originales de `scroll.js`.
 
-**Estilos.** Las hojas de `app/assets/css` son las de la versión original. Cada página importa las suyas en su bloque `<style>`.
+**Estilos.** Las hojas de `app/assets/css` son las de la versión original. Cada página importa las suyas en su bloque `<style>`. Esos bloques no son `scoped`: en desarrollo Nuxt puede cargar las hojas de varias páginas a la vez, así que cada regla debe quedar acotada a su página (por ejemplo `.ciencia > .selector`, nunca `html` o `.volver` sueltos). Una regla suelta de Música (`html { overflow: hidden }`) llegó a bloquear el scroll de Ciencia.
+
+**Header.** Flotante y compacto: `padding: calc(env(safe-area-inset-top, 0px) + 16px) clamp(16px, 3.2vw, 44px) 16px` alrededor de los enlaces. Su altura total es `--alto-header` (en `hero.css`), que usan las páginas para dejar el espacio de arriba.
 
 ## Datos de GBIF
 
@@ -115,9 +123,11 @@ El build no consulta GBIF y el navegador tampoco: la página carga el JSON ya gu
 
 **Qué registros entran.** Solo registros de presencia (en GBIF la mayoría de registros de estas especies son de ausencia: puntos de muestreo donde el animal no apareció), con coordenadas y sin problemas geográficos marcados por GBIF, y con licencia CC0 o CC BY 4.0 tanto en el registro como en el dataset: los no comerciales (CC BY-NC) quedan fuera. Además el script descarta los registros a más de unos 25 km de la costa tierra adentro, que son errores de georreferencia, y los datasets de la lista `EXCLUIDOS`, cada uno con su razón escrita.
 
-**Cómo los usa el mapa.** `MapaDistribucion.vue` suma los registros de cada hexágono. El tamaño del círculo sigue una escala logarítmica (hay celdas con 1 registro y celdas con más de mil); la lectura del cursor muestra el número exacto. Debajo del mapa va la fuente: GBIF.org, el total de registros, las licencias y el enlace a `gbif-fuentes.json`.
+**Cómo los usa el mapa.** `AtlasEspecies.vue` dibuja cada celda de 1° como un punto turquesa ("Registros GBIF" en la leyenda). El radio sigue el logaritmo del número de registros (hay celdas con 1 registro y celdas con más de mil). En el pie de la lista de sitios va la fuente: GBIF.org, el total de registros, las licencias y el enlace a `gbif-fuentes.json`.
 
-**Al actualizar.** Revisar que la categoría UICN que imprime el script coincida con la ficha de `ciencia.vue` (hoy: manta EN, martillo CR). Para agregar una especie: sumarla en `ESPECIES` del script con la misma clave que usa el selector de Ciencia.
+**Lo demás del atlas es ilustrativo.** Los sitios de agregación, las rutas entre ellos y los individuos que se mueven por cada zona salen de `app/data/atlas.ts`, no de GBIF ni de datos de rastreo satelital; así lo dice el pie del atlas.
+
+**Al actualizar.** Revisar que la categoría UICN que imprime el script coincida con la ficha de `ciencia/especies.vue` y con `app/data/atlas.ts` (hoy: manta EN, martillo CR). Para agregar una especie: sumarla en `ESPECIES` del script con la misma clave que usa el selector de Ciencia.
 
 ## De la versión original a Nuxt
 
@@ -125,22 +135,22 @@ El build no consulta GBIF y el navegador tampoco: la página carga el JSON ya gu
 |---|---|
 | `index.html` | `app/pages/index.vue` |
 | `musica.html` | `app/pages/musica.vue` |
-| `ciencia.html` | `app/pages/ciencia.vue` |
+| `ciencia.html` | `app/pages/ciencia/especies.vue` (la portada y el mapa son nuevos en esta rama) |
 | `css/*.css` | `app/assets/css/*.css` |
 | `assets/*` | `public/assets/*` |
 | `js/oceano.js` | `app/components/OceanoMar.vue` |
 | `js/mantas.js` | `app/components/MantasSombras.vue` |
 | `js/nieve.js` | `app/components/NieveMarina.vue` |
 | `js/corriente.js` | `app/components/CorrienteObjetos.vue` |
-| `js/mapa.js` | `app/components/MapaDistribucion.vue` |
+| `js/mapa.js` | reemplazado por `app/components/AtlasEspecies.vue` (el atlas sobre d3) |
 | `js/especie.js` | `app/components/EspecieBitmap.vue` |
 | `js/scroll.js` + `js/navegacion.js` | `app/composables/useDescenso.ts` |
 | `js/menu.js` | `app/components/SiteNav.vue` |
 | `js/musica.js` | `app/composables/useGaleria.ts` |
-| `js/ciencia.js` | dentro de `app/pages/ciencia.vue` |
+| `js/ciencia.js` | `app/components/SelectorEspecie.vue` + `app/composables/useEspecie.ts` |
 | `js/ciencia-datos.js` | reemplazado por `app/data/gbif-especies.json` (datos reales de GBIF) |
 
-Los cambios de `main` en `js/ciencia-datos.js` o en la forma en que `js/mapa.js` reparte sus zonas ilustrativas ya no aplican aquí: en esta rama el mapa usa los datos de GBIF.
+Los cambios de `main` en `js/ciencia-datos.js` o en `js/mapa.js` ya no aplican aquí: en esta rama Ciencia tiene su propia estructura (portada, mapa y especies) y el mapa es el atlas sobre d3 con los datos de GBIF.
 
 ## Traducir un cambio de main
 
@@ -155,9 +165,9 @@ Los cambios de `main` en `js/ciencia-datos.js` o en la forma en que `js/mapa.js`
 ## Pendientes conocidos
 
 - Requiere WebGL2, porque three.js lo exige. Un navegador que solo tenga WebGL1 ve la página sin las capas animadas.
-- El contorno de los continentes del mapa se descarga al abrir Ciencia, desde jsdelivr (`world-atlas`).
+- El contorno de los continentes del atlas se descarga al abrir el mapa, desde jsdelivr (`world-atlas`, de Natural Earth): `land-50m` al entrar y `land-10m` la primera vez que se acerca más de 4×. `land-10m` trae 3 polígonos degenerados que d3 lee como la esfera entera; `corregirGiro()` los invierte.
 - El build avisa que el paquete de three.js pasa de 500 kB. Es un aviso, no un error.
 - `hero.css`: al bloque `@media (max-width: 640px)` le faltaba la llave de cierre (aquí ya está cerrada, al final del archivo). La regla de movimiento reducido quedó dentro de ese bloque, así que solo aplica en pantallas de 640 px o menos.
-- En `main`, `js/mapa.js` sigue con un fallo que aquí ya está corregido: al terminar de cargar el contorno, la pestaña Mantarraya muestra el mapa del martillo hasta que se cambia de especie (`agrupar()` no vuelve a enlazar las texturas; aquí llama a `enlazar()`).
-- El mapa es mundial. En Colombia hay 357 registros de martillo (Malpelo es de las zonas con más registros del mundo) pero solo 5 de manta, así que un mapa recortado a Colombia quedaría casi vacío para la manta. Está por decidir el encuadre.
-- Las reglas de GBIF para citar datos tomados por su API (un DOI de "derived dataset") no están verificadas; por ahora la cita va debajo del mapa y la lista completa de datasets en `gbif-fuentes.json`.
+- El atlas es mundial y se puede acercar a cualquier sitio. En Colombia hay 357 registros de martillo (Malpelo es de las zonas con más registros del mundo) pero solo 5 de manta.
+- Las reglas de GBIF para citar datos tomados por su API (un DOI de "derived dataset") no están verificadas; por ahora la cita va en el pie del atlas y la lista completa de datasets en `gbif-fuentes.json`.
+- Los sitios, notas y rutas del tiburón martillo en `app/data/atlas.ts` son nuevos: conviene revisarlos con el equipo, igual que los de la manta que vinieron de `landing-mobula`.

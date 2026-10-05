@@ -18,6 +18,6 @@ export default defineNuxtConfig({
   // Las hojas de estilo de cada página van enlazadas (como en la versión vanilla), no copiadas en el
   // HTML: con inlineStyles el cliente volvía a descargar la misma hoja al cargar la página.
   features: { inlineStyles: false },
-  nitro: { prerender: { crawlLinks: false, routes: ['/', '/musica', '/ciencia', '/ciencia/mapa', '/ciencia/especies'] } },
+  nitro: { prerender: { crawlLinks: false, routes: ['/', '/musica', '/ciencia', '/ciencia/mapa', '/ciencia/especies', '/merch', '/causas'] } },
   vite: { build: { target: 'es2022' } }
 })

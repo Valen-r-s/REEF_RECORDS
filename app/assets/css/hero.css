@@ -1,24 +1,41 @@
 /* REEF Records · Hero */
 :root {
-  --reef: #657bb6;      /* 100% */  --reef-80: #8495c5;
+  /* Manual de marca: azul REEF al 100, 80, 60, 40 y 20 %, blanco y negro.
+     Cada página toma un tema según su fondo:
+       océano   (mar en shader que baja al abismo · Inicio, Ciencia): blanco y azules REEF sobre el azul del mar
+       negativo (negro · Música, Causas): blanco y azul REEF sobre negro
+       positivo (blanco · Merch): negro sobre blanco, el azul REEF como color */
+  --reef: #657bb6;      /* 100% */
+  --reef-80: #8495c5;
   --reef-60: #a3b0d3;
   --reef-40: #c1cae2;
   --reef-20: #e0e5f0;
-  --reef-claro: #b9c6ea;
-  --abismo: #06182e;
+  --negro: #0b0b0b;
   --noche: #1a1a1a;
-  --espuma: #eef4ff;
-  --cian: #9fd4f2;
+  --abismo: #06182e;    /* el fondo del mar en el tema océano */
+  /* acento de texto sobre fondos oscuros: el 60 % se lee en letra pequeña sobre el azul del mar */
+  --acento: var(--reef-60);
+  /* color de velos y sombras de texto (rgb): azul del mar; las páginas negras lo cambian por negro */
+  --sombra-rgb: 4, 14, 28;
+  --espuma: #ffffff;
   /* Header flotante y compacto: padding calc(env(safe-area-inset-top) + 16px) clamp(16px, 3.2vw, 44px) 16px
      alrededor de los enlaces del menú (2.5rem de alto); el logo va centrado en esa misma franja */
   --margen-header: clamp(16px, 3.2vw, 44px);
   --ancho-logo: clamp(64px, 6vw, 84px);
   --alto-header: calc(env(safe-area-inset-top, 0px) + 16px + 2.5rem + 16px);
+  /* Escala de rótulos en mayúsculas, igual en todo el sitio: el tamaño de la navbar manda.
+     --rotulo: navbar, pestañas, categorías, volver, enlaces de acción, nombres de burbujas, lemas.
+     --rotulo-chico: pies de figura, cifras y otros metadatos. */
+  --rotulo: 0.72rem;
+  --rotulo-peso: 500;
+  --rotulo-espacio: 0.22em;
+  --rotulo-chico: 0.62rem;
+  --rotulo-chico-espacio: 0.16em;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --espuma: #eef4ff; }
+  :root:not([data-theme="light"]) { --espuma: #ffffff; }
 }
-:root[data-theme="dark"] { --espuma: #eef4ff; }
+:root[data-theme="dark"] { --espuma: #ffffff; }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -63,12 +80,19 @@ body {
   opacity: 1; visibility: visible; pointer-events: auto;
   transition: opacity 0.6s ease, visibility 0s;
 }
-.marca img {
+.marca svg {
+  display: block;
   width: var(--ancho-logo);
   height: auto;
+  fill: currentColor;
   filter: drop-shadow(0 6px 14px rgba(0, 10, 30, 0.55));
 }
-.marca:focus-visible { outline: 2px solid var(--cian); outline-offset: 6px; }
+.marca text { font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif; font-size: 31.61px; font-weight: 400; }
+/* colores de los archivos REEF RECORDS - Blanco / Negro */
+.marca-blanco { color: #fff; }
+.marca-negro { color: #414042; }
+.marca-negro svg { filter: none; }
+.marca:focus-visible { outline: 2px solid var(--reef-40); outline-offset: 6px; }
 
 /* Héroe */
 .heroe {
@@ -126,9 +150,9 @@ body {
   border: 0;
   color: var(--espuma);
   font: inherit;
-  font-weight: 500;
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
+  font-weight: var(--rotulo-peso);
+  font-size: var(--rotulo);
+  letter-spacing: var(--rotulo-espacio);
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.35s ease, letter-spacing 0.35s ease;
@@ -158,7 +182,7 @@ body {
 }
 .accion:hover::before, .accion:hover::after,
 .accion:focus-visible::before, .accion:focus-visible::after { inset: -6px; }
-.accion:focus-visible { outline: none; box-shadow: 0 0 0 1px var(--cian); }
+.accion:focus-visible { outline: none; box-shadow: 0 0 0 1px var(--reef-40); }
 
 @media (max-width: 640px) {
   .bloque { width: 86vw; }

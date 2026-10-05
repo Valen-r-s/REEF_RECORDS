@@ -26,7 +26,7 @@
 #especie { display: block; width: 100%; height: clamp(300px, 60svh, 640px); }
 .animal figcaption {
   margin-top: 0.5rem;
-  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: var(--rotulo-chico); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-chico-espacio); text-transform: uppercase;
   color: var(--texto-3);
 }
 
@@ -49,8 +49,8 @@
 }
 .comun {
   margin-top: 0.9rem;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--turquesa);
+  font-size: var(--rotulo); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
+  color: var(--acento);
 }
 
 /* Estado UICN: escala completa, la categoría de la especie resaltada */
@@ -82,24 +82,24 @@
   font-size: 0.6rem; color: #fff;
 }
 .cat.activa:hover, .cat.activa:focus-visible { transform: scale(1.07); }
-.cat:focus-visible { outline: 2px solid var(--turquesa-claro); outline-offset: 3px; }
+.cat:focus-visible { outline: 2px solid var(--reef-40); outline-offset: 3px; }
 .estado-texto {
   display: flex; flex-direction: column;
   padding-left: 1.5rem;
-  border-left: 1px solid rgba(168, 184, 200, 0.3);
+  border-left: 1px solid rgba(163, 176, 211, 0.3);
 }
 .estado-texto b { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; }
-.estado-texto span { margin-top: 0.3rem; font-size: 0.64rem; font-weight: 500; letter-spacing: 0.1em; color: var(--texto-3); }
+.estado-texto span { margin-top: 0.3rem; font-size: var(--rotulo-chico); font-weight: var(--rotulo-peso); letter-spacing: 0.1em; color: var(--texto-3); }
 
 /* Cifras */
 .cifras {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem;
   margin-top: 2.25rem; padding-top: 1.4rem;
-  border-top: 1px solid rgba(168, 184, 200, 0.18);
+  border-top: 1px solid rgba(163, 176, 211, 0.18);
 }
 .cifras div { display: flex; flex-direction: column-reverse; gap: 0.4rem; }
 .cifras dd { font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
-.cifras dt { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-3); }
+.cifras dt { font-size: var(--rotulo-chico); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-chico-espacio); text-transform: uppercase; color: var(--texto-3); }
 
 /* Datos curiosos */
 .ficha .etiqueta { margin: 2.5rem 0 0.25rem; }
@@ -108,7 +108,7 @@
   counter-increment: dato;
   display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0.75rem;
   padding: 0.95rem 0;
-  border-top: 1px solid rgba(168, 184, 200, 0.12);
+  border-top: 1px solid rgba(163, 176, 211, 0.12);
   font-family: var(--plex); font-size: 0.98rem; line-height: 1.6;
   color: var(--texto-2);
   text-wrap: pretty;
@@ -117,17 +117,17 @@
   content: counter(dato, decimal-leading-zero);
   padding-top: 0.3rem;
   font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
-  color: var(--turquesa);
+  font-size: var(--rotulo); font-weight: var(--rotulo-peso); letter-spacing: 0.12em;
+  color: var(--acento);
 }
 
 /* Enlace al atlas, al final de la ficha */
 .ir-mapa {
   display: inline-block; margin-top: 2rem;
-  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--turquesa); text-decoration: none;
+  font-size: var(--rotulo); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
+  color: var(--acento); text-decoration: none;
 }
-.ir-mapa:hover, .ir-mapa:focus-visible { color: var(--turquesa-claro); }
+.ir-mapa:hover, .ir-mapa:focus-visible { color: var(--reef-40); }
 
 /* Entrada de la ficha al cambiar de especie */
 @keyframes ficha-entra { from { opacity: 0; transform: translateY(14px); } }

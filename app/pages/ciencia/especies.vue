@@ -4,11 +4,9 @@
     <div class="velo" aria-hidden="true"></div>
     <NieveMarina />
 
-    <a class="marca" href="/" aria-label="REEF, inicio">
-      <img src="/assets/reef-web-corner.png" alt="REEF Records">
-    </a>
+    <MarcaReef />
 
-    <SiteNav actual="/ciencia" causas="/#causa" />
+    <SiteNav actual="/ciencia" />
 
     <main class="ciencia especies">
       <h1 class="oculto">Ciencia · Especies</h1>

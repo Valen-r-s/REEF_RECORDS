@@ -4,11 +4,9 @@
     <div class="velo" aria-hidden="true"></div>
     <NieveMarina />
 
-    <a class="marca" href="/" aria-label="REEF, inicio">
-      <img src="/assets/reef-web-corner.png" alt="REEF Records">
-    </a>
+    <MarcaReef />
 
-    <SiteNav actual="/ciencia" causas="/#causa" />
+    <SiteNav actual="/ciencia" />
 
     <main>
       <!-- Misma composición que la sección de la causa: las burbujas cruzan en diagonal -->

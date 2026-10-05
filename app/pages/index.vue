@@ -5,11 +5,9 @@
     <div class="velo" aria-hidden="true"></div>
     <NieveMarina descenso />
 
-    <a class="marca" href="/" aria-label="REEF, inicio">
-      <img src="/assets/reef-web-corner.png" alt="REEF Records">
-    </a>
+    <MarcaReef />
 
-    <SiteNav causas="#causa" inicio :visible="navVisible" />
+    <SiteNav inicio :visible="navVisible" />
 
     <header id="inicio" ref="heroe" class="heroe">
       <div class="bloque">
@@ -43,11 +41,10 @@
 import { esReducido } from '~/utils/gl'
 import type { ObjetoCorriente } from '~/components/CorrienteObjetos.vue'
 
-// Merch y Causas aún no tienen página: el destino queda en ruta
 const OBJETOS: ObjetoCorriente[] = [
-  { clase: 'objeto-merch', href: '#', ruta: '/merch', img: '/assets/objetos/merch-camiseta.webp', ancho: 1180, alto: 1331, nombre: 'Merch' },
+  { clase: 'objeto-merch', href: '/merch', ruta: '/merch', img: '/assets/objetos/merch-camiseta.webp', ancho: 1180, alto: 1331, nombre: 'Merch' },
   { clase: 'objeto-musica', href: '/musica', ruta: '/musica', img: '/assets/objetos/musica-vinilo.webp', ancho: 1253, alto: 1253, nombre: 'Música' },
-  { clase: 'objeto-causas', href: '#', ruta: '/causas', img: '/assets/objetos/causas-mantarraya.webp', ancho: 1253, alto: 1253, nombre: 'Causas' }
+  { clase: 'objeto-causas', href: '/causas', ruta: '/causas', img: '/assets/objetos/causas-mantarraya.webp', ancho: 1253, alto: 1253, nombre: 'Causas' }
 ]
 
 const mar = ref<{ onda: (x: number, y: number) => void } | null>(null)

@@ -22,8 +22,6 @@
 const props = defineProps<{
   /** '/musica' o '/ciencia' marca aria-current */
   actual?: string
-  /** '#causa' en inicio, '/#causa' en las páginas interiores */
-  causas: string
   /** Solo en inicio: la navbar está oculta (inert, aria-hidden) hasta entrar al arrecife */
   inicio?: boolean
   visible?: boolean
@@ -32,8 +30,8 @@ const props = defineProps<{
 const enlaces = computed(() => [
   { href: '#', ruta: '/about', texto: 'About' },
   { href: '/musica', ruta: '/musica', texto: 'Música' },
-  { href: props.causas, ruta: '/causas', texto: 'Causas' },
-  { href: '#', ruta: '/merch', texto: 'Merch' },
+  { href: '/causas', ruta: '/causas', texto: 'Causas' },
+  { href: '/merch', ruta: '/merch', texto: 'Merch' },
   { href: '/ciencia', ruta: '/ciencia', texto: 'Ciencia' },
   { href: '#', ruta: '/donaciones', texto: 'Donaciones' }
 ])

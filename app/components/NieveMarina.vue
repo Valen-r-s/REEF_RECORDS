@@ -46,9 +46,9 @@ const fs = `
     void main() {
       float a = smoothstep(0.5, 0.0, length(gl_PointCoord - 0.5));
       a *= a;
-      vec3 turquesa = vec3(0.0, 0.66, 0.91);
-      vec3 marca = vec3(0.40, 0.48, 0.71);
-      vec3 c = mix(turquesa * 0.8, marca, step(0.6, vTono));
+      vec3 claro = vec3(0.639, 0.690, 0.827);   // azul REEF al 60 %
+      vec3 marca = vec3(0.396, 0.482, 0.714);   // azul REEF
+      vec3 c = mix(claro * 0.8, marca, step(0.6, vTono));
       float k = a * vAlfa * uOpac;
       gl_FragColor = vec4(c * k, k);
     }`

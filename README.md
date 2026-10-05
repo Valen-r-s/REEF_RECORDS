@@ -2,7 +2,7 @@
 
 "No somos un producto, somos una causa que se comunica con música."
 
-Tres secciones: **Inicio** (entrada, descenso y la causa), **Música** (artistas) y **Ciencia**. Ciencia tiene una portada con dos burbujas que llevan al **Mapa** (dónde encontrar a cada especie) y a **Especies** (la especie en píxeles, su ficha y su estado en la Lista Roja de la UICN).
+Cinco secciones: **Inicio** (entrada, descenso y la causa), **Música** (artistas), **Causas** (los proyectos sin ánimo de lucro), **Ciencia** y **Merch**. Ciencia tiene una portada con dos burbujas que llevan al **Mapa** (dónde encontrar a cada especie) y a **Especies** (la especie en píxeles, su ficha y su estado en la Lista Roja de la UICN).
 
 ## Ramas
 
@@ -69,6 +69,8 @@ app/
     ciencia/index.vue         /ciencia            portada: burbujas Mapa y Especies
     ciencia/mapa.vue          /ciencia/mapa       atlas: dónde encontrar a cada especie
     ciencia/especies.vue      /ciencia/especies   la especie en píxeles, ficha, UICN y datos curiosos
+    merch.vue                 /merch    edición 01: portada por corte, colección con filtros, pedidos por WhatsApp
+    causas.vue                /causas   proyectos: colegios, residuos de fruta, botellas a impresión 3D; cifras y cómo apoyar
   components/               una capa visual por componente
     OceanoMar.vue             mar en vista cenital (three.js), en Inicio y Ciencia
     MantasSombras.vue         las dos mantas como sombras (canvas 2D con desenfoque)
@@ -78,6 +80,10 @@ app/
     SelectorEspecie.vue       pestañas Mantarraya Gigante / Tiburón Martillo
     EspecieBitmap.vue         la especie en píxeles con tramado (three.js)
     SiteNav.vue               barra de navegación y menú móvil
+    MarcaReef.vue             logo REEF RECORDS de la esquina, blanco o negro según la página
+    MerchPortada.vue          camiseta tras un vidrio esmerilado (filtro SVG), solo el estampado nítido
+    MerchTarjeta.vue          una camiseta: tallas (radios) y enlace de pedido a WhatsApp
+    TopografiaMar.vue         estampado topográfico en movimiento de la portada de Causas (three.js, GLSL 3)
   composables/
     useReef.ts                estado del scroll que comparten las capas
     useDescenso.ts            Lenis + ScrollTrigger: hero anclado y descenso de Inicio
@@ -86,11 +92,16 @@ app/
     useRevelar.ts             aparición de los .revelar fuera de Inicio
   data/gbif-especies.json   avistamientos de GBIF por especie (lo genera npm run gbif)
   data/atlas.ts             sitios, rutas ilustrativas, hábitat y estado UICN de cada especie en el atlas
+  data/merch.ts             productos, fotos de la portada y el mensaje de pedido
+  data/causas.ts            proyectos, cifras con su fuente y fotos (con el autor de las de referencia)
+  data/contacto.ts          número de WhatsApp corporativo: pedidos, donaciones y alianzas
   utils/gl.ts               ayudas de three.js que usan todas las capas
   plugins/hash-llegada.client.ts   conserva la llegada directa a /#causa
   router.options.ts         posición del scroll al cargar cada página
   assets/css/               las hojas de estilo de la versión original
 public/assets/              logo, fotos de artistas y demás archivos que se sirven tal cual
+public/assets/merch/        fotos de las camisetas ya recortadas (4:5, 400 y 800 px)
+public/assets/causas/       fotos de Causas en WebP, 800 y 1600 px: de referencia (Unsplash) y de eventos (evento-*)
 public/datos/gbif-fuentes.json   los datasets de GBIF usados, para citarlos (lo genera npm run gbif)
 scripts/gbif-especies.mjs   descarga y filtra los avistamientos de GBIF
 nuxt.config.ts              rutas que se generan, título, idioma
@@ -107,6 +118,19 @@ nuxt.config.ts              rutas que se generan, título, idioma
 **Descenso.** En `useDescenso.ts`, Lenis mueve el scroll, ScrollTrigger lee la posición y el ticker de GSAP da el tiempo. El hero queda anclado hasta "Entra al arrecife"; después aparece la barra y ya no se vuelve a subir al hero. Las cuentas del descenso son las originales de `scroll.js`.
 
 **Estilos.** Las hojas de `app/assets/css` son las de la versión original. Cada página importa las suyas en su bloque `<style>`. Esos bloques no son `scoped`: en desarrollo Nuxt puede cargar las hojas de varias páginas a la vez, así que cada regla debe quedar acotada a su página (por ejemplo `.ciencia > .selector`, nunca `html` o `.volver` sueltos). Una regla suelta de Música (`html { overflow: hidden }`) llegó a bloquear el scroll de Ciencia.
+
+**Colores.** Solo los del manual de marca: azul REEF `#657bb6` con sus tintas al 80, 60, 40 y 20 % (`--reef`, `--reef-80`…`--reef-20`), blanco y negro (`--negro`, `--noche`), definidos en `hero.css`. Cada página toma un tema según su fondo:
+
+| Página | Fondo | Shader | Tema |
+|---|---|---|---|
+| Inicio, Ciencia | el mar que baja al abismo (`--abismo`) | mar, nieve marina, mantas, especie en píxeles | océano: blanco y azules REEF sobre el azul del mar |
+| Música | negro | no | negativo: blanco y azul REEF sobre negro |
+| Causas | negro, con el estampado topográfico en la portada | topografía (en la escala del azul REEF) | negativo en color |
+| Merch | blanco | no (vidrio con filtro SVG) | positivo: negro sobre blanco, el azul REEF como color |
+
+El acento de texto sobre fondos oscuros es `--acento` (azul REEF al 60 %); los velos y sombras de texto usan `--sombra-rgb`, que las páginas negras cambian por negro. El agua del shader del mar conserva sus azules; las categorías de la Lista Roja usan los colores oficiales de la UICN (`--cat-*`) porque son datos.
+
+**Rótulos.** Todo texto de interfaz en mayúsculas (navbar, pestañas, Artistas/Eventos, volver, enlaces de acción, nombres de burbujas, lemas) usa `--rotulo`, `--rotulo-peso` y `--rotulo-espacio`, definidos en `hero.css` con el tamaño de la navbar. Pies de figura y metadatos usan `--rotulo-chico`. No poner tamaños sueltos en esos elementos: así todas las páginas quedan parejas.
 
 **Header.** Flotante y compacto: `padding: calc(env(safe-area-inset-top, 0px) + 16px) clamp(16px, 3.2vw, 44px) 16px` alrededor de los enlaces. Su altura total es `--alto-header` (en `hero.css`), que usan las páginas para dejar el espacio de arriba.
 
@@ -170,4 +194,8 @@ Los cambios de `main` en `js/ciencia-datos.js` o en `js/mapa.js` ya no aplican a
 - `hero.css`: al bloque `@media (max-width: 640px)` le faltaba la llave de cierre (aquí ya está cerrada, al final del archivo). La regla de movimiento reducido quedó dentro de ese bloque, así que solo aplica en pantallas de 640 px o menos.
 - El atlas es mundial y se puede acercar a cualquier sitio. En Colombia hay 357 registros de martillo (Malpelo es de las zonas con más registros del mundo) pero solo 5 de manta.
 - Las reglas de GBIF para citar datos tomados por su API (un DOI de "derived dataset") no están verificadas; por ahora la cita va en el pie del atlas y la lista completa de datasets en `gbif-fuentes.json`.
+- Falta el número de WhatsApp corporativo (`WHATSAPP` en `app/data/contacto.ts`); lo usan los pedidos de Merch y los botones de donar y de alianzas de Causas. Mientras esté vacío, WhatsApp abre el mensaje escrito y deja elegir el contacto. En Merch, los precios tampoco están: cada producto acepta `precio` (en pesos) y solo se muestra si existe.
+- Merch es la única página clara: no carga el mar ni la nieve.
+- Causas: las fotos de los tres proyectos, la del plástico en el mar y la de la manta son de referencia, de Unsplash (licencia gratuita, sin fines de venta directa de la foto). Cada una dice "Imagen de referencia" y su autor, y el pie de la página da los créditos. Al tener fotos propias, se reemplazan en `public/assets/causas/` y en `FOTOS` de `app/data/causas.ts`. Las fotos de eventos (`evento-*`) son de la carpeta Comunidad de REEF; se eligieron planos abiertos, sin retratos de asistentes.
+- El logo de la esquina es `MarcaReef.vue`: los trazos de "REEF RECORDS - Blanco/Negro.svg" en línea, blanco por defecto y `tono="negro"` (#414042) en páginas claras. "RECORDS" es texto en Orbitron, por eso no se usa como `<img>` (una imagen SVG no puede cargar la tipografía de la página). `public/assets/reef-web-corner.png` (385 kB) y `reef-web-corner.svg` (vacío) ya no los usa ninguna página.
 - Los sitios, notas y rutas del tiburón martillo en `app/data/atlas.ts` son nuevos: conviene revisarlos con el equipo, igual que los de la manta que vinieron de `landing-mobula`.

@@ -19,7 +19,6 @@ export interface EspecieAtlas {
   binomio: string
   autor: string
   /** Texto de la barra de ubicación cuando no hay un sitio elegido */
-  ubicacion: string
   habitat: string
   uicn: { codigo: 'EN' | 'CR', texto: string, url: string }
   sitios: Sitio[]
@@ -31,7 +30,6 @@ export const ATLAS: Record<string, EspecieAtlas> = {
     titulo: 'Dónde encontrar a la manta gigante',
     binomio: 'Mobula birostris',
     autor: '(Walbaum, 1792)',
-    ubicacion: 'Océanos tropicales y templados',
     habitat: 'Aguas tropicales, subtropicales y templadas de todos los océanos, casi siempre en mar abierto y cerca de montes submarinos.',
     uicn: { codigo: 'EN', texto: 'En peligro', url: 'https://www.iucnredlist.org/species/198921/214397182' },
     sitios: [
@@ -56,7 +54,6 @@ export const ATLAS: Record<string, EspecieAtlas> = {
     titulo: 'Dónde encontrar al tiburón martillo',
     binomio: 'Sphyrna lewini',
     autor: '(Griffith & Smith, 1834)',
-    ubicacion: 'Costas tropicales y templado-cálidas',
     habitat: 'Aguas costeras y oceánicas tropicales y templado-cálidas de todos los océanos. Los adultos se reúnen alrededor de islas y montes submarinos; las crías crecen en bahías y manglares que funcionan como criaderos.',
     uicn: { codigo: 'CR', texto: 'En peligro crítico', url: 'https://www.iucnredlist.org/species/39385/2918526' },
     sitios: [

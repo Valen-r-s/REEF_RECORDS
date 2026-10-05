@@ -1,6 +1,6 @@
 /* REEF Records · Música (Slider / Grid) */
 html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hidden; overscroll-behavior: none; }
-.pagina-musica { background: var(--abisal, #040e1c); color: #E8E8E8; }
+.pagina-musica { --sombra-rgb: 11, 11, 11; background: var(--negro); color: #E8E8E8; }
 .oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .musica { font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif; }
 
@@ -15,7 +15,7 @@ html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hid
   position: absolute; left: 0; top: 0;
   width: var(--cw, 300px); height: var(--ch, 375px);
   transform-origin: 0 0;
-  overflow: hidden; background: #0a1a2e;
+  overflow: hidden; background: var(--noche);
   will-change: transform;
 }
 .celda img {
@@ -41,14 +41,13 @@ html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hid
   display: grid; justify-items: end; gap: 0.1rem;
   padding-top: 0.35rem;
   list-style: none;
-  text-shadow: 0 1px 10px rgba(4, 14, 28, 0.85), 0 0 2px rgba(4, 14, 28, 0.9);
+  text-shadow: 0 1px 10px rgba(var(--sombra-rgb), 0.85), 0 0 2px rgba(var(--sombra-rgb), 0.9);
 }
 .categorias button {
   position: relative;
   padding: 0.5rem 0.25rem 0.35rem 1.35rem;
   background: none; border: 0; cursor: pointer;
-  font: inherit; font-size: 0.8rem; font-weight: 600;
-  letter-spacing: 0.24em; text-transform: uppercase;
+  font: inherit; font-size: var(--rotulo); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
   color: var(--reef-60);
   transition: color 0.3s ease;
 }
@@ -89,7 +88,7 @@ html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hid
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
   display: flex; align-items: center; justify-content: center; gap: clamp(1rem, 4vw, 2.5rem);
   padding: 1.6rem 16px calc(1.1rem + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(0deg, rgba(4, 14, 28, 0.92) 0%, rgba(4, 14, 28, 0.75) 60%, rgba(4, 14, 28, 0) 100%);
+  background: linear-gradient(0deg, rgba(var(--sombra-rgb), 0.92) 0%, rgba(var(--sombra-rgb), 0.75) 60%, rgba(var(--sombra-rgb), 0) 100%);
   pointer-events: none;
 }
 .barra > * { pointer-events: auto; }
@@ -105,7 +104,7 @@ html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hid
   letter-spacing: 0.08em; text-transform: uppercase; color: #fff;
   text-wrap: balance;
 }
-.meta { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--reef-40); font-variant-numeric: tabular-nums; }
+.meta { font-size: var(--rotulo); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-espacio); text-transform: uppercase; color: var(--reef-40); font-variant-numeric: tabular-nums; }
 .flecha {
   position: relative;
   width: 44px; height: 44px; flex: none;
@@ -129,7 +128,7 @@ html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hid
 
 @media (max-width: 560px) {
   .selector { left: var(--margen-header); transform: none; padding-left: 0; }
-  .selector button, .categorias button { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .selector button, .categorias button { letter-spacing: 0.18em; }
 }
 @media (max-width: 480px) {
   .rotulo { min-width: 0; flex: 1; }

@@ -1,10 +1,8 @@
 <template>
   <div>
-    <a class="marca" href="/" aria-label="REEF, inicio">
-      <img src="/assets/reef-web-corner.png" alt="REEF Records">
-    </a>
+    <MarcaReef />
 
-    <SiteNav actual="/musica" causas="/#causa" />
+    <SiteNav actual="/musica" />
 
     <main class="musica">
       <h1 class="oculto">Música</h1>

@@ -8,7 +8,7 @@
             <circle cx="1.7" cy="1.7" r="0.75" />
           </pattern>
           <radialGradient id="atlas-brillo">
-            <stop offset="0" stop-color="#00a8e8" stop-opacity=".5" />
+            <stop offset="0" stop-color="#a3b0d3" stop-opacity=".5" />
             <stop offset=".55" stop-color="#657bb6" stop-opacity=".28" />
             <stop offset="1" stop-color="#657bb6" stop-opacity="0" />
           </radialGradient>
@@ -19,20 +19,12 @@
 
       <div v-if="aviso" class="hud cargando">{{ aviso }}</div>
 
-      <div class="hud ubicacion">
-        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="5" cy="5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.4" /><path d="M7.7 7.7 11 11" stroke="currentColor" stroke-width="1.4" /></svg>
-        <b>Ubicación</b><span>{{ ubicacion }}</span>
-        <svg width="10" height="13" viewBox="0 0 10 13" aria-hidden="true"><path d="M5 12.5S.8 7.6.8 4.8a4.2 4.2 0 0 1 8.4 0C9.2 7.6 5 12.5 5 12.5Z" fill="currentColor" /><circle cx="5" cy="4.8" r="1.6" fill="#06182e" /></svg>
-      </div>
-
       <div class="hud leyenda" aria-hidden="true">
         <div><i class="l-agregacion"></i>Agregación</div>
         <div><i class="l-individuo"></i>Individuos</div>
         <div><i class="l-ruta"></i>Ruta ilustrativa</div>
         <div><i class="l-registro"></i>Registros GBIF</div>
       </div>
-
-      <div class="hud brujula" aria-hidden="true"><span class="tri"></span>N<span class="o"></span></div>
 
       <div class="hud estado-hud" :style="{ '--cat': `var(--cat-${esp.uicn.codigo.toLowerCase()})` }" aria-live="polite">
         <svg class="ico" viewBox="0 0 44 38" aria-hidden="true"><path d="M22 2 42 36H2Z" fill="currentColor" /><path d="M22 13v12" stroke="#06182e" stroke-width="3" /><circle cx="22" cy="30" r="1.8" fill="#06182e" /></svg>
@@ -51,7 +43,6 @@
       </div>
 
       <div v-show="!acercado" class="hud pista">Rueda o pellizco para acercar · arrastra para mover</div>
-      <button v-show="acercado" class="hud reiniciar" type="button" @click="acciones.verTodo()">Ver mapa completo</button>
       <div class="hud credito">
         Registros: <a :href="`https://www.gbif.org/species/${registros.gbifKey}`" target="_blank" rel="noopener">GBIF.org</a>
         · Contornos: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>
@@ -118,7 +109,6 @@ const capa = ref<SVGGElement | null>(null)
 const punteo = ref<SVGPatternElement | null>(null)
 
 const aviso = ref('Cargando mapa…')
-const ubicacion = ref(esp.value.ubicacion)
 const estadoNombre = ref(esp.value.binomio)
 const estadoCoords = ref(CIRCUNGLOBAL)
 const seleccionado = ref<string | null>(null)
@@ -289,7 +279,6 @@ onMounted(() => {
 
     dibujarRegistros()
     seleccionado.value = null
-    ubicacion.value = e.ubicacion
     estadoNombre.value = e.binomio
     estadoCoords.value = CIRCUNGLOBAL
     if (animar) svg.transition().duration(reducido ? 0 : 1200).ease(easeCubicInOut).call(zoom.transform as any, zoomIdentity)
@@ -397,7 +386,6 @@ onMounted(() => {
     const s = porId[id]
     if (!s) return
     seleccionado.value = id
-    ubicacion.value = `${s.nombre}, ${s.pais}`
     estadoNombre.value = s.nombre
     estadoCoords.value = coords(s)
     const [x, y] = proy([s.lon, s.lat])!
@@ -408,7 +396,6 @@ onMounted(() => {
   function verTodo() {
     const e = ATLAS[props.especie]!
     seleccionado.value = null
-    ubicacion.value = e.ubicacion
     estadoNombre.value = e.binomio
     estadoCoords.value = CIRCUNGLOBAL
     svg.transition().duration(reducido ? 0 : 1200).ease(easeCubicInOut).call(zoom.transform as any, zoomIdentity)

@@ -53,7 +53,7 @@
 .tierra { fill: rgba(101, 123, 182, 0.11); stroke: var(--reef-40); stroke-opacity: 0.55; stroke-width: 0.7; vector-effect: non-scaling-stroke; }
 .tierra-punteo { fill: url(#atlas-punteo); }
 #atlas-punteo circle { fill: var(--reef-20); fill-opacity: 0.8; }
-.registros circle { fill: var(--turquesa); fill-opacity: 0.55; }
+.registros circle { fill: var(--reef); fill-opacity: 0.55; }
 
 /* Rutas, individuos y sitios */
 .ruta { fill: none; stroke: var(--espuma); stroke-opacity: 0.85; stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0 7; }
@@ -63,8 +63,8 @@
 .sitio .toque { fill: transparent; }
 .sitio .nucleo { fill: var(--abismo); stroke: var(--espuma); stroke-width: 1.2; transition: stroke 0.3s ease; }
 .sitio .dentro { fill: var(--espuma); }
-.sitio.on .nucleo, .sitio:hover .nucleo { stroke: var(--turquesa); }
-.sitio.on .dentro { fill: var(--turquesa); }
+.sitio.on .nucleo, .sitio:hover .nucleo { stroke: var(--acento); }
+.sitio.on .dentro { fill: var(--acento); }
 .tag-fondo { fill: rgba(6, 24, 46, 0.85); stroke: var(--reef-60); stroke-opacity: 0.55; stroke-width: 0.8; }
 .tag text, .marco text { font: 400 9px var(--mono); fill: var(--espuma); }
 .marco-caja { fill: none; stroke: var(--reef-60); stroke-opacity: 0.45; stroke-width: 1; }
@@ -73,13 +73,13 @@
 .anillo .brillo { fill: url(#atlas-brillo); }
 .anillo .borde { fill: none; stroke: var(--reef); stroke-width: 2.5; }
 .anillo .pulso {
-  fill: none; stroke: var(--turquesa-claro); stroke-width: 1;
+  fill: none; stroke: var(--reef-40); stroke-width: 1;
   transform-box: fill-box; transform-origin: center;
   animation: atlas-pulso 2.6s ease-out infinite;
 }
 @keyframes atlas-pulso { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.9); opacity: 0; } }
 .anillo .coords { font: 500 9px var(--mono); fill: #fff; }
-.anillo .tri { fill: var(--turquesa); }
+.anillo .tri { fill: var(--acento); }
 .anillo .agregacion { font: 600 13px var(--plex); fill: #fff; }
 .anillo .nombre { font: 400 10px var(--mono); fill: var(--reef-40); }
 .anillo .mira { fill: none; stroke: #fff; stroke-width: 1.4; }
@@ -93,17 +93,6 @@
   font: 300 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--texto-3);
 }
-.ubicacion {
-  top: 14px; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 10px;
-  min-width: min(380px, 80%);
-  padding: 6px 4px 8px;
-  border-bottom: 1px solid var(--reef-60);
-  font-size: 12px; color: var(--reef-20);
-}
-.ubicacion b { font-weight: 600; color: #fff; }
-.ubicacion span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
 .leyenda {
   top: 20px; left: 18px;
   display: grid; gap: 7px;
@@ -112,21 +101,13 @@
 }
 .leyenda div { display: flex; align-items: center; gap: 8px; }
 .leyenda i { display: inline-block; flex: none; width: 9px; height: 9px; border-radius: 50%; }
-.leyenda .l-agregacion { border: 1.5px solid var(--turquesa); background: radial-gradient(circle, var(--turquesa) 0 28%, transparent 34%); }
+.leyenda .l-agregacion { border: 1.5px solid var(--acento); background: radial-gradient(circle, var(--acento) 0 28%, transparent 34%); }
 .leyenda .l-individuo { width: 6px; height: 6px; margin: 0 1.5px; background: var(--espuma); }
 .leyenda .l-ruta {
   width: 15px; height: 3px; border-radius: 0; margin-left: -3px;
   background: radial-gradient(circle, var(--espuma) 0 1.2px, transparent 1.6px) 0 50% / 5px 3px repeat-x;
 }
-.leyenda .l-registro { width: 6px; height: 6px; margin: 0 1.5px; background: var(--turquesa); opacity: 0.75; }
-
-.brujula {
-  top: 50%; left: 22px; transform: translateY(-50%);
-  display: grid; justify-items: center; gap: 8px;
-  font: 600 10px var(--plex); color: var(--espuma);
-}
-.brujula .tri { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 8px solid var(--espuma); }
-.brujula .o { width: 16px; height: 16px; border-radius: 50%; border: 4px solid var(--reef-60); background: var(--espuma); }
+.leyenda .l-registro { width: 6px; height: 6px; margin: 0 1.5px; background: var(--reef); opacity: 0.75; }
 
 /* Estado: categoría de la Lista Roja de la UICN, especie o sitio, migración */
 .estado-hud { left: 18px; bottom: 18px; display: grid; gap: 8px; max-width: 320px; }
@@ -152,7 +133,7 @@
 .interruptor { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 11px; color: var(--reef-20); }
 .interruptor b { font-weight: 600; color: #fff; }
 .interruptor button { border: 0; background: none; padding: 2px 0; font: inherit; color: var(--texto-3); cursor: pointer; }
-.interruptor button[aria-pressed="true"] { color: var(--turquesa); font-weight: 600; }
+.interruptor button[aria-pressed="true"] { color: var(--acento); font-weight: 600; }
 
 .reiniciar {
   right: 18px; bottom: 18px;
@@ -162,7 +143,7 @@
   font: 400 10px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase;
   cursor: pointer;
 }
-.reiniciar:hover { border-color: var(--turquesa); color: #fff; }
+.reiniciar:hover { border-color: var(--acento); color: #fff; }
 .credito { right: 18px; bottom: 44px; font: 300 9px var(--mono); color: var(--texto-3); }
 .credito a { color: inherit; }
 .credito a:hover { color: var(--reef-20); }
@@ -185,7 +166,7 @@
   padding: 0;
   font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
 }
-.lado-cabeza .selector button { max-width: 9.5rem; padding-bottom: 0.9rem; text-align: left; font-size: 0.66rem; letter-spacing: 0.16em; line-height: 1.5; }
+.lado-cabeza .selector button { max-width: 9.5rem; padding-bottom: 0.9rem; text-align: left; letter-spacing: 0.16em; line-height: 1.5; }
 .lado-cabeza .selector button::after { left: 0.6rem; }
 .lado h1 {
   margin: 0;
@@ -209,10 +190,10 @@
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .sitios button:hover { background: rgba(101, 123, 182, 0.12); }
-.sitios button[aria-pressed="true"] { background: rgba(101, 123, 182, 0.16); border-left-color: var(--turquesa); }
+.sitios button[aria-pressed="true"] { background: rgba(101, 123, 182, 0.16); border-left-color: var(--acento); }
 .sitios button:focus-visible { outline: 1px solid var(--reef-60); outline-offset: -1px; }
 .sitios .pin { grid-row: span 3; width: 9px; height: 9px; margin-top: 5px; border-radius: 50%; border: 1.5px solid var(--espuma); }
-.sitios button[aria-pressed="true"] .pin { border-color: var(--turquesa); background: var(--turquesa); }
+.sitios button[aria-pressed="true"] .pin { border-color: var(--acento); background: var(--acento); }
 .sitios b { font-size: 14px; font-weight: 600; color: #fff; }
 .sitios .k { font: 300 9.5px var(--mono); color: var(--texto-3); font-variant-numeric: tabular-nums; }
 .sitios p { margin: 2px 0 0; max-width: 40ch; font-size: 12.5px; line-height: 1.5; color: var(--reef-40); }
@@ -227,10 +208,10 @@
 .pie a { color: var(--reef-20); }
 .pie .ir-especie {
   justify-self: start; margin-top: 4px;
-  font: 600 0.66rem "Orbitron", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--turquesa); text-decoration: none;
+  font: var(--rotulo-peso) var(--rotulo) "Orbitron", "Helvetica Neue", Arial, sans-serif; letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
+  color: var(--acento); text-decoration: none;
 }
-.pie .ir-especie:hover, .pie .ir-especie:focus-visible { color: var(--turquesa-claro); }
+.pie .ir-especie:hover, .pie .ir-especie:focus-visible { color: var(--reef-40); }
 
 /* ───────── Tableta y móvil: el mapa arriba, la lista debajo ───────── */
 @media (max-width: 900px) {
@@ -239,12 +220,15 @@
   .escenario { height: min(72svh, max(440px, 125vw)); }
   /* la columna se deshace: "← Ciencia" y el selector suben sobre el mapa, la lista queda debajo */
   .lado { display: contents; }
-  .lado-cabeza { order: -1; }
-  .lado-cabeza .selector button { font-size: 0.68rem; }
+  .lado-cabeza { order: -1; justify-items: stretch; }
+  /* pestañas centradas, como en Especies */
+  .lado-cabeza .volver { justify-self: start; }
+  .lado-cabeza .selector { justify-content: center; gap: clamp(1.25rem, 3vw, 2.5rem); }
+  .lado-cabeza .selector button { text-align: center; }
+  .lado-cabeza .selector button::after { left: 50%; }
   .lado h1 { padding-top: 18px; border-top: 1px solid var(--linea); }
-  .brujula, .pista, .credito { display: none; }   /* los créditos quedan en el pie de la lista */
-  .leyenda { top: 52px; }
-  .reiniciar { top: 52px; bottom: auto; }
+  .pista, .credito { display: none; }   /* los créditos quedan en el pie de la lista */
+  .reiniciar { top: 16px; bottom: auto; }
   .estado-hud { max-width: 62%; }
   .estado-hud h2 { font-size: 17px; }
 }

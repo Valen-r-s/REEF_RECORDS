@@ -140,9 +140,10 @@ const fs = `
       vec2 f = fract(gl_FragCoord.xy / uCelda);
       float cuadro = step(0.14, f.x) * step(f.x, 0.86) * step(0.14, f.y) * step(f.y, 0.86);
 
-      vec3 marca = vec3(0.40, 0.48, 0.71), turquesa = vec3(0.0, 0.66, 0.91), espuma = vec3(0.82, 0.96, 1.0);
-      vec3 c = mix(marca, turquesa, smoothstep(0.25, 0.6, I));
-      c = mix(c, espuma, smoothstep(0.75, 1.0, I));
+      // la escala del azul REEF: 100 % → 60 % → blanco
+      vec3 marca = vec3(0.396, 0.482, 0.714), claro = vec3(0.639, 0.690, 0.827), blanco = vec3(1.0);
+      vec3 c = mix(marca, claro, smoothstep(0.25, 0.6, I));
+      c = mix(c, blanco, smoothstep(0.75, 1.0, I));
       float a = on * cuadro * (0.55 + 0.45 * min(I, 1.0));
       // retícula tenue de la pantalla de puntos
       float fondo = cuadro * 0.045 * (1.0 - smoothstep(0.6, 1.25, length(p)));

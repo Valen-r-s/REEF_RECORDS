@@ -10,7 +10,7 @@ html.sin-suave { scroll-behavior: auto; }
   /* el padding izquierdo deja libre el logo, que es un elemento aparte (.marca) */
   padding: calc(env(safe-area-inset-top, 0px) + 16px) var(--margen-header) 16px calc(var(--ancho-logo) + 2 * var(--margen-header));
   font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
-  background: linear-gradient(180deg, rgba(4, 14, 28, 0.85) 0%, rgba(4, 14, 28, 0.5) 60%, rgba(4, 14, 28, 0) 100%);
+  background: linear-gradient(180deg, rgba(var(--sombra-rgb), 0.85) 0%, rgba(var(--sombra-rgb), 0.5) 60%, rgba(var(--sombra-rgb), 0) 100%);
   pointer-events: none;
   opacity: 0; visibility: hidden; transform: translateY(-14px);
   transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0.6s;
@@ -30,8 +30,9 @@ html.sin-suave { scroll-behavior: auto; }
   display: block;
   padding: 0.8rem 1rem;
   font-family: inherit;
-  font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 0.22em; text-transform: uppercase;
+  /* alto fijo de 2.5rem (el que suma --alto-header): no depende del interlineado de cada página */
+  line-height: 1.25;
+  font-size: var(--rotulo); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
   color: var(--reef-20);
   text-decoration: none;
   --esq: 8px; --tinta: var(--reef);
@@ -72,7 +73,7 @@ html.sin-suave { scroll-behavior: auto; }
     flex-direction: column; justify-content: center; align-items: flex-start;
     gap: 0.5rem;
     padding: var(--alto) clamp(1.5rem, 7vw, 3rem) 3rem;
-    background: rgba(4, 14, 28, 0.97);
+    background: rgba(var(--sombra-rgb), 0.97);
     opacity: 0; visibility: hidden;
     transition: opacity 0.35s ease, visibility 0s linear 0.35s;
   }

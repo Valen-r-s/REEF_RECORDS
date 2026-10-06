@@ -23,7 +23,7 @@ export function useGaleria(piezas: Piezas) {
 
   onMounted(() => {
     // Datos
-    const fuentes = [...piezas.fuente.value!.querySelectorAll('img')].map(i => ({ src: i.getAttribute('src')!, alt: i.alt }))
+    const fuentes = [...piezas.fuente.value!.querySelectorAll('img')].map(i => ({ src: i.getAttribute('src')!, alt: i.alt, slug: i.dataset.slug ?? '' }))
     const n = fuentes.length
     const escena = piezas.escena.value!
     const selector = piezas.selector.value!
@@ -119,6 +119,7 @@ export function useGaleria(piezas: Piezas) {
         activaKey = key
         const i = mod(ca, n)
         nombreEl.textContent = fuentes[i]!.alt
+        nombreEl.setAttribute('href', '/musica/' + fuentes[i]!.slug)
         contadorEl.textContent = `${pad(i + 1)} / ${pad(n)}`
       }
     }
@@ -183,6 +184,9 @@ export function useGaleria(piezas: Piezas) {
       })
     })
 
+    // Página del artista activo (carga completa, como los demás enlaces del sitio)
+    const abrir = () => { const href = nombreEl.getAttribute('href'); if (href) location.href = href }
+
     // Navegación
     function centrar(r: number, c: number) {
       if (modo === 'grid') animar({ px: c - r * DESFASE, py: r }, 650, salida)
@@ -204,6 +208,7 @@ export function useGaleria(piezas: Piezas) {
     escuchar(piezas.siguiente.value!, 'click', () => mover(1))
     escuchar(escena, 'keydown', (e: KeyboardEvent) => {
       const mapa: Record<string, [number, number]> = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }
+      if (e.key === 'Enter') { abrir(); return }
       const m = mapa[e.key]
       if (!m) return
       if (modo === 'slider' && m[1]) return
@@ -245,7 +250,9 @@ export function useGaleria(piezas: Piezas) {
         vx = vy = 0
         const el = document.elementFromPoint(e.clientX, e.clientY)
         const celda = el && el.closest<HTMLElement>('.celda')
-        if (celda) centrar(+celda.dataset.r!, +celda.dataset.c!)
+        // tocar la foto del centro abre la página del artista; las demás se centran
+        if (celda?.classList.contains('activa')) abrir()
+        else if (celda) centrar(+celda.dataset.r!, +celda.dataset.c!)
         return
       }
       if (modo === 'slider') {

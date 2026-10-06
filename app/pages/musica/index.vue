@@ -18,15 +18,15 @@
       </div>
 
       <ul id="fuente" ref="fuente" hidden>
-        <li><img src="/assets/artistas/cirratum.jpg" alt="CIRRATUM"></li>
-        <li><img src="/assets/artistas/f3dr.jpg" alt="F3DR"></li>
-        <li><img src="/assets/artistas/warv.jpg" alt="WARV"></li>
-        <li><img src="/assets/artistas/kesr.jpg" alt="KESR"></li>
-        <li><img src="/assets/artistas/caotical-disordah.jpg" alt="CAOTICAL DISORDAH"></li>
-        <li><img src="/assets/artistas/esallen.jpg" alt="ESALLEN"></li>
+        <li><img src="/assets/artistas/cirratum.jpg" alt="CIRRATUM" data-slug="cirratum"></li>
+        <li><img src="/assets/artistas/f3dr.jpg" alt="F3DR" data-slug="f3dr"></li>
+        <li><img src="/assets/artistas/warv.jpg" alt="WARV" data-slug="warv"></li>
+        <li><img src="/assets/artistas/kesr.jpg" alt="KESR" data-slug="kesr"></li>
+        <li><img src="/assets/artistas/caotical-disordah.jpg" alt="CAOTICAL DISORDAH" data-slug="caotical-disordah"></li>
+        <li><img src="/assets/artistas/esallen.jpg" alt="ESALLEN" data-slug="esallen"></li>
       </ul>
 
-      <section id="escena" ref="escena" class="escena" role="tabpanel" aria-labelledby="tab-slider" tabindex="0" aria-roledescription="galería" aria-label="Artistas de REEF Records. Arrastra para moverte."></section>
+      <section id="escena" ref="escena" class="escena" role="tabpanel" aria-labelledby="tab-slider" tabindex="0" aria-roledescription="galería" aria-label="Artistas de REEF Records. Arrastra para moverte; toca la foto del centro o pulsa Enter para ver al artista."></section>
 
       <section id="panel-eventos" ref="eventos" class="eventos" role="tabpanel" aria-labelledby="cat-eventos" aria-hidden="true">
         <p>Working on it</p>
@@ -35,7 +35,7 @@
       <div id="barra" ref="barra" class="barra">
         <button id="anterior" ref="anterior" class="flecha" type="button" aria-label="Artista anterior">←</button>
         <div class="rotulo">
-          <p id="nombre" ref="nombre" class="nombre" aria-live="polite">CIRRATUM</p>
+          <a id="nombre" ref="nombre" class="nombre" href="/musica/cirratum" aria-live="polite">CIRRATUM</a>
           <p id="contador" ref="contador" class="meta">01 / 06</p>
         </div>
         <button id="siguiente" ref="siguiente" class="flecha" type="button" aria-label="Artista siguiente">→</button>

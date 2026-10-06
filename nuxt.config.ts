@@ -1,5 +1,7 @@
 // REEF Records: exportación estática (nuxi generate) de las tres páginas.
 // Pila decidida el 2026-09-16: Nuxt + three.js directo + GSAP ScrollTrigger + Lenis.
+import { ARTISTAS } from './app/data/artistas'
+
 export default defineNuxtConfig({
   ssr: true,
   compatibilityDate: '2026-09-25',
@@ -18,6 +20,6 @@ export default defineNuxtConfig({
   // Las hojas de estilo de cada página van enlazadas (como en la versión vanilla), no copiadas en el
   // HTML: con inlineStyles el cliente volvía a descargar la misma hoja al cargar la página.
   features: { inlineStyles: false },
-  nitro: { prerender: { crawlLinks: false, routes: ['/', '/musica', '/ciencia', '/ciencia/mapa', '/ciencia/especies', '/merch', '/causas'] } },
+  nitro: { prerender: { crawlLinks: false, routes: ['/', '/musica', '/ciencia', '/ciencia/mapa', '/ciencia/especies', '/merch', '/causas', ...ARTISTAS.map(a => `/musica/${a.slug}`)] } },
   vite: { build: { target: 'es2022' } }
 })

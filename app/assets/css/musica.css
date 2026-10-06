@@ -103,7 +103,10 @@ html:has(> body.pagina-musica), body.pagina-musica { height: 100%; overflow: hid
   font-size: clamp(0.95rem, 1.8vw, 1.3rem); font-weight: 800; line-height: 1.15;
   letter-spacing: 0.08em; text-transform: uppercase; color: #fff;
   text-wrap: balance;
+  text-decoration: none; text-underline-offset: 4px;
 }
+/* el nombre lleva a la página del artista */
+.nombre:hover { text-decoration: underline; text-decoration-color: var(--reef); }
 .meta { font-size: var(--rotulo); font-weight: var(--rotulo-peso); letter-spacing: var(--rotulo-espacio); text-transform: uppercase; color: var(--reef-40); font-variant-numeric: tabular-nums; }
 .flecha {
   position: relative;

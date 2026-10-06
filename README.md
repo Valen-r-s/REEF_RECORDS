@@ -65,7 +65,8 @@ y abre http://localhost:8080/. Esa carpeta se puede subir tal cual a cualquier h
 app/
   pages/                    una ruta por archivo
     index.vue                 /         entrada, descenso y la causa
-    musica.vue                /musica   artistas (slider y grid)
+    musica/index.vue          /musica   artistas (slider y grid); la foto del centro abre al artista
+    musica/[artista].vue      /musica/<slug>   5 tarjetas en un anillo 3D (ArtistaAnillo) y barra tipo reproductor con redes
     ciencia/index.vue         /ciencia            portada: burbujas Mapa y Especies
     ciencia/mapa.vue          /ciencia/mapa       atlas: dónde encontrar a cada especie
     ciencia/especies.vue      /ciencia/especies   la especie en píxeles, ficha, UICN y datos curiosos
@@ -80,6 +81,10 @@ app/
     SelectorEspecie.vue       pestañas Mantarraya Gigante / Tiburón Martillo
     EspecieBitmap.vue         la especie en píxeles con tramado (three.js)
     SiteNav.vue               barra de navegación y menú móvil
+    IconoRed.vue              íconos de YouTube, SoundCloud, Instagram y WhatsApp en currentColor
+    ArtistaAnillo.vue         5 tarjetas en un anillo 3D que gira suave; las de atrás muestran el logo REEF en blanco
+    LogoReefCompleto.vue      logo completo de REEF (public/assets/LogoREEFCompleto.svg) en línea: reverso de las tarjetas
+    OndaSonido.vue            forma de onda a la manera de SoundCloud (tarjeta Sonido del artista)
     MarcaReef.vue             logo REEF RECORDS de la esquina, blanco o negro según la página
     MerchPortada.vue          camiseta tras un vidrio esmerilado (filtro SVG), solo el estampado nítido
     MerchTarjeta.vue          una camiseta: tallas (radios) y enlace de pedido a WhatsApp
@@ -94,6 +99,7 @@ app/
   data/atlas.ts             sitios, rutas ilustrativas, hábitat y estado UICN de cada especie en el atlas
   data/merch.ts             productos, fotos de la portada y el mensaje de pedido
   data/causas.ts            proyectos, cifras con su fuente y fotos (con el autor de las de referencia)
+  data/artistas.ts          artistas: enlaces, duración del set y textos (nuxt.config genera sus rutas)
   data/contacto.ts          número de WhatsApp corporativo: pedidos, donaciones y alianzas
   utils/gl.ts               ayudas de three.js que usan todas las capas
   plugins/hash-llegada.client.ts   conserva la llegada directa a /#causa
@@ -158,7 +164,7 @@ El build no consulta GBIF y el navegador tampoco: la página carga el JSON ya gu
 | Original (`main`) | En `nuxt-migration` |
 |---|---|
 | `index.html` | `app/pages/index.vue` |
-| `musica.html` | `app/pages/musica.vue` |
+| `musica.html` | `app/pages/musica/index.vue` |
 | `ciencia.html` | `app/pages/ciencia/especies.vue` (la portada y el mapa son nuevos en esta rama) |
 | `css/*.css` | `app/assets/css/*.css` |
 | `assets/*` | `public/assets/*` |
@@ -196,6 +202,8 @@ Los cambios de `main` en `js/ciencia-datos.js` o en `js/mapa.js` ya no aplican a
 - Las reglas de GBIF para citar datos tomados por su API (un DOI de "derived dataset") no están verificadas; por ahora la cita va en el pie del atlas y la lista completa de datasets en `gbif-fuentes.json`.
 - Falta el número de WhatsApp corporativo (`WHATSAPP` en `app/data/contacto.ts`); lo usan los pedidos de Merch y los botones de donar y de alianzas de Causas. Mientras esté vacío, WhatsApp abre el mensaje escrito y deja elegir el contacto. En Merch, los precios tampoco están: cada producto acepta `precio` (en pesos) y solo se muestra si existe.
 - Merch es la única página clara: no carga el mar ni la nieve.
+- Artistas: los textos son genéricos y todos tienen los géneros del colectivo hasta saber los de cada uno. El botón de SoundCloud lleva al mismo video de YouTube mientras no haya SoundCloud propio; Instagram está vacío (se ve deshabilitado) y ESALLEN aún no tiene video. Las fotos de los sets (`public/assets/artistas/sets/`) salen de capturas de 455 px de ancho: se ven algo suaves en pantallas de alta densidad; con capturas más grandes se reemplazan sin tocar código. La forma de onda no es la del audio real: sale del nombre del artista.
+- Fotos de artistas: las tarjetas Sobre él, Redes y Por qué hace música usan 3 fotos adicionales (`fotos` en `app/data/artistas.ts`). Hoy solo ESALLEN las tiene; los demás reusan su retrato con otro encuadre hasta tener las suyas. ESALLEN usa por ahora el mismo video de CIRRATUM, y `esallen4.jpg` mide 235 × 353 px (va detrás del vidrio más fuerte).
 - Causas: las fotos de los tres proyectos, la del plástico en el mar y la de la manta son de referencia, de Unsplash (licencia gratuita, sin fines de venta directa de la foto). Cada una dice "Imagen de referencia" y su autor, y el pie de la página da los créditos. Al tener fotos propias, se reemplazan en `public/assets/causas/` y en `FOTOS` de `app/data/causas.ts`. Las fotos de eventos (`evento-*`) son de la carpeta Comunidad de REEF; se eligieron planos abiertos, sin retratos de asistentes.
 - El logo de la esquina es `MarcaReef.vue`: los trazos de "REEF RECORDS - Blanco/Negro.svg" en línea, blanco por defecto y `tono="negro"` (#414042) en páginas claras. "RECORDS" es texto en Orbitron, por eso no se usa como `<img>` (una imagen SVG no puede cargar la tipografía de la página). `public/assets/reef-web-corner.png` (385 kB) y `reef-web-corner.svg` (vacío) ya no los usa ninguna página.
 - Los sitios, notas y rutas del tiburón martillo en `app/data/atlas.ts` son nuevos: conviene revisarlos con el equipo, igual que los de la manta que vinieron de `landing-mobula`.

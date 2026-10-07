@@ -12,10 +12,10 @@
         <button id="tab-grid" type="button" role="tab" aria-selected="false" aria-controls="escena" tabindex="-1">Grid</button>
       </div>
 
-      <div id="categorias" ref="categorias" class="categorias" role="tablist" aria-label="Sección" aria-orientation="vertical">
-        <button id="cat-artistas" type="button" role="tab" aria-selected="true" aria-controls="escena">Artistas</button>
-        <button id="cat-eventos" type="button" role="tab" aria-selected="false" aria-controls="panel-eventos" tabindex="-1">Eventos</button>
-      </div>
+      <nav id="categorias" class="categorias" aria-label="Sección de Música">
+        <a href="/musica" aria-current="page">Artistas</a>
+        <a id="cat-eventos" ref="aEventos" href="/musica/eventos">Eventos</a>
+      </nav>
 
       <ul id="fuente" ref="fuente" hidden>
         <li><img src="/assets/artistas/cirratum.jpg" alt="CIRRATUM" data-slug="cirratum"></li>
@@ -27,10 +27,6 @@
       </ul>
 
       <section id="escena" ref="escena" class="escena" role="tabpanel" aria-labelledby="tab-slider" tabindex="0" aria-roledescription="galería" aria-label="Artistas de REEF Records. Arrastra para moverte; toca la foto del centro o pulsa Enter para ver al artista."></section>
-
-      <section id="panel-eventos" ref="eventos" class="eventos" role="tabpanel" aria-labelledby="cat-eventos" aria-hidden="true">
-        <p>Working on it</p>
-      </section>
 
       <div id="barra" ref="barra" class="barra">
         <button id="anterior" ref="anterior" class="flecha" type="button" aria-label="Artista anterior">←</button>
@@ -54,10 +50,9 @@ const nombre = ref<HTMLElement | null>(null)
 const contador = ref<HTMLElement | null>(null)
 const anterior = ref<HTMLElement | null>(null)
 const siguiente = ref<HTMLElement | null>(null)
-const categorias = ref<HTMLElement | null>(null)
-const eventos = ref<HTMLElement | null>(null)
+const aEventos = ref<HTMLElement | null>(null)
 
-useGaleria({ fuente, escena, selector, barra, nombre, contador, anterior, siguiente, categorias, eventos })
+useGaleria({ fuente, escena, selector, barra, nombre, contador, anterior, siguiente, aEventos })
 
 useHead({
   title: 'Música · REEF Records',

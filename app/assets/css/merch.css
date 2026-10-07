@@ -94,24 +94,26 @@
   transition: opacity 0.26s ease;
 }
 
-/* Hombre / Mujer: mismas pestañas con triángulo que Música y Ciencia, en tinta sobre papel */
+/* Hombre / Mujer: misma posición y medidas que el selector de Música y Ciencia (selector.css),
+   en tinta sobre papel */
 .m-cortes {
-  position: absolute; z-index: 4; left: 50%; top: calc(var(--alto-header) + 4px);
+  position: absolute; z-index: 4; left: 50%; top: var(--alto-header);
   transform: translateX(-50%);
-  display: flex; gap: clamp(24px, 4vw, 48px);
+  display: flex; gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: 0.35rem 1.1rem 0;
 }
 .m-cortes button {
   position: relative;
-  padding: 6px 2px 17px;
+  padding: 0.5rem 0.25rem 1.1rem;
   background: none; border: 0; cursor: pointer;
-  font: var(--rotulo-peso) var(--rotulo)/1 var(--m-ancha); letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
+  font: var(--rotulo-peso) var(--rotulo) var(--m-ancha); letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
   color: var(--m-azul);
   transition: color 0.25s ease;
 }
 .m-cortes button:hover, .m-cortes button[aria-pressed="true"] { color: var(--m-tinta); }
 .m-cortes button::after {
-  content: ""; position: absolute; left: 50%; bottom: 0;
-  width: 10px; height: 8px; margin-left: calc(-5px - 0.11em);
+  content: ""; position: absolute; left: 50%; bottom: 0.2rem;
+  width: 12px; height: 9px; margin-left: -6px;
   background: var(--reef);
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
   transform: scale(0);

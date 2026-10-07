@@ -141,14 +141,9 @@
 @media (max-width: 900px) {
   .ciencia {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "volver" "selector" "animal" "ficha";
-    padding-top: var(--alto-header);
-  }
-  .ciencia > .selector {
-    grid-area: selector;
-    position: static; transform: none;
-    justify-self: center;
-    margin-bottom: 1.25rem;
+    grid-template-areas: "volver" "animal" "ficha";
+    /* deja libre el selector, que sigue arriba (con los nombres en dos líneas) */
+    padding-top: calc(var(--alto-header) + 4.4rem);
   }
   .ciencia > .volver { grid-area: volver; }
   .animal { position: static; margin-top: 2rem; }

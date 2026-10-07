@@ -12,8 +12,7 @@ interface Piezas {
   contador: Ref<HTMLElement | null>
   anterior: Ref<HTMLElement | null>
   siguiente: Ref<HTMLElement | null>
-  categorias: Ref<HTMLElement | null>
-  eventos: Ref<HTMLElement | null>
+  aEventos: Ref<HTMLElement | null>
 }
 
 type Animacion = { desde: Record<string, number>, destino: Record<string, number>, t0: number, dur: number, curva: (k: number) => number, esModo?: boolean }
@@ -281,35 +280,23 @@ export function useGaleria(piezas: Piezas) {
       sucio = true
     }, { passive: false })
 
-    // Artistas / Eventos
-    const cats = [...piezas.categorias.value!.querySelectorAll<HTMLElement>('[role="tab"]')]
-    const eventos = piezas.eventos.value!
-    let seccion = 'artistas'
-    function seccionar(cual: string) {
-      if (cual === seccion) return
-      seccion = cual
-      const ev = cual === 'eventos'
-      cats.forEach(c => {
-        const si = c.id === 'cat-' + cual
-        c.setAttribute('aria-selected', String(si))
-        c.tabIndex = si ? 0 : -1
-      })
+    // Artistas → Eventos: las fotos se desvanecen en onda y luego carga /musica/eventos.
+    // Con Ctrl/Cmd/Shift o el botón del medio el enlace se abre normal, en otra pestaña.
+    const aEventos = piezas.aEventos.value!
+    let esperaEventos: ReturnType<typeof setTimeout> | undefined
+    escuchar(aEventos, 'click', (e: MouseEvent) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+      e.preventDefault()
       arr = null; vx = vy = 0
-      escena.classList.toggle('fuera', ev)
-      escena.setAttribute('aria-hidden', String(ev))
-      escena.tabIndex = ev ? -1 : 0
-      eventos.setAttribute('aria-hidden', String(!ev))
-      document.documentElement.classList.toggle('en-eventos', ev)
-      tabs.forEach(t => { t.tabIndex = ev ? -1 : (t.getAttribute('aria-selected') === 'true' ? 0 : -1) })
-    }
-    cats.forEach((c, i) => {
-      escuchar(c, 'click', () => seccionar(c.id.replace('cat-', '')))
-      escuchar(c, 'keydown', (e: KeyboardEvent) => {
-        if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return
-        e.preventDefault()
-        const otro = cats[(i + (e.key === 'ArrowDown' ? 1 : -1) + cats.length) % cats.length]!
-        seccionar(otro.id.replace('cat-', '')); otro.focus()
-      })
+      escena.classList.add('fuera')
+      document.documentElement.classList.add('en-eventos')
+      esperaEventos = setTimeout(() => { location.href = aEventos.getAttribute('href')! }, reducir.matches ? 0 : 650)
+    })
+    // al volver con el botón Atrás (página restaurada de la caché), las fotos regresan
+    escuchar(window, 'pageshow', (e: PageTransitionEvent) => {
+      if (!e.persisted) return
+      escena.classList.remove('fuera')
+      document.documentElement.classList.remove('en-eventos')
     })
 
     escuchar(window, 'resize', medir)
@@ -319,6 +306,7 @@ export function useGaleria(piezas: Piezas) {
     limpiar = () => {
       cancelAnimationFrame(raf)
       clearTimeout(esperaAjuste)
+      clearTimeout(esperaEventos)
       quitar.forEach(q => q())
       document.documentElement.classList.remove('en-eventos')
     }

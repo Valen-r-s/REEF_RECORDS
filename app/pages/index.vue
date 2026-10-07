@@ -1,5 +1,6 @@
 <template>
   <div>
+    <CargaReef />
     <OceanoMar ref="mar" />
     <MantasSombras />
     <div class="velo" aria-hidden="true"></div>
@@ -78,5 +79,6 @@ useHead({
 <style>
 @import '~/assets/css/hero.css';
 @import '~/assets/css/causa.css';
+@import '~/assets/css/carga.css';
 @import '~/assets/css/nav.css';
 </style>

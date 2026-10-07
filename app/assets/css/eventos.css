@@ -1,0 +1,921 @@
+/* REEF Records · Música / Eventos
+   Tema negativo (negro, blanco y azul REEF), como Música.
+   Portada: la foto de fondo y, arriba, un panel negro con EVENTOS calado: la foto se ve a través de las letras.
+   Cartel: los próximos eventos como boletos de papel en la escala del azul REEF, con fotos de los artistas
+   en duotono, stickers de animales y estrellas sobrepuestos, como un afiche pegado a mano.
+   Todo acotado a .pagina-eventos o a clases ev-: en desarrollo Nuxt carga las hojas de varias páginas. */
+.pagina-eventos {
+  --sombra-rgb: 11, 11, 11;
+  --ev-texto: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --ev-titulo: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+  --ev-grano: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.2 -.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background: var(--negro);
+  color: #e8e8e8;
+}
+
+.pagina-eventos :focus-visible {
+  outline: 2px solid var(--reef);
+  outline-offset: 3px;
+}
+
+/* sin selector Slider / Grid, Artistas / Eventos se queda arriba y se va con la portada */
+.pagina-eventos .categorias {
+  position: absolute;
+}
+
+.ev-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ev-antetitulo,
+.ev-portada-pie,
+.ev-presenta,
+.ev-cinta,
+.ev-reservar {
+  font-family: var(--ev-titulo);
+  font-size: var(--rotulo);
+  font-weight: var(--rotulo-peso);
+  letter-spacing: var(--rotulo-espacio);
+  text-transform: uppercase;
+}
+
+.ev-serie,
+.ev-admite,
+.ev-temporada,
+.ev-pie,
+.ev-fecha span {
+  font-family: var(--ev-titulo);
+  font-size: var(--rotulo-chico);
+  font-weight: 600;
+  letter-spacing: var(--rotulo-chico-espacio);
+  text-transform: uppercase;
+}
+
+/* ── Portada ─────────────────────────────────────────────────────────── */
+.ev-portada {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  color: #fff;
+}
+
+.ev-foto {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  transform-origin: 55% 45%;
+  animation: ev-acercar 26s ease-in-out infinite alternate;
+}
+
+@keyframes ev-acercar {
+  from {
+    transform: scale(1.04);
+  }
+
+  to {
+    transform: scale(1.14) translate(-1.5%, 1%);
+  }
+}
+
+/* luz azul REEF arriba y caída a negro abajo, hacia el cartel */
+.ev-portada::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(101, 123, 182, 0.34) 0%, rgba(101, 123, 182, 0) 45%),
+    linear-gradient(0deg, var(--negro) 0%, rgba(11, 11, 11, 0.55) 22%, rgba(11, 11, 11, 0) 50%);
+}
+
+/* grano de serigrafía: también disimula que la foto es pequeña en pantallas grandes */
+.ev-portada::after {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--ev-grano);
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+}
+
+/* sin fondo propio: el negro lo pinta el rectángulo del SVG, que se sale hacia arriba y a los lados */
+.ev-panel {
+  /* renglón de las categorías (relleno de 0.85rem, una línea de rótulo y 0.1rem de separación)
+     y el aire entre "Artistas" y "Eventos": renglón menos la altura de la mayúscula */
+  --ev-renglon: calc(0.95rem + 1.3 * var(--rotulo));
+  --ev-aire: calc(var(--ev-renglon) - 0.72 * var(--rotulo));
+  border-bottom: var(--ev-aire) solid var(--negro);
+  padding: var(--alto-header) var(--margen-header) 0;
+  color: var(--negro);
+  /* el rectángulo del calado usa currentColor */
+}
+
+/* alineado con "Artistas", la primera línea de las categorías de la derecha; encima del rectángulo.
+   Su alto deja las letras a la misma distancia de "Eventos" que hay entre "Artistas" y "Eventos":
+   arriba de la mayúscula de "Artistas" (0.85rem + 0.32 rótulo) más dos renglones de categorías. */
+.ev-antetitulo {
+  position: relative;
+  z-index: 1;
+  min-height: calc(0.85rem + 0.32 * var(--rotulo) + 2 * var(--ev-renglon));
+  max-width: calc(100% - 9rem);
+  padding: 0.85rem 0 0.6rem;
+  line-height: 1.5;
+  color: var(--reef-60);
+}
+
+/* 1000 × 126.4 de viewBox estirado a 1000 × 189.6: letras 1.5 veces más altas que la Orbitron normal.
+   Debajo, el borde negro del panel (de lado a lado) repite el aire entre "Artistas" y "Eventos". */
+.ev-calado {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1000 / 189.6;
+  overflow: visible;
+}
+
+.ev-calado text {
+  font-family: var(--ev-titulo);
+  font-size: 175.8px;
+  font-weight: 900;
+}
+
+.ev-calado .ev-filo {
+  fill: none;
+  stroke: var(--reef-60);
+  stroke-width: 1px;
+  stroke-opacity: 0.85;
+}
+
+/* cinta pegada sobre el borde del panel, con las fechas corriendo */
+.ev-cinta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 112%;
+  margin: 1.3rem -6% 0;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.7rem 0 0.62rem;
+  background: var(--reef);
+  color: var(--negro);
+  font-weight: 700;
+  transform: rotate(-1.3deg);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.ev-cinta span {
+  flex: none;
+  animation: ev-cinta 38s linear infinite;
+}
+
+@keyframes ev-cinta {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.ev-portada-pie {
+  align-self: end;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  padding: 3rem var(--margen-header) calc(1.4rem + env(safe-area-inset-bottom, 0px));
+  text-shadow: 0 1px 10px rgba(11, 11, 11, 0.85);
+}
+
+.ev-portada-pie p {
+  color: var(--reef-40);
+}
+
+.ev-desliza {
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.ev-desliza span {
+  display: inline-block;
+  margin-left: 0.4em;
+  animation: ev-flota 1.8s ease-in-out infinite;
+}
+
+.ev-desliza:hover {
+  color: var(--reef-60);
+}
+
+@keyframes ev-flota {
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* ── Cartel ─────────────────────────────────────────────────────────── */
+.ev-cartel {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  padding: clamp(4.5rem, 9vw, 7.5rem) var(--margen-header) clamp(4rem, 8vw, 6rem);
+  background:
+    radial-gradient(55% 32% at 88% 18%, rgba(101, 123, 182, 0.2), transparent 70%),
+    radial-gradient(50% 30% at 6% 62%, rgba(101, 123, 182, 0.14), transparent 70%),
+    var(--negro);
+}
+
+.ev-cartel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--ev-grano);
+  opacity: 0.08;
+  mix-blend-mode: screen;
+}
+
+/* PRÓXIMOS gigante, en contorno, detrás de todo */
+.ev-fondo-texto {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.ev-fondo-texto span {
+  font-family: var(--ev-titulo);
+  font-weight: 900;
+  font-size: clamp(5rem, 19vw, 17rem);
+  line-height: 0.85;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(193, 202, 226, 0.1);
+  animation: ev-deriva 30s ease-in-out infinite alternate;
+}
+
+.ev-fondo-texto span:nth-child(2) {
+  align-self: flex-end;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes ev-deriva {
+  from {
+    transform: translateX(-6%);
+  }
+
+  to {
+    transform: translateX(4%);
+  }
+}
+
+.ev-cabeza {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  margin: 0 auto clamp(4rem, 9vw, 6.5rem);
+}
+
+.ev-tiburones {
+  width: clamp(70px, 8vw, 104px);
+  height: auto;
+  margin-bottom: 1.4rem;
+  fill: var(--reef);
+}
+
+.ev-presenta {
+  color: var(--reef-60);
+}
+
+.ev-cabeza h2 {
+  margin: 0.7rem 0 1rem;
+  font-family: var(--ev-titulo);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 8.6vw, 7.4rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.ev-cabeza h2 em {
+  display: block;
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--reef-60);
+}
+
+.ev-temporada {
+  color: var(--reef-40);
+}
+
+.ev-lista {
+  list-style: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(4.5rem, 9vw, 7rem);
+}
+
+/* el boleto */
+.ev-boleto {
+  --giro: -1.4deg;
+  --papel: var(--reef);
+}
+
+.ev-boleto.izquierda {
+  margin-right: clamp(0px, 5vw, 4.5rem);
+}
+
+.ev-boleto.derecha {
+  --giro: 1.1deg;
+  margin-left: clamp(0px, 5vw, 4.5rem);
+}
+
+.papel-claro {
+  --papel: var(--reef-20);
+}
+
+.papel-medio {
+  --papel: var(--reef-60);
+}
+
+.ev-ticket {
+  --corte: clamp(8.5rem, 12vw, 10.5rem);
+  /* ancho del talón */
+  --z: 9px;
+  /* alto de cada diente del borde */
+  --r: 13px;
+  /* radio de las muescas del troquel */
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(2.8rem, 4vw, 3.4rem) minmax(0, 0.92fr) minmax(0, 1.3fr) var(--corte);
+  grid-template-areas: "dia fotos info talon";
+  min-height: clamp(330px, 32vw, 400px);
+  color: var(--negro);
+  transform: rotate(var(--giro));
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.55));
+}
+
+/* el papel: dientes a los lados y dos muescas donde se corta el talón */
+.ev-papel {
+  --dientes-izq: conic-gradient(from 45deg at left, #0000, #000 1deg 89deg, #0000 90deg) 0 50% / 51% calc(2 * var(--z)) repeat-y;
+  --dientes-der: conic-gradient(from -135deg at right, #0000, #000 1deg 89deg, #0000 90deg) 100% 50% / 51% calc(2 * var(--z)) repeat-y;
+  --muesca-1: radial-gradient(circle at calc(100% - var(--corte)) 0, #0000 var(--r), #000 calc(var(--r) + 0.5px));
+  --muesca-2: radial-gradient(circle at calc(100% - var(--corte)) 100%, #0000 var(--r), #000 calc(var(--r) + 0.5px));
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(70% 90% at 18% 0%, rgba(255, 255, 255, 0.28), transparent 60%),
+    var(--papel);
+  -webkit-mask: var(--muesca-1), var(--muesca-2), var(--dientes-izq), var(--dientes-der);
+  -webkit-mask-composite: source-in, source-in, source-over, source-over;
+  mask: var(--muesca-1), var(--muesca-2), var(--dientes-izq), var(--dientes-der);
+  mask-composite: intersect, intersect, add, add;
+}
+
+.ev-papel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--ev-grano);
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+}
+
+.ev-dia,
+.ev-fotos,
+.ev-info,
+.ev-talon {
+  position: relative;
+  z-index: 1;
+}
+
+/* el día, en una franja negra vertical */
+.ev-dia {
+  grid-area: dia;
+  display: grid;
+  place-items: center;
+  margin: 1rem 0 1rem calc(var(--z) + 6px);
+  background: var(--negro);
+  color: var(--papel);
+}
+
+.ev-dia span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--ev-titulo);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* fotos de los artistas: polaroids en duotono REEF, se salen del boleto por arriba y por abajo */
+.ev-fotos {
+  grid-area: fotos;
+  margin: -2.2rem 0 -2.2rem 0.6rem;
+}
+
+.ev-foto-a {
+  position: absolute;
+  width: 54%;
+  aspect-ratio: 3 / 4;
+  padding: 6px;
+  background: #f4f6fb;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.38);
+  transform: rotate(var(--g, 0deg));
+  transition: transform 0.5s cubic-bezier(.2, .7, .2, 1);
+}
+
+.ev-foto-a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  filter: grayscale(1) contrast(1.18) brightness(1.04);
+}
+
+.ev-foto-a::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  background: var(--reef-60);
+  mix-blend-mode: multiply;
+}
+
+.fotos-3 .f0 {
+  --g: -6deg;
+  left: 0;
+  top: 2%;
+}
+
+.fotos-3 .f1 {
+  --g: 5deg;
+  left: 40%;
+  top: 17%;
+  z-index: 2;
+}
+
+.fotos-3 .f2 {
+  --g: -2deg;
+  left: 12%;
+  top: 44%;
+  z-index: 1;
+}
+
+.fotos-2 .f0 {
+  --g: -5deg;
+  left: 2%;
+  top: 6%;
+}
+
+.fotos-2 .f1 {
+  --g: 6deg;
+  left: 42%;
+  top: 30%;
+  z-index: 1;
+}
+
+.ev-ticket:hover .ev-foto-a {
+  transform: rotate(calc(var(--g, 0deg) * 1.6)) translateY(-4px);
+}
+
+/* datos */
+.ev-info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1rem, 2.6vw, 2.2rem) clamp(1.4rem, 2.6vw, 2rem);
+}
+
+.ev-serie {
+  font-weight: 700;
+}
+
+.ev-info h3 {
+  font-family: var(--ev-titulo);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4.4vw, 3.8rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.ev-artistas {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.ev-artistas a {
+  display: inline-block;
+  padding: 0.48rem 0.7rem 0.42rem;
+  background: var(--negro);
+  color: #fff;
+  font-family: var(--ev-titulo);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: rotate(-1.5deg);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.ev-artistas li:nth-child(even) a {
+  transform: rotate(1.2deg);
+}
+
+.ev-artistas a:hover {
+  background: #fff;
+  color: var(--negro);
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.ev-cuando {
+  display: flex;
+  align-items: stretch;
+  gap: 0.9rem;
+  margin-top: auto;
+}
+
+.ev-fecha {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.3rem;
+  min-width: 4.8rem;
+  padding: 0.55rem 0.8rem 0.6rem;
+  background: var(--negro);
+  color: #fff;
+}
+
+.ev-fecha b {
+  font-family: var(--ev-titulo);
+  font-weight: 900;
+  font-size: 2.3rem;
+  line-height: 1;
+}
+
+.ev-fecha span {
+  color: var(--reef-60);
+}
+
+.ev-hora {
+  display: grid;
+  align-content: center;
+  gap: 0.25rem;
+  font-family: var(--ev-texto);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ev-hora span {
+  font-weight: 400;
+  font-size: 0.92rem;
+}
+
+/* talón: separado por la línea perforada */
+.ev-talon {
+  grid-area: talon;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-right: var(--z);
+  padding: 1.6rem 1rem 1.4rem;
+  border-left: 2px dashed rgba(11, 11, 11, 0.45);
+  text-align: center;
+}
+
+.ev-numero {
+  font-family: var(--ev-titulo);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 4.6vw, 4.2rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--negro);
+}
+
+.ev-admite {
+  font-weight: 700;
+}
+
+.ev-barras {
+  display: block;
+  width: 100%;
+  height: 48px;
+  background: repeating-linear-gradient(90deg,
+      var(--negro) 0 2px, transparent 2px 4px, var(--negro) 4px 5px, transparent 5px 8px,
+      var(--negro) 8px 11px, transparent 11px 12px, var(--negro) 12px 13px, transparent 13px 16px);
+}
+
+.ev-reservar {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 0.4rem 0.74rem;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  background: var(--negro);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.ev-reservar:hover {
+  background: #fff;
+  color: var(--negro);
+}
+
+/* sticker de animal pegado encima, y estrellas */
+.ev-sticker {
+  position: absolute;
+  z-index: 3;
+  width: clamp(100px, 12vw, 158px);
+  height: auto;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+  transform: rotate(var(--gs, 10deg));
+}
+
+/* en las esquinas de la izquierda, sobre la franja del día y las fotos: nunca tapa un texto */
+.izquierda .ev-sticker {
+  --gs: -12deg;
+  top: -3.6rem;
+  left: -2rem;
+}
+
+.derecha .ev-sticker {
+  --gs: -10deg;
+  bottom: -3rem;
+  left: -1.8rem;
+}
+
+.ev-estrella {
+  position: absolute;
+  z-index: 3;
+  height: auto;
+  pointer-events: none;
+  animation: ev-brilla 3.2s ease-in-out infinite;
+}
+
+.ev-estrella.e1 {
+  width: 30px;
+  top: -15px;
+  left: 34%;
+  fill: #fff;
+}
+
+.ev-estrella.e2 {
+  width: 18px;
+  bottom: 16%;
+  right: calc(var(--corte) - 9px);
+  fill: var(--negro);
+  animation-delay: -1.6s;
+}
+
+.derecha .ev-estrella.e1 {
+  left: auto;
+  right: 22%;
+}
+
+@keyframes ev-brilla {
+  50% {
+    transform: scale(0.72) rotate(45deg);
+  }
+}
+
+.ev-pie {
+  margin-top: clamp(4.5rem, 9vw, 6.5rem);
+  text-align: center;
+  color: var(--reef-60);
+}
+
+/* aparición: el boleto sube y se endereza; el sticker se pega después */
+.pagina-eventos .revelar {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(.2, .7, .2, 1);
+}
+
+.pagina-eventos .revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.ev-boleto.revelar .ev-ticket {
+  transform: rotate(calc(var(--giro) * 3));
+  transition: transform 1.1s cubic-bezier(.2, .7, .2, 1);
+}
+
+.ev-boleto.revelar.visible .ev-ticket {
+  transform: rotate(var(--giro));
+}
+
+.ev-boleto.revelar .ev-sticker {
+  opacity: 0;
+  transform: rotate(calc(var(--gs) - 30deg)) scale(1.4);
+  transition: opacity 0.35s ease 0.5s, transform 0.55s cubic-bezier(.3, 1.6, .5, 1) 0.5s;
+}
+
+.ev-boleto.revelar.visible .ev-sticker {
+  opacity: 1;
+  transform: rotate(var(--gs));
+}
+
+/* ── Móvil: el boleto se apila y el talón pasa abajo ───────────────── */
+@media (max-width: 760px) {
+  .ev-antetitulo {
+    max-width: calc(100% - 8rem);
+  }
+
+  .ev-calado {
+    aspect-ratio: 1000 / 283;
+  }
+
+  .ev-cinta {
+    margin-top: 0.5rem;
+    padding: 0.6rem 0 0.52rem;
+    transform: rotate(-2.4deg);
+  }
+
+  .ev-portada-pie {
+    padding-top: 2rem;
+  }
+
+  .ev-boleto,
+  .ev-boleto.derecha {
+    --giro: -0.8deg;
+    margin: 0;
+  }
+
+  .ev-boleto.derecha {
+    --giro: 0.8deg;
+  }
+
+  .ev-ticket {
+    --alto-talon: 5.8rem;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    grid-template-rows: 12.5rem auto var(--alto-talon);
+    grid-template-areas: "dia fotos" "dia info" "talon talon";
+    min-height: 0;
+  }
+
+  .ev-papel {
+    --muesca-1: radial-gradient(circle at 0 calc(100% - var(--alto-talon)), #0000 var(--r), #000 calc(var(--r) + 0.5px));
+    --muesca-2: radial-gradient(circle at 100% calc(100% - var(--alto-talon)), #0000 var(--r), #000 calc(var(--r) + 0.5px));
+  }
+
+  .ev-dia {
+    margin: 1rem 0 0.6rem calc(var(--z) + 4px);
+  }
+
+  .ev-fotos {
+    margin: -2.2rem 0.4rem 0 0.6rem;
+  }
+
+  .ev-foto-a {
+    width: 46%;
+  }
+
+  .fotos-3 .f0 {
+    left: 0;
+    top: 4%;
+  }
+
+  .fotos-3 .f1 {
+    left: 50%;
+    top: 0;
+  }
+
+  .fotos-3 .f2 {
+    left: 26%;
+    top: 22%;
+  }
+
+  .fotos-2 .f0 {
+    left: 6%;
+    top: 6%;
+  }
+
+  .fotos-2 .f1 {
+    left: 46%;
+    top: 12%;
+  }
+
+  .ev-info {
+    padding: 1.1rem 1rem 1.4rem 0.9rem;
+    gap: 0.8rem;
+  }
+
+  .ev-artistas a {
+    font-size: 0.7rem;
+  }
+
+  .ev-cuando {
+    flex-wrap: wrap;
+  }
+
+  .ev-fecha {
+    min-width: 4.2rem;
+  }
+
+  .ev-fecha b {
+    font-size: 2rem;
+  }
+
+  .ev-talon {
+    flex-direction: row;
+    gap: 0.9rem;
+    margin: 0 var(--z);
+    padding: 0.9rem 1rem;
+    border-left: 0;
+    border-top: 2px dashed rgba(11, 11, 11, 0.45);
+    text-align: left;
+  }
+
+  .ev-numero {
+    font-size: 2.4rem;
+  }
+
+  .ev-admite {
+    display: none;
+  }
+
+  .ev-barras {
+    flex: 1;
+    width: auto;
+    height: 36px;
+    min-width: 2.5rem;
+  }
+
+  .ev-reservar {
+    width: auto;
+    padding: 0.8rem 0.9rem 0.74rem;
+  }
+
+  .izquierda .ev-sticker,
+  .derecha .ev-sticker {
+    width: 92px;
+    top: -3rem;
+    right: -0.5rem;
+    bottom: auto;
+    left: auto;
+  }
+
+  .ev-estrella.e2 {
+    right: auto;
+    left: 30%;
+    bottom: calc(var(--alto-talon) - 9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ev-foto,
+  .ev-cinta span,
+  .ev-fondo-texto span,
+  .ev-estrella,
+  .ev-desliza span {
+    animation: none;
+  }
+
+  .pagina-eventos .revelar,
+  .ev-boleto.revelar .ev-ticket,
+  .ev-boleto.revelar .ev-sticker,
+  .ev-foto-a {
+    transition: none;
+  }
+}

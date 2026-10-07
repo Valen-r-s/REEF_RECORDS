@@ -66,6 +66,7 @@ app/
   pages/                    una ruta por archivo
     index.vue                 /         entrada, descenso y la causa
     musica/index.vue          /musica   artistas (slider y grid); la foto del centro abre al artista
+    musica/eventos.vue        /musica/eventos   EVENTOS calado sobre la foto y los próximos eventos como boletos
     musica/[artista].vue      /musica/<slug>   5 tarjetas en un anillo 3D (ArtistaAnillo) y barra tipo reproductor con redes
     ciencia/index.vue         /ciencia            portada: burbujas Mapa y Especies
     ciencia/mapa.vue          /ciencia/mapa       atlas: dónde encontrar a cada especie
@@ -82,6 +83,7 @@ app/
     EspecieBitmap.vue         la especie en píxeles con tramado (three.js)
     SiteNav.vue               barra de navegación y menú móvil
     IconoRed.vue              íconos de YouTube, SoundCloud, Instagram y WhatsApp en currentColor
+    CargaReef.vue             carga del inicio: los tiburones de TiburonesREEF.svg se llenan de metal líquido (cromo con gotas, filtro SVG)
     ArtistaAnillo.vue         5 tarjetas en un anillo 3D que gira suave; las de atrás muestran el logo REEF en blanco
     LogoReefCompleto.vue      logo completo de REEF (public/assets/LogoREEFCompleto.svg) en línea: reverso de las tarjetas
     OndaSonido.vue            forma de onda a la manera de SoundCloud (tarjeta Sonido del artista)
@@ -100,6 +102,8 @@ app/
   data/merch.ts             productos, fotos de la portada y el mensaje de pedido
   data/causas.ts            proyectos, cifras con su fuente y fotos (con el autor de las de referencia)
   data/artistas.ts          artistas: enlaces, duración del set y textos (nuxt.config genera sus rutas)
+  data/eventos.ts           próximos eventos: fecha, lugar, line-up (slugs de artistas), sticker y color del boleto
+  data/tiburones.ts         trazos de TiburonesREEF.svg (carga del inicio y cartel de Eventos)
   data/contacto.ts          número de WhatsApp corporativo: pedidos, donaciones y alianzas
   utils/gl.ts               ayudas de three.js que usan todas las capas
   plugins/hash-llegada.client.ts   conserva la llegada directa a /#causa
@@ -107,6 +111,7 @@ app/
   assets/css/               las hojas de estilo de la versión original
 public/assets/              logo, fotos de artistas y demás archivos que se sirven tal cual
 public/assets/merch/        fotos de las camisetas ya recortadas (4:5, 400 y 800 px)
+public/assets/eventos/      foto de la portada de Eventos
 public/assets/causas/       fotos de Causas en WebP, 800 y 1600 px: de referencia (Unsplash) y de eventos (evento-*)
 public/datos/gbif-fuentes.json   los datasets de GBIF usados, para citarlos (lo genera npm run gbif)
 scripts/gbif-especies.mjs   descarga y filtra los avistamientos de GBIF
@@ -131,6 +136,7 @@ nuxt.config.ts              rutas que se generan, título, idioma
 |---|---|---|---|
 | Inicio, Ciencia | el mar que baja al abismo (`--abismo`) | mar, nieve marina, mantas, especie en píxeles | océano: blanco y azules REEF sobre el azul del mar |
 | Música | negro | no | negativo: blanco y azul REEF sobre negro |
+| Música / Eventos | la foto de la fiesta, vista a través de EVENTOS calado en un panel negro | no | negativo; los boletos son de papel en la escala del azul REEF con letra negra |
 | Causas | negro, con el estampado topográfico en la portada | topografía (en la escala del azul REEF) | negativo en color |
 | Merch | blanco | no (vidrio con filtro SVG) | positivo: negro sobre blanco, el azul REEF como color |
 
@@ -203,7 +209,9 @@ Los cambios de `main` en `js/ciencia-datos.js` o en `js/mapa.js` ya no aplican a
 - Falta el número de WhatsApp corporativo (`WHATSAPP` en `app/data/contacto.ts`); lo usan los pedidos de Merch y los botones de donar y de alianzas de Causas. Mientras esté vacío, WhatsApp abre el mensaje escrito y deja elegir el contacto. En Merch, los precios tampoco están: cada producto acepta `precio` (en pesos) y solo se muestra si existe.
 - Merch es la única página clara: no carga el mar ni la nieve.
 - Artistas: los textos son genéricos y todos tienen los géneros del colectivo hasta saber los de cada uno. El botón de SoundCloud lleva al mismo video de YouTube mientras no haya SoundCloud propio; Instagram está vacío (se ve deshabilitado) y ESALLEN aún no tiene video. Las fotos de los sets (`public/assets/artistas/sets/`) salen de capturas de 455 px de ancho: se ven algo suaves en pantallas de alta densidad; con capturas más grandes se reemplazan sin tocar código. La forma de onda no es la del audio real: sale del nombre del artista.
+- Carga del inicio: dura lo que tarda la página (documento, imágenes y tipografías), mínimo 1,8 s para que se vea el llenado y máximo 8 s. Llegando a `/#causa` desde otra página no aparece. Si el JavaScript no corre, se quita sola a los 10 s.
 - Fotos de artistas: las tarjetas Sobre él, Redes y Por qué hace música usan 3 fotos adicionales (`fotos` en `app/data/artistas.ts`). Hoy solo ESALLEN las tiene; los demás reusan su retrato con otro encuadre hasta tener las suyas. ESALLEN usa por ahora el mismo video de CIRRATUM, y `esallen4.jpg` mide 235 × 353 px (va detrás del vidrio más fuerte).
+- Eventos: los tres eventos de `app/data/eventos.ts` son de ejemplo (lugares, fechas y horas inventados); se reemplazan por los reales sin tocar la página. "Reservar" abre WhatsApp con el nombre y la fecha del evento. La foto de la portada mide 736 × 490 px: en pantallas grandes se ve suave (el grano la disimula); conviene una de al menos 1920 px de ancho, y que sea de REEF o con permiso de uso. En Música, "Eventos" desvanece las fotos en onda y luego carga `/musica/eventos`.
 - Causas: las fotos de los tres proyectos, la del plástico en el mar y la de la manta son de referencia, de Unsplash (licencia gratuita, sin fines de venta directa de la foto). Cada una dice "Imagen de referencia" y su autor, y el pie de la página da los créditos. Al tener fotos propias, se reemplazan en `public/assets/causas/` y en `FOTOS` de `app/data/causas.ts`. Las fotos de eventos (`evento-*`) son de la carpeta Comunidad de REEF; se eligieron planos abiertos, sin retratos de asistentes.
 - El logo de la esquina es `MarcaReef.vue`: los trazos de "REEF RECORDS - Blanco/Negro.svg" en línea, blanco por defecto y `tono="negro"` (#414042) en páginas claras. "RECORDS" es texto en Orbitron, por eso no se usa como `<img>` (una imagen SVG no puede cargar la tipografía de la página). `public/assets/reef-web-corner.png` (385 kB) y `reef-web-corner.svg` (vacío) ya no los usa ninguna página.
 - Los sitios, notas y rutas del tiburón martillo en `app/data/atlas.ts` son nuevos: conviene revisarlos con el equipo, igual que los de la manta que vinieron de `landing-mobula`.

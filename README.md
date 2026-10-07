@@ -65,6 +65,7 @@ y abre http://localhost:8080/. Esa carpeta se puede subir tal cual a cualquier h
 app/
   pages/                    una ruta por archivo
     index.vue                 /         entrada, descenso y la causa
+    about.vue                 /about    cinco tanques de agua con siluetas (AcuarioEquipo) y qué es REEF
     musica/index.vue          /musica   artistas (slider y grid); la foto del centro abre al artista
     musica/eventos.vue        /musica/eventos   EVENTOS calado sobre la foto y los próximos eventos como boletos
     musica/[artista].vue      /musica/<slug>   5 tarjetas en un anillo 3D (ArtistaAnillo) y barra tipo reproductor con redes
@@ -90,6 +91,7 @@ app/
     MarcaReef.vue             logo REEF RECORDS de la esquina, blanco o negro según la página
     MerchPortada.vue          camiseta tras un vidrio esmerilado (filtro SVG), solo el estampado nítido
     MerchTarjeta.vue          una camiseta: tallas (radios) y enlace de pedido a WhatsApp
+    AcuarioEquipo.vue         About: cinco tanques de agua con una persona de pie en silueta en cada uno (three.js, GLSL 3)
     TopografiaMar.vue         estampado topográfico en movimiento de la portada de Causas (three.js, GLSL 3)
   composables/
     useReef.ts                estado del scroll que comparten las capas
@@ -136,6 +138,7 @@ nuxt.config.ts              rutas que se generan, título, idioma
 |---|---|---|---|
 | Inicio, Ciencia | el mar que baja al abismo (`--abismo`) | mar, nieve marina, mantas, especie en píxeles | océano: blanco y azules REEF sobre el azul del mar |
 | Música | negro | no | negativo: blanco y azul REEF sobre negro |
+| About | negro, con los tanques iluminados | tanques de agua con siluetas y piso que refleja | negativo: blanco y azul REEF sobre negro |
 | Música / Eventos | la foto de la fiesta, vista a través de EVENTOS calado en un panel negro | no | negativo; los boletos son de papel en la escala del azul REEF con letra negra |
 | Causas | negro, con el estampado topográfico en la portada | topografía (en la escala del azul REEF) | negativo en color |
 | Merch | blanco | no (vidrio con filtro SVG) | positivo: negro sobre blanco, el azul REEF como color |
@@ -211,6 +214,7 @@ Los cambios de `main` en `js/ciencia-datos.js` o en `js/mapa.js` ya no aplican a
 - Artistas: los textos son genéricos y todos tienen los géneros del colectivo hasta saber los de cada uno. El botón de SoundCloud lleva al mismo video de YouTube mientras no haya SoundCloud propio; Instagram está vacío (se ve deshabilitado) y ESALLEN aún no tiene video. Las fotos de los sets (`public/assets/artistas/sets/`) salen de capturas de 455 px de ancho: se ven algo suaves en pantallas de alta densidad; con capturas más grandes se reemplazan sin tocar código. La forma de onda no es la del audio real: sale del nombre del artista.
 - Carga del inicio: dura lo que tarda la página (documento, imágenes y tipografías), mínimo 1,8 s para que se vea el llenado y máximo 8 s. Llegando a `/#causa` desde otra página no aparece. Si el JavaScript no corre, se quita sola a los 10 s.
 - Fotos de artistas: las tarjetas Sobre él, Redes y Por qué hace música usan 3 fotos adicionales (`fotos` en `app/data/artistas.ts`). Hoy solo ESALLEN las tiene; los demás reusan su retrato con otro encuadre hasta tener las suyas. ESALLEN usa por ahora el mismo video de CIRRATUM, y `esallen4.jpg` mide 235 × 353 px (va detrás del vidrio más fuerte).
+- About: los tanques no llevan nombres ni roles; son una pieza visual. Las siluetas son procedimentales (no hay fotos de por medio): son personas de pie, y cada tanque tiene su cuerpo, pelo, ropa y postura en las tablas de `AcuarioEquipo.vue` (mujer de pelo largo con los brazos a los lados; hombre de chaqueta con los brazos cruzados; hombre de chaqueta con las manos en los bolsillos; mujer de pelo largo con vestido y la mano en la cintura; persona con capucha y la mano en el vidrio). El tanque bajo el cursor, o el que se toca, se enciende. Sin WebGL2 los tanques se ven como degradados azules.
 - Eventos: los tres eventos de `app/data/eventos.ts` son de ejemplo (lugares, fechas y horas inventados); se reemplazan por los reales sin tocar la página. "Reservar" abre WhatsApp con el nombre y la fecha del evento. La foto de la portada mide 736 × 490 px: en pantallas grandes se ve suave (el grano la disimula); conviene una de al menos 1920 px de ancho, y que sea de REEF o con permiso de uso. En Música, "Eventos" desvanece las fotos en onda y luego carga `/musica/eventos`.
 - Causas: las fotos de los tres proyectos, la del plástico en el mar y la de la manta son de referencia, de Unsplash (licencia gratuita, sin fines de venta directa de la foto). Cada una dice "Imagen de referencia" y su autor, y el pie de la página da los créditos. Al tener fotos propias, se reemplazan en `public/assets/causas/` y en `FOTOS` de `app/data/causas.ts`. Las fotos de eventos (`evento-*`) son de la carpeta Comunidad de REEF; se eligieron planos abiertos, sin retratos de asistentes.
 - El logo de la esquina es `MarcaReef.vue`: los trazos de "REEF RECORDS - Blanco/Negro.svg" en línea, blanco por defecto y `tono="negro"` (#414042) en páginas claras. "RECORDS" es texto en Orbitron, por eso no se usa como `<img>` (una imagen SVG no puede cargar la tipografía de la página). `public/assets/reef-web-corner.png` (385 kB) y `reef-web-corner.svg` (vacío) ya no los usa ninguna página.

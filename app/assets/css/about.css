@@ -1,0 +1,107 @@
+/* REEF Records · About
+   Tema negativo: negro, con la luz azul REEF de los tanques. Composición como un afiche de equipo:
+   titular grande arriba a la izquierda, rótulo [ Nosotros ] a la derecha, cinco tanques en fila sobre un piso
+   que los refleja. El shader (AcuarioEquipo.vue) dibuja los tanques justo sobre los elementos de .ab-tanques.
+   Todo acotado a .pagina-about o a clases ab-: en desarrollo Nuxt carga las hojas de varias páginas. */
+.pagina-about {
+  --sombra-rgb: 11, 11, 11;
+  --ab-texto: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --ab-titulo: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+  background: var(--negro);
+  color: #e8e8e8;
+  font-family: var(--ab-texto);
+}
+.pagina-about :focus-visible { outline: 2px solid var(--reef-60); outline-offset: 3px; }
+.ab-etiqueta {
+  font-family: var(--ab-titulo); font-size: var(--rotulo); font-weight: var(--rotulo-peso);
+  letter-spacing: var(--rotulo-espacio); text-transform: uppercase;
+}
+
+/* ── El equipo ─────────────────────────────────────────────────────── */
+.ab-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: 100vh; min-height: 100svh;
+  display: grid; grid-template-rows: auto auto 1fr;
+  padding: calc(var(--alto-header) + clamp(1rem, 3vh, 2.25rem)) var(--margen-header) 0;
+}
+.ab-lienzo { position: absolute; inset: 0; z-index: -1; display: block; width: 100%; height: 100%; background: var(--negro); }
+
+.ab-cabeza { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
+.ab-cabeza h1 {
+  max-width: 13ch;
+  font-family: var(--ab-titulo); font-weight: 900; font-size: clamp(1.9rem, 4.4vw, 4rem); line-height: .94;
+  text-transform: uppercase; text-wrap: balance; color: #fff;
+}
+.ab-lado { display: grid; justify-items: end; gap: .8rem; max-width: 15rem; text-align: right; }
+.ab-lado .ab-etiqueta { color: #fff; }
+.ab-intro { font-size: .86rem; line-height: 1.5; color: var(--reef-60); }
+
+/* los tanques: los de los lados más altos, como si estuvieran más cerca. Son solo la medida para el shader */
+.ab-tanques {
+  display: flex; align-items: flex-end; gap: clamp(6px, 1.6vw, 22px);
+  height: clamp(280px, 46svh, 490px);
+  margin-top: clamp(1.5rem, 4vh, 3rem);
+}
+.ab-tanque { flex: 1 1 0; min-width: 0; height: 100%; }
+.ab-tanque:nth-child(2), .ab-tanque:nth-child(4) { height: 95%; }
+.ab-tanque:nth-child(3) { height: 91%; }
+/* sin WebGL2 el tanque es un degradado */
+.ab-tanques:not(.con-gl) .ab-tanque {
+  background: linear-gradient(180deg, #2a3561 0 6%, var(--reef-80) 6.5%, var(--reef) 45%, #27345e);
+  box-shadow: inset 0 0 0 1.5px var(--reef-40);
+}
+
+/* el piso: aquí el shader pinta el reflejo de los tanques */
+.ab-suelo { min-height: calc(clamp(110px, 18svh, 230px) + env(safe-area-inset-bottom, 0px)); }
+
+/* ── Qué es REEF ───────────────────────────────────────────────────── */
+.ab-manifiesto {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2rem;
+  padding: clamp(4rem, 10vw, 8rem) var(--margen-header) clamp(4rem, 9vw, 7rem);
+  border-top: 1px solid rgba(193, 202, 226, .12);
+}
+.ab-manifiesto .ab-etiqueta { color: var(--reef-60); }
+.ab-manifiesto h2 {
+  max-width: 17ch;
+  font-family: var(--ab-titulo); font-weight: 900; font-size: clamp(1.7rem, 4vw, 3.4rem); line-height: .98;
+  text-transform: uppercase; text-wrap: balance; color: #fff;
+}
+.ab-columnas {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem);
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+}
+.ab-relato { display: grid; gap: 1.1rem; max-width: 52ch; }
+.ab-relato p { font-size: clamp(1rem, 1.2vw, 1.12rem); line-height: 1.65; color: #c9cfdd; }
+.ab-frentes { list-style: none; border-top: 1px solid rgba(193, 202, 226, .16); }
+.ab-frentes li { border-bottom: 1px solid rgba(193, 202, 226, .16); }
+.ab-frentes a {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: 1rem;
+  padding: 1.1rem 0;
+  font-family: var(--ab-titulo); font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.3rem); letter-spacing: .06em;
+  text-transform: uppercase; text-decoration: none; color: #fff;
+  transition: color .3s ease, padding .3s ease;
+}
+.ab-frentes a span {
+  font-family: var(--ab-texto); font-weight: 400; font-size: .86rem; letter-spacing: 0; text-transform: none;
+  color: var(--reef-60);
+}
+.ab-frentes a i { font-style: normal; color: var(--reef-60); transition: transform .3s ease; }
+.ab-frentes a:hover { color: var(--reef-60); padding-left: .5rem; }
+.ab-frentes a:hover i { transform: translateX(4px); }
+
+.pagina-about .revelar { opacity: 0; transform: translateY(24px); transition: opacity .9s ease-out, transform .9s ease-out; }
+.pagina-about .revelar.visible { opacity: 1; transform: none; }
+.pagina-about .revelar.d1 { transition-delay: .12s; }
+.pagina-about .revelar.d2 { transition-delay: .24s; }
+
+/* ── Móvil: los tanques quedan angostos; quién es se lee debajo ────── */
+@media (max-width: 760px) {
+  .ab-cabeza { flex-direction: column; gap: 1rem; }
+  .ab-lado { justify-items: start; text-align: left; }
+  .ab-tanques { height: clamp(250px, 44svh, 400px); }
+  .ab-columnas { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-frentes a, .ab-frentes a i { transition: none; }
+  .pagina-about .revelar { opacity: 1; transform: none; transition: none; }
+}

@@ -54,7 +54,13 @@ export function useGaleria(piezas: Piezas) {
 
     function medir() {
       vw = escena.clientWidth; vh = escena.clientHeight
-      const arriba = selector.getBoundingClientRect().bottom + 14
+      // las fotos empiezan bajo "Eventos" con el mismo aire que hay entre "Artistas" y "Eventos"
+      // (la misma cuenta que .ev-antetitulo en eventos.css: 0.85rem + 0.32 rótulo + dos renglones de 0.95rem + 1.3 rótulo)
+      const aEv = piezas.aEventos.value!, cats = aEv.parentElement!
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize)
+      const rotulo = parseFloat(getComputedStyle(aEv).fontSize)
+      const bajoCategorias = cats.getBoundingClientRect().top + rem * 2.75 + rotulo * 2.92
+      const arriba = Math.max(selector.getBoundingClientRect().bottom + 14, bajoCategorias)
       const abajo = barra.getBoundingClientRect().height + 6
       const disp = Math.max(180, vh - arriba - abajo)
       Hs = Math.min(disp, vw * 0.72 * 1.25)

@@ -28,12 +28,11 @@ const props = defineProps<{
 }>()
 
 const enlaces = computed(() => [
-  { href: '#', ruta: '/about', texto: 'About' },
+  { href: '/about', ruta: '/about', texto: 'About' },
   { href: '/musica', ruta: '/musica', texto: 'Música' },
   { href: '/causas', ruta: '/causas', texto: 'Causas' },
   { href: '/merch', ruta: '/merch', texto: 'Merch' },
-  { href: '/ciencia', ruta: '/ciencia', texto: 'Ciencia' },
-  { href: '#', ruta: '/donaciones', texto: 'Donaciones' }
+  { href: '/ciencia', ruta: '/ciencia', texto: 'Ciencia' }
 ])
 
 const abierto = ref(false)
